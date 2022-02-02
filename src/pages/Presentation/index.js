@@ -47,7 +47,8 @@ import footerRoutes from "footer.routes";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
-import bgImage from "assets/images/bg-coworking.jpeg";
+// import bgImage from "assets/images/bg-coworking.jpeg";
+import bgImage from "assets/images/accueil2.jpg";
 
 function Presentation() {
   return (
