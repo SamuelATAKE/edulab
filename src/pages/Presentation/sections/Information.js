@@ -16,7 +16,6 @@ Coded by www.creative-tim.com
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
-
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
 
@@ -42,21 +41,21 @@ function Information() {
                 icon="touch_app"
                 title={
                   <>
-                    Feel the
+                    Redecouvrez
                     <br />
-                    Material Kit
+                    Le plaisir de programmer
                   </>
                 }
-                description="All the MUI components that you need in a development have been re-design with the new look."
+                description="Un cadre de travail sain , concu pour que vous preniez plaisir a gagner en competence."
               />
               <RotatingCardBack
                 image={bgBack}
-                title="Discover More"
-                description="You will save a lot of time going from prototyping to full-functional code because all elements are implemented."
+                title="Devenez le developpeur dont vous revez"
+                description="Une experience des plus benefiques notamment grace au suivi regulier de mentors qualifies et l'experience du travail en equipe."
                 action={{
                   type: "internal",
-                  route: "/sections/page-sections/page-headers",
-                  label: "start with header",
+                  route: "/pages/authentication/sign-in",
+                  label: "lancez-vous a l'aventure",
                 }}
               />
             </RotatingCard>
@@ -65,17 +64,16 @@ function Information() {
             <Grid container spacing={3}>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
-                  icon="content_copy"
-                  title="Full Documentation"
-                  description="Built by developers for developers. Check the foundation and you will find
-                    everything inside our documentation."
+                  icon="group"
+                  title="Collaboration"
+                  description="Eprouver le travail en equipe dans ses moindres aspects tout en echangeant avec des professionels et aines capables de vous inculquer les bonnes pratique."
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
-                  icon="flip_to_front"
-                  title="MUI Ready"
-                  description="The world's most popular react components library for building user interfaces."
+                  icon="star"
+                  title="Simple et Minimaliste"
+                  description="Un ensemble sobre et coherent vous permettant d'etre plus productif que jamais. Devenez l'elite des developpeurs"
                 />
               </Grid>
             </Grid>
@@ -83,15 +81,15 @@ function Information() {
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
                   icon="price_change"
-                  title="Save Time & Money"
-                  description="Creating your design from scratch with dedicated designers can be very expensive. Start with our Design System."
+                  title="Totalement gratuit"
+                  description="Notre plateforme est tout d'abord pensee pour vous permettre d'atteindre vos objectifs professionels. Le service est donc gratuit et ne necessite aucun frais."
                 />
               </Grid>
               <Grid item xs={12} md={6}>
                 <DefaultInfoCard
                   icon="devices"
-                  title="Fully Responsive"
-                  description="Regardless of the screen size, the website content will naturally fit the given resolution."
+                  title="Accessible"
+                  description="Consulter vos activites , apprenez , gerez vos projets n'importe ou , n'importe quand"
                 />
               </Grid>
             </Grid>
