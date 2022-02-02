@@ -45,7 +45,7 @@ import routes from "menu";
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
 
-function SignInBasic() {
+function SignUpBasic() {
   const [rememberMe, setRememberMe] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
@@ -56,8 +56,8 @@ function SignInBasic() {
         routes={routes}
         action={{
           type: "external",
-          route: "/inscription",
-          label: "Inscription",
+          route: "/connexion",
+          label: "Connexion",
           color: "info",
         }}
         transparent
@@ -81,7 +81,7 @@ function SignInBasic() {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
+      <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={4}>
         <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             <Card>
@@ -97,7 +97,7 @@ function SignInBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  Connectez-vous
+                  Créer un compte!
                 </MKTypography>
                 <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
                   <Grid item xs={2}>
@@ -120,10 +120,16 @@ function SignInBasic() {
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox component="form" role="form">
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput type="text" label="Nom d'utilisateur(Pseudo)" fullWidth />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="email" label="Adresse email" fullWidth />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput type="password" label="Mot de passe" fullWidth />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="password" label="Confirmez votre mot de passe" fullWidth />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
                     <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -139,21 +145,21 @@ function SignInBasic() {
                   </MKBox>
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" color="info" fullWidth>
-                      Connexion
+                      Inscription
                     </MKButton>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
-                      Vous n avez pas de compte?{" "}
+                      Vous avez déjà un compte?{" "}
                       <MKTypography
                         component={Link}
-                        to="/inscription"
+                        to="/connexion"
                         variant="button"
                         color="info"
                         fontWeight="medium"
                         textGradient
                       >
-                        Inscrivez-vous
+                        Connectez-vous
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
@@ -170,4 +176,4 @@ function SignInBasic() {
   );
 }
 
-export default SignInBasic;
+export default SignUpBasic;

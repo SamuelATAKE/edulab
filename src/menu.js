@@ -40,13 +40,13 @@ Coded by www.creative-tim.com
 import Icon from "@mui/material/Icon";
 
 // @mui icons
-//Pages
-//Sections
+// Pages
+// Sections
 const routes = [
   {
     name: "Accueil",
     icon: <Icon>dashboard</Icon>,
-    route: "",
+    route: "/presentation",
   },
   {
     name: "Projets",
@@ -54,12 +54,12 @@ const routes = [
     collapse: [
       {
         name: "Projets tutorés",
-        description: "See all sections",
+        description: "Apprenez en pratiquant",
         route: "",
       },
       {
         name: "Annonces",
-        description: "See all navigations",
+        description: "Participez à de vrai projets",
         route: "",
       },
     ],

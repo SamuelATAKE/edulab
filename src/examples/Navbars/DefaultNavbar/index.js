@@ -146,7 +146,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                         component={item.route ? Link : MuiLink}
                         to={item.route ? item.route : ""}
                         href={item.href ? item.href : (e) => e.preventDefault()}
-                        target={item.href ? "_blank" : ""}
+                        target={item.href ? "" : ""} // _blank
                         rel={item.href ? "noreferrer" : "noreferrer"}
                         minWidth="11.25rem"
                         display="block"
@@ -197,7 +197,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
         const linkComponent = {
           component: MuiLink,
           href: item.href,
-          target: "_blank",
+          target: "", // _blank
           rel: "noreferrer",
         };
 
@@ -341,7 +341,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 const linkComponent = {
                   component: MuiLink,
                   href: item.href,
-                  target: "_blank",
+                  target: "", // _blank
                   rel: "noreferrer",
                 };
 
@@ -508,7 +508,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 <MKButton
                   component="a"
                   href={action.route}
-                  target="_blank"
+                  target="" // _blank
                   rel="noreferrer"
                   variant={
                     action.color === "white" || action.color === "default"
