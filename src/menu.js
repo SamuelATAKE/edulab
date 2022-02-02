@@ -40,8 +40,8 @@ Coded by www.creative-tim.com
 import Icon from "@mui/material/Icon";
 
 // @mui icons
-//Pages
-//Sections
+// Pages
+// Sections
 const routes = [
   {
     name: "Accueil",
