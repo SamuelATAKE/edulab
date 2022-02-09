@@ -36,11 +36,11 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 
 // Material Kit 2 React example components
-import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+// import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 
 // Material Kit 2 React page layout routes
-import routes from "menu";
+// import routes from "menu";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
@@ -52,17 +52,6 @@ function SignInBasic() {
 
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/inscription",
-          label: "Inscription",
-          color: "info",
-        }}
-        transparent
-        light
-      />
       <MKBox
         position="absolute"
         top={0}
