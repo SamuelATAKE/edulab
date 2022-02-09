@@ -64,6 +64,7 @@ export default function App() {
 
         <Route path="/connexion" element={<SignIn />} />
         <Route path="/Projets" element={<Projetstutores />} />
+        <Route path="/contact" element={<ContactUs />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/" element={<Presentation />} />
         <Route path="*" element={<Navigate to="/presentation" />} />
