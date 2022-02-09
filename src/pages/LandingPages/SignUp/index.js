@@ -36,11 +36,11 @@ import MKInput from "components/MKInput";
 import MKButton from "components/MKButton";
 
 // Material Kit 2 React example components
-// import DefaultNavbar from "examples/Navbars/DefaultNavbar";
+import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import SimpleFooter from "examples/Footers/SimpleFooter";
 
 // Material Kit 2 React page layout routes
-// import routes from "menu";
+import routes from "menu";
 
 // Images
 import bgImage from "assets/images/bg-sign-in-basic.jpeg";
@@ -52,13 +52,24 @@ function SignUpBasic() {
 
   return (
     <>
+      <DefaultNavbar
+        routes={routes}
+        action={{
+          type: "external",
+          route: "/connexion",
+          label: "Connexion",
+          color: "info",
+        }}
+        transparent
+        light
+      />
       <MKBox
         position="absolute"
-        top={0}
-        left={0}
         zIndex={1}
         width="100%"
         minHeight="100vh"
+        Height="auto"
+        mx="auto"
         sx={{
           backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
             `${linearGradient(
@@ -70,7 +81,8 @@ function SignUpBasic() {
           backgroundRepeat: "no-repeat",
         }}
       />
-      <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={4}>
+<<<<<<< HEAD
+      <MKBox px={1} width="100%" height="100vh" mx="auto" position="fixed" zIndex={4}>
         <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             <Card>
@@ -103,61 +115,98 @@ function SignUpBasic() {
                     <MKTypography component={MuiLink} href="#" variant="body1" color="white">
                       <GoogleIcon color="inherit" />
                     </MKTypography>
-                  </Grid>
-                </Grid>
-              </MKBox>
-              <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form">
-                  <MKBox mb={2}>
-                    <MKInput type="text" label="Nom d'utilisateur(Pseudo)" fullWidth />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput type="email" label="Adresse email" fullWidth />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput type="password" label="Mot de passe" fullWidth />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput type="password" label="Confirmez votre mot de passe" fullWidth />
-                  </MKBox>
-                  <MKBox display="flex" alignItems="center" ml={-1}>
-                    <Switch checked={rememberMe} onChange={handleSetRememberMe} />
-                    <MKTypography
-                      variant="button"
-                      fontWeight="regular"
-                      color="text"
-                      onClick={handleSetRememberMe}
-                      sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
-                    >
-                      &nbsp;&nbsp;Se souvenir
-                    </MKTypography>
-                  </MKBox>
-                  <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
-                      Inscription
-                    </MKButton>
-                  </MKBox>
-                  <MKBox mt={3} mb={1} textAlign="center">
-                    <MKTypography variant="button" color="text">
-                      Vous avez déjà un compte?{" "}
-                      <MKTypography
-                        component={Link}
-                        to="/connexion"
-                        variant="button"
-                        color="info"
-                        fontWeight="medium"
-                        textGradient
-                      >
-                        Connectez-vous
+=======
+      <div position="absolute" zIndex={1}>
+        <MKBox px={1} m="auto" position="relative" zIndex={4}>
+          <Grid container spacing={1} justifyContent="center" alignItems="center" height="auto">
+            <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
+              <Card>
+                <MKBox
+                  variant="gradient"
+                  bgColor="info"
+                  borderRadius="lg"
+                  coloredShadow="info"
+                  mx={2}
+                  mt={-3}
+                  p={2}
+                  mb={1}
+                  textAlign="center"
+                >
+                  <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+                    Créer un compte!
+                  </MKTypography>
+                  <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
+                    <Grid item xs={2}>
+                      <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                        <FacebookIcon color="inherit" />
                       </MKTypography>
-                    </MKTypography>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                        <GitHubIcon color="inherit" />
+                      </MKTypography>
+                    </Grid>
+                    <Grid item xs={2}>
+                      <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                        <GoogleIcon color="inherit" />
+                      </MKTypography>
+                    </Grid>
+>>>>>>> c04fba93c01b531ab324c100878b42f9358a81c3
+                  </Grid>
+                </MKBox>
+                <MKBox pt={4} pb={3} px={3}>
+                  <MKBox component="form" role="form">
+                    <MKBox mb={2}>
+                      <MKInput type="text" label="Nom d'utilisateur(Pseudo)" fullWidth />
+                    </MKBox>
+                    <MKBox mb={2}>
+                      <MKInput type="email" label="Adresse email" fullWidth />
+                    </MKBox>
+                    <MKBox mb={2}>
+                      <MKInput type="password" label="Mot de passe" fullWidth />
+                    </MKBox>
+                    <MKBox mb={2}>
+                      <MKInput type="password" label="Confirmez votre mot de passe" fullWidth />
+                    </MKBox>
+                    <MKBox display="flex" alignItems="center" ml={-1}>
+                      <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+                      <MKTypography
+                        variant="button"
+                        fontWeight="regular"
+                        color="text"
+                        onClick={handleSetRememberMe}
+                        sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+                      >
+                        &nbsp;&nbsp;Se souvenir
+                      </MKTypography>
+                    </MKBox>
+                    <MKBox mt={4} mb={1}>
+                      <MKButton variant="gradient" color="info" fullWidth>
+                        Inscription
+                      </MKButton>
+                    </MKBox>
+                    <MKBox mt={3} mb={1} textAlign="center">
+                      <MKTypography variant="button" color="text">
+                        Vous avez déjà un compte?{" "}
+                        <MKTypography
+                          component={Link}
+                          to="/connexion"
+                          variant="button"
+                          color="info"
+                          fontWeight="medium"
+                          textGradient
+                        >
+                          Connectez-vous
+                        </MKTypography>
+                      </MKTypography>
+                    </MKBox>
                   </MKBox>
                 </MKBox>
-              </MKBox>
-            </Card>
+              </Card>
+            </Grid>
           </Grid>
-        </Grid>
-      </MKBox>
+        </MKBox>
+      </div>
       <MKBox width="100%" position="absolute" zIndex={2} bottom="1.625rem">
         <SimpleFooter light />
       </MKBox>

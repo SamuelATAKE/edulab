@@ -31,6 +31,8 @@ import ContactUs from "layouts/pages/landing-pages/contact-us";
 
 // Material Kit 2 React routes
 import routes from "menu";
+// import Author from "pages/LandingPages/Author";
+import Projetstutores from "pages/Projetstutores";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -61,10 +63,10 @@ export default function App() {
         {getRoutes(routes)}
 
         <Route path="/connexion" element={<SignIn />} />
+        <Route path="/Projets" element={<Projetstutores />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/" element={<Presentation />} />
-        <Route path="contact" element={<ContactUs />} />
-        <Route path="*" element={<Navigate to="/" />} />
+        <Route path="*" element={<Navigate to="/presentation" />} />
       </Routes>
     </ThemeProvider>
   );
