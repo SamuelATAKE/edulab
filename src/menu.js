@@ -77,7 +77,7 @@ const routes = [
   {
     name: "Contact",
     icon: <Icon>article</Icon>,
-    route: "/contact",
+    href: "/contact",
   },
 ];
 
