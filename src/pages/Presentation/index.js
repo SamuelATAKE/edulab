@@ -34,6 +34,7 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Presentation page sections
 // import Counters from "pages/Presentation/sections/Counters";
 import Information from "pages/Presentation/sections/Information";
+// import Flip from "pages/Presentation/sections/Flip";
 // import DesignBlocks from "pages/Presentation/sections/DesignBlocks";
 // import Pages from "pages/Presentation/sections/Pages";
 import Testimonials from "pages/Presentation/sections/Testimonials";
@@ -81,7 +82,7 @@ function Presentation() {
           <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
             <MKTypography
               variant="h1"
-              color="white"
+              color="secondary"
               mb={3}
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
@@ -91,11 +92,13 @@ function Presentation() {
             >
               TrainYourDevSkills
             </MKTypography>
-            <MKTypography variant="body1" color="white" opacity={0.8} pr={6} mr={6}>
+            <MKTypography variant="body1" color="dark" opacity={0.8} pr={6} mr={6}>
               Plateforme de formation de développeurs compétents
             </MKTypography>
             <Stack direction="row" spacing={1} mt={3}>
-              <MKButton color="white">Commencer</MKButton>
+              <MKButton color="white" href="/connexion">
+                Commencer
+              </MKButton>
             </Stack>
           </Grid>
         </Container>

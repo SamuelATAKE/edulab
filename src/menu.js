@@ -55,12 +55,12 @@ const routes = [
       {
         name: "Projets tutorés",
         description: "Apprenez en pratiquant",
-        route: "",
+        href: "/Projets",
       },
       {
         name: "Annonces",
         description: "Participez à de vrai projets",
-        route: "",
+        route: "/Annonces",
       },
     ],
   },

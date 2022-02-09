@@ -30,6 +30,8 @@ import SignUp from "layouts/pages/authentication/sign-up";
 
 // Material Kit 2 React routes
 import routes from "menu";
+// import Author from "pages/LandingPages/Author";
+import Projetstutores from "pages/Projetstutores";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -60,6 +62,7 @@ export default function App() {
         {getRoutes(routes)}
 
         <Route path="/connexion" element={<SignIn />} />
+        <Route path="/Projets" element={<Projetstutores />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/" element={<Presentation />} />
         <Route path="*" element={<Navigate to="/presentation" />} />
