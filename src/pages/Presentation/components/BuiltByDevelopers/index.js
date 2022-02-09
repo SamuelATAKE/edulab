@@ -47,19 +47,18 @@ function BuiltByDevelopers() {
           <MKTypography variant="h4" color="white" fontWeight="bold">
             Que proposons-nous ?
           </MKTypography>
-          <MKTypography variant="body1" color="white" opacity={0.8} mb={2}>
+          <MKTypography variant="body1" color="white" opacity={0.8} mt={2} mb={2}>
             Un environnement d’apprentissage faisant ressentir, comprendre et surmonter aux
             apprenants/developpeurs le fossé entre le cadre théorique des cours et les réalités du
             terrain.
           </MKTypography>
-          <MKTypography variant="h5" color="white" mb={1}>
+        </Grid>
+        <Grid container item xs={12} lg={6} sx={{ ml: { xs: 0, lg: 6 } }}>
+          <MKTypography variant="h4" color="white" mb={2}>
             Qui ciblons-nous?
           </MKTypography>
-          <MKTypography variant="body1" color="white" opacity={0.8} mb={2}>
-            <ul>
-              <li>Etudiants en informatique/developpeurs</li>
-              <li>Promoteurs/Porteurs de projets informatiques</li>
-            </ul>
+          <MKTypography variant="body1" color="white" opacity={0.8} mt={2} mb={2}>
+            Etudiants en informatique/developpeurs et Promoteurs/Porteurs de projets informatiques
           </MKTypography>
         </Grid>
       </Container>
