@@ -27,6 +27,7 @@ import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
+import ContactUs from "layouts/pages/landing-pages/contact-us";
 
 // Material Kit 2 React routes
 import routes from "menu";
@@ -62,6 +63,7 @@ export default function App() {
         <Route path="/connexion" element={<SignIn />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/" element={<Presentation />} />
+        <Route path="contact" element={<ContactUs />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </ThemeProvider>

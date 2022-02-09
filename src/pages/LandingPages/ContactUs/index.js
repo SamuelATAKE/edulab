@@ -41,8 +41,8 @@ function ContactUs() {
           routes={routes}
           action={{
             type: "external",
-            route: "https://www.creative-tim.com/product/material-kit-react",
-            label: "free download",
+            route: "/connexion",
+            label: "Connexion",
             color: "info",
           }}
         />
@@ -103,7 +103,7 @@ function ContactUs() {
                   <Grid item xs={12} md={6}>
                     <MKInput
                       variant="standard"
-                      label="Full Name"
+                      label="Nom complet"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
@@ -112,7 +112,7 @@ function ContactUs() {
                     <MKInput
                       type="email"
                       variant="standard"
-                      label="Email"
+                      label="Adresse mail"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
@@ -120,8 +120,8 @@ function ContactUs() {
                   <Grid item xs={12}>
                     <MKInput
                       variant="standard"
-                      label="What can we help you?"
-                      placeholder="Describe your problem in at least 250 characters"
+                      label="Message"
+                      placeholder="En quoi pouvons-nous vous aider?"
                       InputLabelProps={{ shrink: true }}
                       multiline
                       fullWidth
@@ -131,7 +131,7 @@ function ContactUs() {
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
                   <MKButton type="submit" variant="gradient" color="info">
-                    Send Message
+                    Envoyer le message
                   </MKButton>
                 </Grid>
               </MKBox>

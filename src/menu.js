@@ -59,7 +59,7 @@ const routes = [
       },
       {
         name: "Annonces",
-        description: "Participez à de vrai projets",
+        description: "Participez à de vrais projets",
         route: "",
       },
     ],
@@ -77,7 +77,7 @@ const routes = [
   {
     name: "Contact",
     icon: <Icon>article</Icon>,
-    route: "/pages/landing-pages/contact-us",
+    route: "/contact",
   },
 ];
 
