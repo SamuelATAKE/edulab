@@ -46,7 +46,7 @@ const routes = [
   {
     name: "Accueil",
     icon: <Icon>dashboard</Icon>,
-    route: "/presentation",
+    href: "/presentation",
   },
   {
     name: "Projets",
