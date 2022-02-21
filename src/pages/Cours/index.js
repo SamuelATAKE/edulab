@@ -7,19 +7,19 @@ import MKBox from "components/MKBox";
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
+
 // Author page sections
 // import Profile from "pages/Projetstutores/sections/Profile";
-import Posts from "pages/Projetstutores/sections/Posts";
-// import Contact from "pages/Projetstutores/sections/Contact";
+import Posts from "pages/Cours/sections/Posts";
 
 // Routes
 import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Images
-import bgImage from "assets/images/Projets/banniere.jpg";
+import bgImage from "assets/images/Cours/banniere.jpg";
 
-function Projetstutores() {
+function Cours() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -60,4 +60,4 @@ function Projetstutores() {
   );
 }
 
-export default Projetstutores;
+export default Cours;

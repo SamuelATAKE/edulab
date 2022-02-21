@@ -60,14 +60,14 @@ const routes = [
       {
         name: "Annonces",
         description: "Participez à de vrais projets",
-        route: "/Annonces",
+        href: "/Annonces",
       },
     ],
   },
   {
     name: "Cours",
     icon: <Icon>article</Icon>,
-    route: "",
+    href: "Cours",
   },
   {
     name: "A propos",
