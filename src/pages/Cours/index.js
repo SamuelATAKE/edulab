@@ -23,7 +23,7 @@ function Cours() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
-      <MKBox bgColor="white">
+      <MKBox bgColor="#dadaf0">
         <MKBox
           minHeight="25rem"
           width="100%"

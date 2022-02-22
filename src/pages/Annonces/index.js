@@ -24,7 +24,7 @@ function Annonces() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
-      <MKBox bgColor="white">
+      <MKBox bgColor="#ffffda">
         <MKBox
           minHeight="25rem"
           width="100%"

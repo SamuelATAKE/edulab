@@ -27,7 +27,7 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // Routes
-import routes from "routes";
+import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Image
@@ -89,15 +89,11 @@ function ContactUsBasic() {
               mx={2}
               mt={-3}
             >
-              <MKTypography variant="h3" color="white">
-                Contact us
+              <MKTypography variant="title" color="white" justifyContent="center">
+                Nous contacter
               </MKTypography>
             </MKBox>
             <MKBox p={3}>
-              <MKTypography variant="body2" color="text" mb={3}>
-                For further questions, including partnership opportunities, please email
-                hello@creative-tim.com or contact using our contact form.
-              </MKTypography>
               <MKBox width="100%" component="form" method="post" autocomplete="off">
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>

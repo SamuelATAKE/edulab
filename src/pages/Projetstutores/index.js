@@ -23,7 +23,7 @@ function Projetstutores() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
-      <MKBox bgColor="white">
+      <MKBox bgColor="#e0ffd6">
         <MKBox
           minHeight="25rem"
           width="100%"
