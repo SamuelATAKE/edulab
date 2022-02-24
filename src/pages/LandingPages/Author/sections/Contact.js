@@ -16,6 +16,7 @@ Coded by www.creative-tim.com
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import "@mui/icons-material";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -67,10 +68,13 @@ function Contact() {
                 >
                   <MKBox py={6} pr={6} pl={{ xs: 6, sm: 12 }} my="auto">
                     <MKTypography variant="h3" color="white" mb={1}>
-                      Contact Information
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
+                      <i className="fas fa-star" />
                     </MKTypography>
                     <MKTypography variant="body2" color="white" opacity={0.8} mb={3}>
-                      Fill up the form and our Team will get back to you within 24 hours.
+                      Niveau 3 <br />
+                      Particpez à plus de projets et remportez des points
                     </MKTypography>
                     <MKBox display="flex" p={1}>
                       <MKTypography variant="button" color="white">
@@ -84,7 +88,7 @@ function Contact() {
                         ml={2}
                         fontWeight="regular"
                       >
-                        (+40) 772 100 200
+                        (+228) 77210020
                       </MKTypography>
                     </MKBox>
                     <MKBox display="flex" color="white" p={1}>
@@ -99,7 +103,7 @@ function Contact() {
                         ml={2}
                         fontWeight="regular"
                       >
-                        hello@creative-tim.com
+                        hello@gmail.com
                       </MKTypography>
                     </MKBox>
                     <MKBox display="flex" color="white" p={1}>
@@ -114,7 +118,7 @@ function Contact() {
                         ml={2}
                         fontWeight="regular"
                       >
-                        Dyonisie Wolf Bucharest, RO 010458
+                        Agoè Assiyéyé, Rue 010458
                       </MKTypography>
                     </MKBox>
                     <MKBox mt={3}>
@@ -138,10 +142,10 @@ function Contact() {
                 <MKBox component="form" p={2} method="post">
                   <MKBox px={3} py={{ xs: 2, sm: 6 }}>
                     <MKTypography variant="h2" mb={1}>
-                      Say Hi!
+                      Vos informations personnelles
                     </MKTypography>
                     <MKTypography variant="body1" color="text" mb={2}>
-                      We&apos;d like to talk with you.
+                      Modifier ou complètez votre profil
                     </MKTypography>
                   </MKBox>
                   <MKBox pt={0.5} pb={3} px={3}>
@@ -149,8 +153,8 @@ function Contact() {
                       <Grid item xs={12} pr={1} mb={6}>
                         <MKInput
                           variant="standard"
-                          label="My name is"
-                          placeholder="Full Name"
+                          label="Nom"
+                          placeholder="Votre nom"
                           InputLabelProps={{ shrink: true }}
                           fullWidth
                         />
@@ -158,8 +162,8 @@ function Contact() {
                       <Grid item xs={12} pr={1} mb={6}>
                         <MKInput
                           variant="standard"
-                          label="I'm looking for"
-                          placeholder="What you love"
+                          label="Prénom(s)"
+                          placeholder="Votre prénom"
                           InputLabelProps={{ shrink: true }}
                           fullWidth
                         />
@@ -167,8 +171,35 @@ function Contact() {
                       <Grid item xs={12} pr={1} mb={6}>
                         <MKInput
                           variant="standard"
-                          label="Your message"
-                          placeholder="I want to say that..."
+                          label="Pseudonyme"
+                          placeholder="Votre pseudo"
+                          InputLabelProps={{ shrink: true }}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} pr={1} mb={6}>
+                        <MKInput
+                          variant="standard"
+                          label="Adresse mail"
+                          placeholder="Votre adresse mail"
+                          InputLabelProps={{ shrink: true }}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} pr={1} mb={6}>
+                        <MKInput
+                          variant="standard"
+                          label="Téléphone"
+                          placeholder="Votre numéro de téléphone"
+                          InputLabelProps={{ shrink: true }}
+                          fullWidth
+                        />
+                      </Grid>
+                      <Grid item xs={12} pr={1} mb={6}>
+                        <MKInput
+                          variant="standard"
+                          label="Biographie"
+                          placeholder="Dites plus sur vous... Votre niveau d'études, vos technologies et langages préférés, vos projets réalisés..."
                           InputLabelProps={{ shrink: true }}
                           fullWidth
                           multiline
@@ -186,7 +217,7 @@ function Contact() {
                       ml="auto"
                     >
                       <MKButton variant="gradient" color="info">
-                        Send Message
+                        Enregistrer mon profil
                       </MKButton>
                     </Grid>
                   </MKBox>

@@ -34,7 +34,7 @@ import Featuring from "pages/LandingPages/AboutUs/sections/Featuring";
 import Newsletter from "pages/LandingPages/AboutUs/sections/Newsletter";
 
 // Routes
-import routes from "routes";
+import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Images
@@ -47,8 +47,8 @@ function AboutUs() {
         routes={routes}
         action={{
           type: "external",
-          route: "https://www.creative-tim.com/product/material-kit-react",
-          label: "free download",
+          route: "/connexion",
+          label: "Connexion",
           color: "default",
         }}
         transparent
@@ -89,17 +89,16 @@ function AboutUs() {
                 },
               })}
             >
-              Work with an amazing design
+              Level up your skills
             </MKTypography>
             <MKTypography variant="body1" color="white" opacity={0.8} mt={1} mb={3}>
-              We&apos;re constantly trying to express ourselves and actualize our dreams. If you
-              have the opportunity to play this game
+              Développez constament vos compétences; Découvrez-vous et partagez votre Savoir faire.
             </MKTypography>
             <MKButton color="default" sx={{ color: ({ palette: { dark } }) => dark.main }}>
-              create account
+              S&apos;inscrire
             </MKButton>
             <MKTypography variant="h6" color="white" mt={8} mb={1}>
-              Find us on
+              Suivez-nous sur nos différents réseaux sociaux
             </MKTypography>
             <MKBox display="flex" justifyContent="center" alignItems="center">
               <MKTypography component="a" variant="body1" color="white" href="#" mr={3}>

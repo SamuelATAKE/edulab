@@ -35,8 +35,8 @@ function Information() {
                 <MKBox mb={5}>
                   <DefaultInfoCard
                     icon="public"
-                    title="Fully integrated"
-                    description="We get insulted by others, lose trust for those We get back freezes"
+                    title="Diversité de skills"
+                    description="Une diversité de projets sont à votre portée. Trouvez le projet approprié à la compétence que vous voulez développer."
                   />
                 </MKBox>
               </Grid>
@@ -44,8 +44,8 @@ function Information() {
                 <MKBox mb={5}>
                   <DefaultInfoCard
                     icon="payments"
-                    title="Payments functionality"
-                    description="We get insulted by others, lose trust for those We get back freezes"
+                    title="Gratuite"
+                    description="La plateforme est entièrement gratuite, sans aucun frais. Profitez-y à fond!"
                   />
                 </MKBox>
               </Grid>
@@ -53,8 +53,8 @@ function Information() {
                 <MKBox mb={{ xs: 5, md: 0 }}>
                   <DefaultInfoCard
                     icon="apps"
-                    title="Prebuilt components"
-                    description="We get insulted by others, lose trust for those We get back freezes"
+                    title="Projets structurés"
+                    description="Les mentors prennent le temps de détailler et d'organiser de manière construire les différents modules du projet"
                   />
                 </MKBox>
               </Grid>
@@ -62,8 +62,8 @@ function Information() {
                 <MKBox mb={{ xs: 5, md: 0 }}>
                   <DefaultInfoCard
                     icon="3p"
-                    title="Improved platform"
-                    description="We get insulted by others, lose trust for those We get back freezes"
+                    title="Variété d'utilisateurs"
+                    description="Nous rassemblons ainsi un bon nombre d'utilisateurs de diverses horizons et de diverses compétences. Profitez-en à travers les chats pour mieux vous connaître et apprendre l'un de l'autre"
                   />
                 </MKBox>
               </Grid>
@@ -72,13 +72,13 @@ function Information() {
           <Grid item xs={12} lg={4} sx={{ ml: "auto", mt: { xs: 3, lg: 0 } }}>
             <CenteredBlogCard
               image="https://images.unsplash.com/photo-1544717302-de2939b7ef71?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80"
-              title="Get insights on Search"
-              description="Website visitors today demand a frictionless user expericence — especially when using search. Because of the hight standards."
+              title="TrainYourDevSkills"
+              description="Apprenez au jour le jour à travers cette plateforme et rendez-vous capable de surpasser ce que vous apprenez à l'école."
               action={{
                 type: "internal",
-                route: "pages/company/about-us",
+                route: "/contact",
                 color: "info",
-                label: "find out more",
+                label: "Contactez-nous",
               }}
             />
           </Grid>

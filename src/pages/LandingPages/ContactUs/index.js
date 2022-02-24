@@ -27,13 +27,13 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // Routes
-import routes from "routes";
+import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Image
 import bgImage from "assets/images/illustrations/illustration-reset.jpg";
 
-function ContactUs() {
+function ContactUsBasic() {
   return (
     <>
       <MKBox position="fixed" top="0.5rem" width="100%">
@@ -41,8 +41,8 @@ function ContactUs() {
           routes={routes}
           action={{
             type: "external",
-            route: "https://www.creative-tim.com/product/material-kit-react",
-            label: "free download",
+            route: "/connexion",
+            label: "Connexion",
             color: "info",
           }}
         />
@@ -90,29 +90,28 @@ function ContactUs() {
               mt={-3}
             >
               <MKTypography variant="h3" color="white">
-                Contact us
+                Contactez-nous
               </MKTypography>
             </MKBox>
             <MKBox p={3}>
               <MKTypography variant="body2" color="text" mb={3}>
-                For further questions, including partnership opportunities, please email
-                hello@creative-tim.com or contact using our contact form.
+                Faites-nous parvenir vos inquiétudes. Nous vous lisons.
               </MKTypography>
               <MKBox width="100%" component="form" method="post" autocomplete="off">
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <MKInput
+                      label="Nom complet"
                       variant="standard"
-                      label="Full Name"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
                   </Grid>
                   <Grid item xs={12} md={6}>
                     <MKInput
-                      type="email"
                       variant="standard"
-                      label="Email"
+                      type="email"
+                      label="Adresse mail"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
@@ -120,8 +119,8 @@ function ContactUs() {
                   <Grid item xs={12}>
                     <MKInput
                       variant="standard"
-                      label="What can we help you?"
-                      placeholder="Describe your problem in at least 250 characters"
+                      label="Message"
+                      placeholder="En quoi pouvons-nous vous aider?"
                       InputLabelProps={{ shrink: true }}
                       multiline
                       fullWidth
@@ -131,7 +130,7 @@ function ContactUs() {
                 </Grid>
                 <Grid container item justifyContent="center" xs={12} mt={5} mb={2}>
                   <MKButton type="submit" variant="gradient" color="info">
-                    Send Message
+                    Envoyer le message
                   </MKButton>
                 </Grid>
               </MKBox>
@@ -146,4 +145,4 @@ function ContactUs() {
   );
 }
 
-export default ContactUs;
+export default ContactUsBasic;

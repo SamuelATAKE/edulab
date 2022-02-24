@@ -46,7 +46,7 @@ const routes = [
   {
     name: "Accueil",
     icon: <Icon>dashboard</Icon>,
-    route: "/presentation",
+    href: "/presentation",
   },
   {
     name: "Projets",
@@ -59,7 +59,7 @@ const routes = [
       },
       {
         name: "Annonces",
-        description: "Participez à de vrai projets",
+        description: "Participez à de vrais projets",
         route: "/Annonces",
       },
     ],
@@ -77,7 +77,7 @@ const routes = [
   {
     name: "Contact",
     icon: <Icon>article</Icon>,
-    route: "/pages/landing-pages/contact-us",
+    href: "/contact",
   },
 ];
 

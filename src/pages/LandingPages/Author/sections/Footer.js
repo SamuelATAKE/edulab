@@ -37,7 +37,7 @@ function Footer() {
             mb={{ xs: 3, lg: 0 }}
           >
             <MKTypography variant="h6" textTransform="uppercase" mb={{ xs: 2, lg: 3 }}>
-              Material Design
+              TrainYourDevSkills
             </MKTypography>
             <Stack
               component="ul"
@@ -55,11 +55,10 @@ function Footer() {
                   fontWeight="regular"
                   opacity={0.8}
                   component={Link}
-                  href="https://www.creative-tim.com"
-                  target="_blank"
+                  href="/"
                   rel="noreferrer"
                 >
-                  Home
+                  Accueil
                 </MKTypography>
               </MKBox>
               <MKBox component="li">
@@ -68,11 +67,11 @@ function Footer() {
                   fontWeight="regular"
                   opacity={0.8}
                   component={Link}
-                  href="https://www.creative-tim.com/presentation"
+                  href=""
                   target="_blank"
                   rel="noreferrer"
                 >
-                  About
+                  A propos
                 </MKTypography>
               </MKBox>
               <MKBox component="li">
@@ -81,7 +80,7 @@ function Footer() {
                   fontWeight="regular"
                   opacity={0.8}
                   component={Link}
-                  href="https://www.creative-tim.com/blog"
+                  href=""
                   target="_blank"
                   rel="noreferrer"
                 >
@@ -94,23 +93,22 @@ function Footer() {
                   fontWeight="regular"
                   opacity={0.8}
                   component={Link}
-                  href="https://www.creative-tim.com"
+                  href=""
                   target="_blank"
                   rel="noreferrer"
                 >
-                  Services
+                  Cours
                 </MKTypography>
               </MKBox>
             </Stack>
             <MKTypography variant="button" opacity={0.8}>
-              Copyright © <script>document.write(new Date().getFullYear())</script>2021 Material
-              Design by Creative Tim.
+              Copyright © <script>document.write(new Date().getFullYear())</script>{" "}
+              TrainYourDevSkills
             </MKTypography>
           </Grid>
           <Grid item xs={12} lg={6} ml="auto" textAlign={{ xs: "center", lg: "right" }}>
             <MKTypography variant="body1" fontWeight="bold" mb={6} sx={{ fontSize: "1.125rem" }}>
-              The reward for getting on the stage is fame. The price of fame is you can&apos;t get
-              off the stage.
+              Practice makes perfect
             </MKTypography>
             <MKTypography
               component={Link}

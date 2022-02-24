@@ -21,54 +21,53 @@ export default {
   socials: [
     {
       icon: <FacebookIcon />,
-      link: "https://www.facebook.com/CreativeTim/",
+      link: "https://www.facebook.com/",
     },
     {
       icon: <TwitterIcon />,
-      link: "https://twitter.com/creativetim",
+      link: "https://twitter.com/",
     },
     {
       icon: <GitHubIcon />,
-      link: "https://github.com/creativetimofficial",
+      link: "https://github.com/",
     },
     {
       icon: <YouTubeIcon />,
-      link: "https://www.youtube.com/channel/UCVyTG4sCw-rOvB9oHkzZD1w",
+      link: "https://www.youtube.com/",
     },
   ],
   menus: [
     {
       name: "Liens rapides",
       items: [
-        { name: "Projets tutorés", href: "https://www.creative-tim.com/presentation" },
-        { name: "Annonces", href: "https://www.creative-tim.com/templates/free" },
-        { name: "Cours", href: "https://www.creative-tim.com/templates/premium" },
-        { name: "Forum", href: "https://www.creative-tim.com/blog" },
+        { name: "Projets tutorés", href: "#" },
+        { name: "Annonces", href: "#" },
+        { name: "Cours", href: "#" },
+        { name: "Forum", href: "#" },
       ],
     },
     {
-      name: "resources",
+      name: "Ressources",
       items: [
-        { name: "illustrations", href: "https://iradesign.io/" },
-        { name: "bits & snippets", href: "https://www.creative-tim.com/bits" },
-        { name: "affiliate program", href: "https://www.creative-tim.com/affiliates/new" },
+        { name: "Illustrations", href: "#" },
+        { name: "bits & snippets", href: "#" },
+        { name: "Programmes associés", href: "#" },
       ],
     },
     {
       name: "Aide et support",
       items: [
-        { name: "Contactez-nous", href: "https://www.creative-tim.com/contact-us" },
-        { name: "knowledge center", href: "https://www.creative-tim.com/knowledge-center" },
-        { name: "custom development", href: "https://services.creative-tim.com/" },
-        { name: "Sponsors", href: "https://www.creative-tim.com/sponsorships" },
+        { name: "Contactez-nous", href: "#" },
+        { name: "Développement", href: "#" },
+        { name: "Sponsors", href: "#" },
       ],
     },
     {
       name: "Normes",
       items: [
-        { name: "Termes et conditions", href: "https://www.creative-tim.com/terms" },
-        { name: "Politiques de confidentialité", href: "https://www.creative-tim.com/privacy" },
-        { name: "Licences (EULA)", href: "https://www.creative-tim.com/license" },
+        { name: "Termes et conditions", href: "#" },
+        { name: "Politiques de confidentialité", href: "#" },
+        { name: "Licences (EULA)", href: "#" },
       ],
     },
   ],
@@ -77,13 +76,13 @@ export default {
       Tous droits reservés. Copyright &copy; {date} TrainYourDevSkills by{" "}
       <MKTypography
         component="a"
-        href="https://www.creative-tim.com"
+        href="#"
         target="_blank"
         rel="noreferrer"
         variant="button"
         fontWeight="regular"
       >
-        OrlogSam
+        TeamSoftLife
       </MKTypography>
       .
     </MKTypography>

@@ -27,11 +27,15 @@ import theme from "assets/theme";
 import Presentation from "layouts/pages/presentation";
 import SignIn from "layouts/pages/authentication/sign-in";
 import SignUp from "layouts/pages/authentication/sign-up";
+import ContactUs from "layouts/pages/landing-pages/contact-us";
 
 // Material Kit 2 React routes
 import routes from "menu";
 // import Author from "pages/LandingPages/Author";
 import Projetstutores from "pages/Projetstutores";
+import Author from "pages/LandingPages/Author";
+import Dashboard from "pages/Dashboard";
+import AboutUsPage from "layouts/pages/landing-pages/about-us";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -61,11 +65,15 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
 
+        <Route path="/a-propos-de-nous" element={<AboutUsPage />} />
+        <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/connexion" element={<SignIn />} />
         <Route path="/Projets" element={<Projetstutores />} />
+        <Route path="/contact" element={<ContactUs />} />
+        <Route path="/profil" element={<Author />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/" element={<Presentation />} />
-        <Route path="*" element={<Navigate to="/presentation" />} />
+        <Route path="*" element={<Navigate to="/" />} />
       </Routes>
     </ThemeProvider>
   );

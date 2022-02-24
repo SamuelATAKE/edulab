@@ -1,18 +1,3 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
@@ -25,9 +10,10 @@ import MKTypography from "components/MKTypography";
 import HorizontalTeamCard from "examples/Cards/TeamCards/HorizontalTeamCard";
 
 // Images
-import team1 from "assets/images/team-5.jpg";
+// import team1 from "assets/images/team-5.jpg";
+import team5 from "assets/images/team-4.jpg";
 import team2 from "assets/images/bruce-mars.jpg";
-import team3 from "assets/images/ivana-squares.jpg";
+import maella from "assets/images/maella.jpeg";
 import team4 from "assets/images/ivana-square.jpg";
 
 function Team() {
@@ -45,11 +31,10 @@ function Team() {
         <Grid container>
           <Grid item xs={12} md={8} sx={{ mb: 6 }}>
             <MKTypography variant="h3" color="white">
-              The Executive Team
+              L&apos;équipe exécutive
             </MKTypography>
             <MKTypography variant="body2" color="white" opacity={0.8}>
-              There&apos;s nothing I really wanted to do in life that I wasn&apos;t able to get good
-              at. That&apos;s my skill.
+              L&apos;équipe dynamique ayant bossé sur le projet
             </MKTypography>
           </Grid>
         </Grid>
@@ -57,10 +42,10 @@ function Team() {
           <Grid item xs={12} lg={6}>
             <MKBox mb={1}>
               <HorizontalTeamCard
-                image={team1}
-                name="Emma Roberts"
-                position={{ color: "info", label: "UI Designer" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                image={maella}
+                name="Adjélé Kafui Maella ADJETEY-BAHUN"
+                position={{ color: "info", label: "Etudiante en Génie Logiciel" }}
+                description="Passionnée du design, elle rapporte sa touche particulière au projet non selement dans le Design mais aussi dans le développement."
               />
             </MKBox>
           </Grid>
@@ -68,19 +53,19 @@ function Team() {
             <MKBox mb={1}>
               <HorizontalTeamCard
                 image={team2}
-                name="William Pearce"
-                position={{ color: "info", label: "Boss" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                name="Didi Orlog SOSSOU"
+                position={{ color: "info", label: "Etudiant en Génie Logiciel" }}
+                description="Passionné du Data, des Systèmes et de la programmation, il est iniatiateur et développeur du projet."
               />
             </MKBox>
           </Grid>
           <Grid item xs={12} lg={6}>
             <MKBox mb={{ xs: 1, lg: 0 }}>
               <HorizontalTeamCard
-                image={team3}
-                name="Ivana Flow"
-                position={{ color: "info", label: "Athlete" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                image={team5}
+                name="Essowaza Samuel ATAKE"
+                position={{ color: "info", label: "Etudiant en Génie Logiciel" }}
+                description="Passionné de la programmation, il est développeur sur le projet."
               />
             </MKBox>
           </Grid>
@@ -88,9 +73,9 @@ function Team() {
             <MKBox mb={{ xs: 1, lg: 0 }}>
               <HorizontalTeamCard
                 image={team4}
-                name="Marquez Garcia"
-                position={{ color: "info", label: "JS Developer" }}
-                description="Artist is a term applied to a person who engages in an activity deemed to be an art."
+                name="Mr Komi ABOLO-SEWOVI"
+                position={{ color: "info", label: "Mentor du projet" }}
+                description="A Coordonné et validé toutes les étapes du projet."
               />
             </MKBox>
           </Grid>
