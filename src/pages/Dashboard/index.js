@@ -4,13 +4,16 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import MKBox from "components/MKBox";
 import routes from "menu";
 import footerRoutes from "footer.routes";
+import { Card } from "@mui/material";
 import Container from "@mui/material/Container";
 import MKTypography from "components/MKTypography";
+import Counters from "pages/Presentation/sections/Counters";
 import Grid from "@mui/material/Grid";
 import Stack from "@mui/material/Stack";
 import MKButton from "components/MKButton";
 import "./ResponsiveDrawer.css";
 import FloatingButton from "./FloatingButton";
+
 // import ResponsiveDrawer from "./ResponsiveDrawer";
 
 function Dashboard() {
@@ -64,6 +67,20 @@ function Dashboard() {
           </Grid>
         </Container>
       </MKBox>
+
+      <Card
+        sx={{
+          p: 2,
+          mx: { xs: 2, lg: 3 },
+          mt: -8,
+          mb: 4,
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backdropFilter: "saturate(200%) blur(30px)",
+          boxShadow: ({ boxShadows: { xxl } }) => xxl,
+        }}
+      >
+        <Counters />
+      </Card>
       <FloatingButton />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />

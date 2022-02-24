@@ -35,6 +35,8 @@ import routes from "menu";
 import Projetstutores from "pages/Projetstutores";
 import Cours from "pages/Cours";
 import Annonces from "pages/Annonces";
+import AboutUsPage from "layouts/pages/landing-pages/about-us";
+import Dashboard from "pages/Dashboard";
 
 export default function App() {
   const { pathname } = useLocation();

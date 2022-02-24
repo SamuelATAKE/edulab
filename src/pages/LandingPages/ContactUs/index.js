@@ -100,7 +100,6 @@ function ContactUsBasic() {
                     <MKInput
                       label="Nom complet"
                       variant="standard"
-                      label="Nom complet"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
