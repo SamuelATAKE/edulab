@@ -42,9 +42,6 @@ import MKButton from "components/MKButton";
 // Material Kit 2 React page layout routes
 // import routes from "menu";
 
-// Images
-import bgImage from "assets/images/bg-sign-in-basic.jpeg";
-
 function SignUpBasic() {
   const [rememberMe, setRememberMe] = useState(false);
 
@@ -54,112 +51,101 @@ function SignUpBasic() {
     <>
       <MKBox
         position="absolute"
+        top={50}
         zIndex={1}
         width="100%"
-        minHeight="100vh"
-        Height="auto"
+        Height="50%"
         mx="auto"
-        sx={{
-          backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-            `${linearGradient(
-              rgba(gradients.dark.main, 0.6),
-              rgba(gradients.dark.state, 0.6)
-            )}, url(${bgImage})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-          backgroundRepeat: "no-repeat",
-        }}
+        Color="dark"
       />
-      <div position="absolute" zIndex={1}>
-        <MKBox px={1} m="auto" position="relative" zIndex={4}>
-          <Grid container spacing={1} justifyContent="center" alignItems="center" height="auto">
-            <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
-              <Card>
-                <MKBox
-                  variant="gradient"
-                  bgColor="info"
-                  borderRadius="lg"
-                  coloredShadow="info"
-                  mx={2}
-                  mt={-3}
-                  p={2}
-                  mb={1}
-                  textAlign="center"
-                >
-                  <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                    Créer un compte!
-                  </MKTypography>
-                  <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
-                    <Grid item xs={2}>
-                      <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                        <FacebookIcon color="inherit" />
-                      </MKTypography>
-                    </Grid>
-                    <Grid item xs={2}>
-                      <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                        <GitHubIcon color="inherit" />
-                      </MKTypography>
-                    </Grid>
-                    <Grid item xs={2}>
-                      <MKTypography component={MuiLink} href="#" variant="body1" color="white">
-                        <GoogleIcon color="inherit" />
-                      </MKTypography>
-                    </Grid>
+      <MKBox px={1} mt="500" top={50} position="relative" zIndex={4}>
+        <Grid container spacing={1} justifyContent="center" alignItems="center" height="auto">
+          <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
+            <Card>
+              <MKBox
+                variant="gradient"
+                bgColor="info"
+                borderRadius="lg"
+                coloredShadow="info"
+                mx={2}
+                mt={-3}
+                p={2}
+                mb={1}
+                textAlign="center"
+              >
+                <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
+                  Créer un compte!
+                </MKTypography>
+                <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
+                  <Grid item xs={2}>
+                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                      <FacebookIcon color="inherit" />
+                    </MKTypography>
                   </Grid>
-                </MKBox>
-                <MKBox pt={4} pb={3} px={3}>
-                  <MKBox component="form" role="form">
-                    <MKBox mb={2}>
-                      <MKInput type="text" label="Nom d'utilisateur(Pseudo)" fullWidth />
-                    </MKBox>
-                    <MKBox mb={2}>
-                      <MKInput type="email" label="Adresse email" fullWidth />
-                    </MKBox>
-                    <MKBox mb={2}>
-                      <MKInput type="password" label="Mot de passe" fullWidth />
-                    </MKBox>
-                    <MKBox mb={2}>
-                      <MKInput type="password" label="Confirmez votre mot de passe" fullWidth />
-                    </MKBox>
-                    <MKBox display="flex" alignItems="center" ml={-1}>
-                      <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+                  <Grid item xs={2}>
+                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                      <GitHubIcon color="inherit" />
+                    </MKTypography>
+                  </Grid>
+                  <Grid item xs={2}>
+                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                      <GoogleIcon color="inherit" />
+                    </MKTypography>
+                  </Grid>
+                </Grid>
+              </MKBox>
+              <MKBox pt={4} pb={3} px={3}>
+                <MKBox component="form" role="form">
+                  <MKBox mb={2}>
+                    <MKInput type="text" label="Nom d'utilisateur(Pseudo)" fullWidth />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="email" label="Adresse email" fullWidth />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="password" label="Mot de passe" fullWidth />
+                  </MKBox>
+                  <MKBox mb={2}>
+                    <MKInput type="password" label="Confirmez votre mot de passe" fullWidth />
+                  </MKBox>
+                  <MKBox display="flex" alignItems="center" ml={-1}>
+                    <Switch checked={rememberMe} onChange={handleSetRememberMe} />
+                    <MKTypography
+                      variant="button"
+                      fontWeight="regular"
+                      color="text"
+                      onClick={handleSetRememberMe}
+                      sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+                    >
+                      &nbsp;&nbsp;Se souvenir
+                    </MKTypography>
+                  </MKBox>
+                  <MKBox mt={4} mb={1}>
+                    <MKButton variant="gradient" color="info" fullWidth>
+                      Inscription
+                    </MKButton>
+                  </MKBox>
+                  <MKBox mt={3} mb={1} textAlign="center">
+                    <MKTypography variant="button" color="text">
+                      Vous avez déjà un compte?{" "}
                       <MKTypography
+                        component={Link}
+                        to="/connexion"
                         variant="button"
-                        fontWeight="regular"
-                        color="text"
-                        onClick={handleSetRememberMe}
-                        sx={{ cursor: "pointer", userSelect: "none", ml: -1 }}
+                        color="info"
+                        fontWeight="medium"
+                        textGradient
                       >
-                        &nbsp;&nbsp;Se souvenir
+                        Connectez-vous
                       </MKTypography>
-                    </MKBox>
-                    <MKBox mt={4} mb={1}>
-                      <MKButton variant="gradient" color="info" fullWidth>
-                        Inscription
-                      </MKButton>
-                    </MKBox>
-                    <MKBox mt={3} mb={1} textAlign="center">
-                      <MKTypography variant="button" color="text">
-                        Vous avez déjà un compte?{" "}
-                        <MKTypography
-                          component={Link}
-                          to="/connexion"
-                          variant="button"
-                          color="info"
-                          fontWeight="medium"
-                          textGradient
-                        >
-                          Connectez-vous
-                        </MKTypography>
-                      </MKTypography>
-                    </MKBox>
+                    </MKTypography>
                   </MKBox>
                 </MKBox>
-              </Card>
-            </Grid>
+              </MKBox>
+            </Card>
           </Grid>
-        </MKBox>
-      </div>
+        </Grid>
+      </MKBox>
     </>
   );
 }

@@ -49,16 +49,16 @@ export default {
     {
       name: "Ressources",
       items: [
-        { name: "Illustrations", href: "#" },
+        { name: "illustrations", href: "#" },
         { name: "bits & snippets", href: "#" },
-        { name: "Programmes associés", href: "#" },
+        { name: "affiliate program", href: "#" },
       ],
     },
     {
       name: "Aide et support",
       items: [
         { name: "Contactez-nous", href: "#" },
-        { name: "Développement", href: "#" },
+        { name: "Development", href: "#" },
         { name: "Sponsors", href: "#" },
       ],
     },

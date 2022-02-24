@@ -89,20 +89,18 @@ function ContactUsBasic() {
               mx={2}
               mt={-3}
             >
-              <MKTypography variant="h3" color="white">
-                Contactez-nous
+              <MKTypography variant="title" color="white" justifyContent="center">
+                Nous contacter
               </MKTypography>
             </MKBox>
             <MKBox p={3}>
-              <MKTypography variant="body2" color="text" mb={3}>
-                Faites-nous parvenir vos inquiétudes. Nous vous lisons.
-              </MKTypography>
               <MKBox width="100%" component="form" method="post" autocomplete="off">
                 <Grid container spacing={3}>
                   <Grid item xs={12} md={6}>
                     <MKInput
                       label="Nom complet"
                       variant="standard"
+                      label="Nom complet"
                       InputLabelProps={{ shrink: true }}
                       fullWidth
                     />
@@ -110,7 +108,6 @@ function ContactUsBasic() {
                   <Grid item xs={12} md={6}>
                     <MKInput
                       variant="standard"
-                      type="email"
                       label="Adresse mail"
                       InputLabelProps={{ shrink: true }}
                       fullWidth

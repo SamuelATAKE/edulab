@@ -33,9 +33,8 @@ import ContactUs from "layouts/pages/landing-pages/contact-us";
 import routes from "menu";
 // import Author from "pages/LandingPages/Author";
 import Projetstutores from "pages/Projetstutores";
-import Author from "pages/LandingPages/Author";
-import Dashboard from "pages/Dashboard";
-import AboutUsPage from "layouts/pages/landing-pages/about-us";
+import Cours from "pages/Cours";
+import Annonces from "pages/Annonces";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -70,8 +69,9 @@ export default function App() {
         <Route path="/connexion" element={<SignIn />} />
         <Route path="/Projets" element={<Projetstutores />} />
         <Route path="/contact" element={<ContactUs />} />
-        <Route path="/profil" element={<Author />} />
         <Route path="/inscription" element={<SignUp />} />
+        <Route path="/Cours" element={<Cours />} />
+        <Route path="/Annonces" element={<Annonces />} />
         <Route path="/" element={<Presentation />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>
