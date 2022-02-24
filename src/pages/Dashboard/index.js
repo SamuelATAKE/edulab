@@ -7,8 +7,8 @@ import footerRoutes from "footer.routes";
 import Container from "@mui/material/Container";
 import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
-import Stack from "@mui/material/Stack";
-import MKButton from "components/MKButton";
+// import Stack from "@mui/material/Stack";
+// import MKButton from "components/MKButton";
 import "./ResponsiveDrawer.css";
 import FloatingButton from "./FloatingButton";
 // import ResponsiveDrawer from "./ResponsiveDrawer";
@@ -56,11 +56,6 @@ function Dashboard() {
             <MKTypography variant="body1" color="dark" opacity={0.8} pr={6} mr={6}>
               Sur votre tableau de bord.
             </MKTypography>
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton color="white" href="/connexion">
-                Commencer
-              </MKButton>
-            </Stack>
           </Grid>
         </Container>
       </MKBox>

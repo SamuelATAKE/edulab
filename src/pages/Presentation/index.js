@@ -50,7 +50,7 @@ import footerRoutes from "footer.routes";
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
 // import bgImage from "assets/images/bg-coworking.jpeg";
-import bgImage from "assets/images/Accueil/accueil2.jpg";
+import bgImage from "assets/images/Accueil/accueil1.jpg";
 
 function Presentation() {
   return (
@@ -81,8 +81,8 @@ function Presentation() {
         <Container>
           <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
             <MKTypography
-              variant="h1"
-              color="secondary"
+              variant="h2"
+              color="white"
               mb={3}
               sx={({ breakpoints, typography: { size } }) => ({
                 [breakpoints.down("md")]: {
@@ -92,7 +92,7 @@ function Presentation() {
             >
               TrainYourDevSkills
             </MKTypography>
-            <MKTypography variant="body1" color="dark" opacity={0.8} pr={6} mr={6}>
+            <MKTypography variant="h5" color="white" opacity={0.9} pr={6} mr={6}>
               Plateforme de formation de développeurs compétents
             </MKTypography>
             <Stack direction="row" spacing={1} mt={3}>
@@ -109,7 +109,7 @@ function Presentation() {
           mx: { xs: 2, lg: 3 },
           mt: -8,
           mb: 4,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
+          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.9),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
