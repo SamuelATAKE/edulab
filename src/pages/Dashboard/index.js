@@ -9,9 +9,8 @@ import MKTypography from "components/MKTypography";
 import Grid from "@mui/material/Grid";
 // import Stack from "@mui/material/Stack";
 // import MKButton from "components/MKButton";
-import "./ResponsiveDrawer.css";
+
 import FloatingButton from "./FloatingButton";
-// import ResponsiveDrawer from "./ResponsiveDrawer";
 
 function Dashboard() {
   return (
