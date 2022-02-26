@@ -72,7 +72,7 @@ const routes = [
   {
     name: "A propos",
     icon: <Icon>article</Icon>,
-    route: "",
+    href: "/a-propos-de-nous",
   },
   {
     name: "Contact",

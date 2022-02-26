@@ -35,8 +35,10 @@ import routes from "menu";
 import Projetstutores from "pages/Projetstutores";
 import Cours from "pages/Cours";
 import Annonces from "pages/Annonces";
-import AboutUsPage from "layouts/pages/landing-pages/about-us";
-import Dashboard from "pages/Dashboard";
+import AboutUsPage from "./layouts/pages/landing-pages/about-us";
+import Dashboard from "./pages/Dashboard";
+import CoursDetails from "./pages/CoursDetails";
+import ProjetsDetails from "./pages/ProjetsDetails";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -73,6 +75,8 @@ export default function App() {
         <Route path="/contact" element={<ContactUs />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/Cours" element={<Cours />} />
+        <Route path="/Cours-details" element={<CoursDetails />} />
+        <Route path="/Projets-details" element={<ProjetsDetails />} />
         <Route path="/Annonces" element={<Annonces />} />
         <Route path="/" element={<Presentation />} />
         <Route path="*" element={<Navigate to="/" />} />

@@ -23,41 +23,26 @@ import MKBox from "components/MKBox";
 import MKTypography from "components/MKTypography";
 
 function BuiltByDevelopers() {
-  const bgImage = "assets/images/Accueil/accueil3.png";
+  // const bgImage = "assets/images/Accueil/accueil3.png";
 
   return (
-    <MKBox
-      display="flex"
-      alignItems="center"
-      borderRadius="xl"
-      my={2}
-      py={6}
-      sx={{
-        backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-          `${linearGradient(
-            rgba(gradients.dark.main, 0.8),
-            rgba(gradients.dark.state, 0.8)
-          )}, url(${bgImage})`,
-        backgroundSize: "cover",
-        backgroundPosition: "justify",
-      }}
-    >
+    <MKBox display="flex" alignItems="center" borderRadius="xl" my={2} py={6} bgColor="#eff7fa">
       <Container>
         <Grid container item xs={12} lg={6} sx={{ ml: { xs: 0, lg: 6 } }}>
-          <MKTypography variant="h4" color="white" fontWeight="bold">
+          <MKTypography variant="h4" color="dark" fontWeight="bold">
             Que proposons-nous ?
           </MKTypography>
-          <MKTypography variant="body1" color="white" opacity={0.8} mt={2} mb={2}>
+          <MKTypography variant="body1" color="dark" opacity={0.8} mt={2} mb={2}>
             Un environnement d’apprentissage faisant ressentir, comprendre et surmonter aux
             apprenants/developpeurs le fossé entre le cadre théorique des cours et les réalités du
             terrain.
           </MKTypography>
         </Grid>
         <Grid container item xs={12} lg={6} sx={{ ml: { xs: 0, lg: 6 } }}>
-          <MKTypography variant="h4" color="white" mb={2}>
+          <MKTypography variant="h4" color="dark" mb={2}>
             Qui ciblons-nous?
           </MKTypography>
-          <MKTypography variant="body1" color="white" opacity={0.8} mt={2} mb={2}>
+          <MKTypography variant="body1" color="dark" opacity={0.8} mt={2} mb={2}>
             Etudiants en informatique/developpeurs et Promoteurs/Porteurs de projets informatiques
           </MKTypography>
         </Grid>
