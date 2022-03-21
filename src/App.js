@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useEffect } from "react";
 
 // react-router components
@@ -39,6 +24,8 @@ import AboutUsPage from "./layouts/pages/landing-pages/about-us";
 import Dashboard from "./pages/Dashboard";
 import CoursDetails from "./pages/CoursDetails";
 import ProjetsDetails from "./pages/ProjetsDetails";
+import CoursDetailsMentor from "./pages/CoursDetailsMentor";
+import ProjetsDetailsMentor from "./pages/ProjetsDetailsMentor";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -77,6 +64,8 @@ export default function App() {
         <Route path="/Cours" element={<Cours />} />
         <Route path="/Cours-details" element={<CoursDetails />} />
         <Route path="/Projets-details" element={<ProjetsDetails />} />
+        <Route path="/CoursDetails" element={<CoursDetailsMentor />} />
+        <Route path="/ProjetsDetails" element={<ProjetsDetailsMentor />} />
         <Route path="/Annonces" element={<Annonces />} />
         <Route path="/" element={<Presentation />} />
         <Route path="*" element={<Navigate to="/" />} />
