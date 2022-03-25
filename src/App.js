@@ -39,6 +39,7 @@ import AboutUsPage from "./layouts/pages/landing-pages/about-us";
 import Dashboard from "./pages/Dashboard";
 import CoursDetails from "./pages/CoursDetails";
 import ProjetsDetails from "./pages/ProjetsDetails";
+import Notifications from "./pages/Notifications";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -68,6 +69,7 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
 
+        <Route path="/notifications" element={<Notifications />} />
         <Route path="/a-propos-de-nous" element={<AboutUsPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/connexion" element={<SignIn />} />
