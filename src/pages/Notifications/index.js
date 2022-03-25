@@ -31,11 +31,11 @@ function Notifications() {
       <br />
       <br />
       <MKBox bgColor="#dadaf0">
-        <MKBox variant="gradient" component="section">
+        <MKBox variant="gradient" component="section" sx={{ mx: 15 }}>
           <Container>
             <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-              <h3>Remise de codes du projet Java</h3>
-              <MKButton variant="gradient" color="info" onClick={toggleModal}>
+              <h3 sx={{ mr: 10 }}>Remise de codes du projet Java</h3>
+              <MKButton sx={{ ml: 10 }} variant="gradient" color="info" onClick={toggleModal}>
                 Détails
               </MKButton>
             </Grid>
@@ -79,11 +79,17 @@ function Notifications() {
           </Container>
         </MKBox>
         <br />
-        <MKBox variant="gradient">
+        <MKBox variant="gradient" component="section" sx={{ mx: 15 }}>
           <Container>
             <Grid container item lg={12} justifyContent="center" mx="auto">
-              <h3>Quizz sur les exceptions en Java</h3>
-              <MKButton variant="gradient" color="info" onClick={toggleModal} mx="auto">
+              <h3 sx={{ mr: 10 }}>Quizz sur les exceptions en Java</h3>
+              <MKButton
+                sx={{ ml: 10 }}
+                variant="gradient"
+                color="info"
+                onClick={toggleModal}
+                mx="auto"
+              >
                 Détails
               </MKButton>
             </Grid>

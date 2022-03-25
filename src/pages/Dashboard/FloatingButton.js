@@ -26,11 +26,13 @@ export default function FloatingButton() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const handleRoute = () => {};
+
   return (
     <Box sx={{ height: 330, transform: "translateZ(0px)", flexGrow: 1 }}>
       <Backdrop open={open} />
       <SpeedDial
-        ariaLabel="SpeedDial tooltip example"
+        ariaLabel="Dashboard menu"
         sx={{ position: "absolute", bottom: 16, right: 16 }}
         icon={<SpeedDialIcon />}
         onClose={handleClose}
