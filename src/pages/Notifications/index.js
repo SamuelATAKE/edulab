@@ -30,109 +30,279 @@ function Notifications() {
       <br />
       <br />
       <br />
-      <MKBox bgColor="#dadaf0">
-        <MKBox variant="gradient" component="section">
-          <Container>
-            <Grid container item xs={12} lg={7} justifyContent="center" mx="auto">
-              <h3>Remise de codes du projet Java</h3>
-              <MKButton variant="gradient" color="info" onClick={toggleModal}>
-                Détails
-              </MKButton>
-            </Grid>
-            <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
-              <Slide direction="down" in={show} timeout={500}>
-                <MKBox
-                  position="relative"
-                  width="500px"
-                  display="flex"
-                  flexDirection="column"
-                  borderRadius="xl"
-                  bgColor="white"
-                  shadow="xl"
-                >
-                  <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
-                    <MKTypography variant="h5">Remise de projet Java</MKTypography>
-                    <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
-                  </MKBox>
-                  <Divider sx={{ my: 0 }} />
-                  <MKBox p={2}>
-                    <MKTypography variant="body2" color="secondary" fontWeight="regular">
-                      Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et
-                      n&apos;oubliez de bien vérifier si j&apos;y suis ajouté
-                      <br />
-                      <br />
-                      Rédigez ensuite correctement le fichier ReadMe
-                    </MKTypography>
-                  </MKBox>
-                  <Divider sx={{ my: 0 }} />
-                  <MKBox display="flex" justifyContent="space-between" p={1.5}>
-                    <MKButton variant="gradient" color="dark" onClick={toggleModal}>
-                      Fermer
-                    </MKButton>
-                    <MKButton variant="gradient" color="info">
-                      Sauvegarder
-                    </MKButton>
-                  </MKBox>
+      <Container sx={{ m: "auto", mb: 2 }}>
+        <Container
+          sx={{
+            borderRadius: "5px",
+            border: "1px solid white",
+            boxShadow: 10,
+            backgroundColor: "white",
+          }}
+        >
+          <Grid container item justifyContent="center" sx={{ m: 2, p: 1 }} mx="auto">
+            <h3>Remise de codes du projet Java</h3>
+            <MKButton variant="gradient" color="info" sx={{ ml: "auto" }} onClick={toggleModal}>
+              Détails
+            </MKButton>
+          </Grid>
+          <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+            <Slide direction="down" in={show} timeout={500}>
+              <MKBox
+                position="relative"
+                width="500px"
+                display="flex"
+                flexDirection="column"
+                borderRadius="xl"
+                bgColor="white"
+                shadow="xl"
+              >
+                <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+                  <MKTypography variant="h5">Remise de projet Java</MKTypography>
+                  <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
                 </MKBox>
-              </Slide>
-            </Modal>
-          </Container>
-        </MKBox>
-        <br />
-        <MKBox variant="gradient">
-          <Container>
-            <Grid container item lg={12} justifyContent="center" mx="auto">
-              <h3>Quizz sur les exceptions en Java</h3>
-              <MKButton variant="gradient" color="info" onClick={toggleModal} mx="auto">
-                Détails
-              </MKButton>
-            </Grid>
-            <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
-              <Slide direction="down" in={show} timeout={500}>
-                <MKBox
-                  position="relative"
-                  width="500px"
-                  display="flex"
-                  flexDirection="column"
-                  borderRadius="xl"
-                  bgColor="white"
-                  shadow="xl"
-                >
-                  <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
-                    <MKTypography variant="h5">Remise de projet Java</MKTypography>
-                    <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
-                  </MKBox>
-                  <Divider sx={{ my: 0 }} />
-                  <MKBox p={2}>
-                    <MKTypography variant="body2" color="secondary" fontWeight="regular">
-                      Salut cher apprenant. Je vous espère en forme. Juste pour vous rappeler de
-                      terminer le Quizz sur les exceptions afin de vous permettre d&apos;être apte
-                      pour la suite du cours.
-                      <br />
-                      <br />
-                      N&apos;oubliez pas de le faire individuellement, afin d&apos;évaluer
-                      personnelement vos compétences. Reprenez autant que vous pouvez pour avoir une
-                      bonne note
-                    </MKTypography>
-                  </MKBox>
-                  <Divider sx={{ my: 0 }} />
-                  <MKBox display="flex" justifyContent="space-between" p={1.5}>
-                    <MKButton variant="gradient" color="dark" onClick={toggleModal}>
-                      Fermer
-                    </MKButton>
-                    <MKButton variant="gradient" color="info">
-                      Sauvegarder
-                    </MKButton>
-                  </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox p={2}>
+                  <MKTypography variant="body2" color="secondary" fontWeight="regular">
+                    Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et
+                    n&apos;oubliez de bien vérifier si j&apos;y suis ajouté
+                    <br />
+                    <br />
+                    Rédigez ensuite correctement le fichier ReadMe
+                  </MKTypography>
                 </MKBox>
-              </Slide>
-            </Modal>
-          </Container>
-        </MKBox>
-        <FloatingButton />
-        <MKBox pt={6} px={1} mt={6}>
-          <DefaultFooter content={footerRoutes} />
-        </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox display="flex" justifyContent="space-between" p={1.5}>
+                  <MKButton variant="gradient" color="dark" onClick={toggleModal}>
+                    Fermer
+                  </MKButton>
+                  <MKButton variant="gradient" color="info">
+                    Sauvegarder
+                  </MKButton>
+                </MKBox>
+              </MKBox>
+            </Slide>
+          </Modal>
+        </Container>
+      </Container>
+      <Container sx={{ m: "auto", mb: 2 }}>
+        <Container
+          sx={{
+            borderRadius: "5px",
+            border: "1px solid white",
+            boxShadow: 10,
+            backgroundColor: "white",
+          }}
+        >
+          <Grid container item justifyContent="center" sx={{ m: 2, p: 1 }} mx="auto">
+            <h3>Remise de codes du projet Java</h3>
+            <MKButton variant="gradient" color="info" sx={{ ml: "auto" }} onClick={toggleModal}>
+              Détails
+            </MKButton>
+          </Grid>
+          <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+            <Slide direction="down" in={show} timeout={500}>
+              <MKBox
+                position="relative"
+                width="500px"
+                display="flex"
+                flexDirection="column"
+                borderRadius="xl"
+                bgColor="white"
+                shadow="xl"
+              >
+                <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+                  <MKTypography variant="h5">Remise de projet Java</MKTypography>
+                  <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox p={2}>
+                  <MKTypography variant="body2" color="secondary" fontWeight="regular">
+                    Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et
+                    n&apos;oubliez de bien vérifier si j&apos;y suis ajouté
+                    <br />
+                    <br />
+                    Rédigez ensuite correctement le fichier ReadMe
+                  </MKTypography>
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox display="flex" justifyContent="space-between" p={1.5}>
+                  <MKButton variant="gradient" color="dark" onClick={toggleModal}>
+                    Fermer
+                  </MKButton>
+                  <MKButton variant="gradient" color="info">
+                    Sauvegarder
+                  </MKButton>
+                </MKBox>
+              </MKBox>
+            </Slide>
+          </Modal>
+        </Container>
+      </Container>
+      <Container sx={{ m: "auto", mb: 2 }}>
+        <Container
+          sx={{
+            borderRadius: "5px",
+            border: "1px solid white",
+            boxShadow: 10,
+            backgroundColor: "white",
+          }}
+        >
+          <Grid container item justifyContent="center" sx={{ m: 2, p: 1 }} mx="auto">
+            <h3>Remise de codes du projet Java</h3>
+            <MKButton variant="gradient" color="info" sx={{ ml: "auto" }} onClick={toggleModal}>
+              Détails
+            </MKButton>
+          </Grid>
+          <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+            <Slide direction="down" in={show} timeout={500}>
+              <MKBox
+                position="relative"
+                width="500px"
+                display="flex"
+                flexDirection="column"
+                borderRadius="xl"
+                bgColor="white"
+                shadow="xl"
+              >
+                <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+                  <MKTypography variant="h5">Remise de projet Java</MKTypography>
+                  <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox p={2}>
+                  <MKTypography variant="body2" color="secondary" fontWeight="regular">
+                    Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et
+                    n&apos;oubliez de bien vérifier si j&apos;y suis ajouté
+                    <br />
+                    <br />
+                    Rédigez ensuite correctement le fichier ReadMe
+                  </MKTypography>
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox display="flex" justifyContent="space-between" p={1.5}>
+                  <MKButton variant="gradient" color="dark" onClick={toggleModal}>
+                    Fermer
+                  </MKButton>
+                  <MKButton variant="gradient" color="info">
+                    Sauvegarder
+                  </MKButton>
+                </MKBox>
+              </MKBox>
+            </Slide>
+          </Modal>
+        </Container>
+      </Container>
+      <Container sx={{ m: "auto", mb: 2 }}>
+        <Container
+          sx={{
+            borderRadius: "5px",
+            border: "1px solid white",
+            boxShadow: 10,
+            backgroundColor: "white",
+          }}
+        >
+          <Grid container item justifyContent="center" sx={{ m: 2, p: 1 }} mx="auto">
+            <h3>Remise de codes du projet Java</h3>
+            <MKButton variant="gradient" color="info" sx={{ ml: "auto" }} onClick={toggleModal}>
+              Détails
+            </MKButton>
+          </Grid>
+          <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+            <Slide direction="down" in={show} timeout={500}>
+              <MKBox
+                position="relative"
+                width="500px"
+                display="flex"
+                flexDirection="column"
+                borderRadius="xl"
+                bgColor="white"
+                shadow="xl"
+              >
+                <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+                  <MKTypography variant="h5">Remise de projet Java</MKTypography>
+                  <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox p={2}>
+                  <MKTypography variant="body2" color="secondary" fontWeight="regular">
+                    Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et
+                    n&apos;oubliez de bien vérifier si j&apos;y suis ajouté
+                    <br />
+                    <br />
+                    Rédigez ensuite correctement le fichier ReadMe
+                  </MKTypography>
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox display="flex" justifyContent="space-between" p={1.5}>
+                  <MKButton variant="gradient" color="dark" onClick={toggleModal}>
+                    Fermer
+                  </MKButton>
+                  <MKButton variant="gradient" color="info">
+                    Sauvegarder
+                  </MKButton>
+                </MKBox>
+              </MKBox>
+            </Slide>
+          </Modal>
+        </Container>
+      </Container>
+      <Container sx={{ m: "auto", mb: 2 }}>
+        <Container
+          sx={{
+            borderRadius: "5px",
+            border: "1px solid white",
+            boxShadow: 10,
+            backgroundColor: "white",
+          }}
+        >
+          <Grid container item justifyContent="center" sx={{ m: 2, p: 1 }} mx="auto">
+            <h3>Remise de codes du projet Java</h3>
+            <MKButton variant="gradient" color="info" sx={{ ml: "auto" }} onClick={toggleModal}>
+              Détails
+            </MKButton>
+          </Grid>
+          <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
+            <Slide direction="down" in={show} timeout={500}>
+              <MKBox
+                position="relative"
+                width="500px"
+                display="flex"
+                flexDirection="column"
+                borderRadius="xl"
+                bgColor="white"
+                shadow="xl"
+              >
+                <MKBox display="flex" alginItems="center" justifyContent="space-between" p={2}>
+                  <MKTypography variant="h5">Remise de projet Java</MKTypography>
+                  <CloseIcon fontSize="medium" sx={{ cursor: "pointer" }} onClick={toggleModal} />
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox p={2}>
+                  <MKTypography variant="body2" color="secondary" fontWeight="regular">
+                    Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et
+                    n&apos;oubliez de bien vérifier si j&apos;y suis ajouté
+                    <br />
+                    <br />
+                    Rédigez ensuite correctement le fichier ReadMe
+                  </MKTypography>
+                </MKBox>
+                <Divider sx={{ my: 0 }} />
+                <MKBox display="flex" justifyContent="space-between" p={1.5}>
+                  <MKButton variant="gradient" color="dark" onClick={toggleModal}>
+                    Fermer
+                  </MKButton>
+                  <MKButton variant="gradient" color="info">
+                    Sauvegarder
+                  </MKButton>
+                </MKBox>
+              </MKBox>
+            </Slide>
+          </Modal>
+        </Container>
+      </Container>
+      <FloatingButton />
+      <MKBox pt={6} px={1} mt={6}>
+        <DefaultFooter content={footerRoutes} />
       </MKBox>
     </>
   );
