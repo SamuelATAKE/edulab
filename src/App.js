@@ -28,6 +28,7 @@ import Notifications from "./pages/Notifications";
 import CoursDetailsMentor from "./pages/CoursDetailsMentor";
 import ProjetsDetailsMentor from "./pages/ProjetsDetailsMentor";
 import ContenuCours from "./pages/ContenuCours";
+import ContenuProjet from "./pages/ContenuProjet";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -58,6 +59,7 @@ export default function App() {
         {getRoutes(routes)}
 
         <Route path="/contenucours" element={<ContenuCours />} />
+        <Route path="/contenuprojet" element={<ContenuProjet />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/a-propos-de-nous" element={<AboutUsPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
