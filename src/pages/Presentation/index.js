@@ -90,7 +90,7 @@ function Presentation() {
                 },
               })}
             >
-              TrainYourDevSkills
+              Edulab
             </MKTypography>
             <MKTypography variant="h5" color="white" opacity={0.9} pr={6} mr={6}>
               Plateforme de formation de développeurs compétents

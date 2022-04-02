@@ -7,12 +7,12 @@ import Icon from "@mui/material/Icon";
 const routes = [
   {
     name: "Accueil",
-    icon: <Icon>dashboard</Icon>,
+    icon: <Icon>home</Icon>,
     href: "/presentation",
   },
   {
     name: "Projets",
-    icon: <Icon>view_day</Icon>,
+    icon: <Icon>work</Icon>,
     collapse: [
       {
         name: "Projets tutorés",
@@ -28,18 +28,19 @@ const routes = [
   },
   {
     name: "Cours",
-    icon: <Icon>article</Icon>,
+    icon: <Icon>school</Icon>,
     href: "Cours",
   },
   {
     name: "A propos",
-    icon: <Icon>article</Icon>,
+    icon: <Icon>info</Icon>,
     href: "/a-propos-de-nous",
   },
   {
+    type: "internal",
     name: "Contact",
-    icon: <Icon>article</Icon>,
-    href: "/contact",
+    icon: <Icon>mail</Icon>,
+    href: "contact",
   },
 ];
 
