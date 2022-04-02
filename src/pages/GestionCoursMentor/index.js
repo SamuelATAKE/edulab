@@ -41,7 +41,6 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Presentation page components
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
@@ -55,6 +54,7 @@ import Grid from "@mui/material/Grid";
 import SendIcon from "@mui/icons-material/Send";
 import MKButton from "../../components/MKButton";
 import MKTypography from "../../components/MKTypography";
+import routes from "./menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
@@ -78,16 +78,7 @@ function ContenuCours() {
   const handleClose = () => setOpen(false);
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/connexion",
-          label: "Connexion",
-          color: "info",
-        }}
-        sticky
-      />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
         minHeight="5em"
         width="100%"

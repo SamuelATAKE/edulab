@@ -11,12 +11,12 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import Posts from "pages/ProjetsDetailsMentor/sections/Posts";
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Images
 import bgImage from "assets/images/Projets/banniere.jpg";
 import FloatingActionButtons from "./sections/FloatingActionButton";
+import routes from "./menu";
 
 function ProjetsDetailsMentor() {
   return (

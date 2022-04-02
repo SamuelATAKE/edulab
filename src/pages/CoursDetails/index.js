@@ -11,11 +11,13 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import Posts from "pages/CoursDetails/sections/Posts";
 
 // Routes
-import routes from "menu";
+// eslint-disable-next-line import/extensions
 import footerRoutes from "footer.routes";
 
 // Images
 import bgImage from "assets/images/Cours/banniere.jpg";
+import routes from "./menu";
+import TabsSimple from "./sections/PathApplet";
 
 function CoursDetails() {
   return (
@@ -48,6 +50,9 @@ function CoursDetails() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
+          <MKBox>
+            <TabsSimple bottom={10} />
+          </MKBox>
           <Posts />
         </Card>
         <MKBox pt={6} px={1} mt={6}>

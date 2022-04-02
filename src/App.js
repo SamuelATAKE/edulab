@@ -30,6 +30,7 @@ import ProjetsDetailsMentor from "./pages/ProjetsDetailsMentor";
 import ContenuCours from "./pages/ContenuCours";
 import ContenuProjet from "./pages/ContenuProjet";
 import GestionContenuCours from "./pages/GestionCoursMentor";
+import GestionContenuProjet from "./pages/GestionProjetMentor";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -58,9 +59,9 @@ export default function App() {
       <CssBaseline />
       <Routes>
         {getRoutes(routes)}
-
         <Route path="/contenucours" element={<ContenuCours />} />
         <Route path="/gestioncours" element={<GestionContenuCours />} />
+        <Route path="/gestionprojet" element={<GestionContenuProjet />} />
         <Route path="/contenuprojet" element={<ContenuProjet />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/a-propos-de-nous" element={<AboutUsPage />} />

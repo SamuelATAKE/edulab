@@ -11,11 +11,12 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import Posts from "pages/ProjetsDetails/sections/Posts";
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Images
 import bgImage from "assets/images/Projets/banniere.jpg";
+import TabsSimple from "./sections/PathApplet";
+import routes from "./menu";
 
 function ProjetsDetails() {
   return (
@@ -48,6 +49,9 @@ function ProjetsDetails() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
+          <MKBox>
+            <TabsSimple bottom={10} />
+          </MKBox>
           <Posts />
         </Card>
         <MKBox pt={6} px={1} mt={6}>

@@ -38,11 +38,11 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Presentation page components
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
 import MKTypography from "../../components/MKTypography";
 import FloatingActionButtons from "./FloatingActionButton";
+import routes from "./menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
@@ -51,16 +51,7 @@ import FloatingActionButtons from "./FloatingActionButton";
 function ContenuProjet() {
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/connexion",
-          label: "Connexion",
-          color: "info",
-        }}
-        sticky
-      />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
         minHeight="5em"
         width="100%"
