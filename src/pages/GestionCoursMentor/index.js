@@ -50,7 +50,6 @@ import Stack from "@mui/material/Stack";
 import * as React from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
-import Grid from "@mui/material/Grid";
 import SendIcon from "@mui/icons-material/Send";
 import MKButton from "../../components/MKButton";
 import MKTypography from "../../components/MKTypography";
@@ -170,11 +169,10 @@ function ContenuCours() {
         aria-describedby="modal-modal-description"
       >
         <Card sx={style}>
-          <box mb={5} mt={2}>
-            <Typography id="modal-modal-title" variant="h6" component="h2" bottom={15}>
-              Veuillez repondre a ces questions
-            </Typography>
-          </box>
+          <Typography id="modal-modal-title" variant="h6" component="h2" mb={3}>
+            Veuillez repondre a ces questions
+          </Typography>
+          <Divider />
           <Box
             component="form"
             sx={{
@@ -220,17 +218,20 @@ function ContenuCours() {
               <input id="principal" name="principal" type="file" accept="*" />
             </div>
           </Box>
-          <br />
-          <Grid container item justifyContent="left" mx="auto">
-            <MKButton variant="contained" color="success" startIcon={<SendIcon />}>
-              Valider
+          <Divider sx={{ my: 0, mt: 3 }} />
+          <MKBox display="flex" justifyContent="space-between" p={1.5}>
+            <MKButton
+              variant="gradient"
+              color="dark"
+              onClick={handleClose}
+              startIcon={<SendIcon />}
+            >
+              Enregistrer
             </MKButton>
-          </Grid>
-          <Grid container item justifyContent="right" mx="auto" mt={2}>
-            <MKButton variant="contained" color="error" onClick={handleClose}>
+            <MKButton variant="gradient" color="primary" onClick={handleClose}>
               Annuler
             </MKButton>
-          </Grid>
+          </MKBox>
         </Card>
       </Modal>
     </>

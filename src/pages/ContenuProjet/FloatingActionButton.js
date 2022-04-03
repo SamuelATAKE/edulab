@@ -8,6 +8,8 @@ import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
 import { useState } from "react";
+import { List, ListItemButton, ListItemIcon, ListItemText, ListSubheader } from "@mui/material";
+import AddIcon from "@mui/icons-material/Add";
 import MKBox from "../../components/MKBox";
 import MKTypography from "../../components/MKTypography";
 import MKButton from "../../components/MKButton";
@@ -49,21 +51,49 @@ export default function FloatingActionButtons() {
             </MKBox>
             <Divider sx={{ my: 0 }} />
             <MKBox p={2}>
-              <MKTypography variant="body2" color="secondary" fontWeight="regular">
-                Vous êtes conviés à faire vos pushs sur vos différents dépôts Git et n&apos;oubliez
-                de bien vérifier si j&apos;y suis ajouté
-                <br />
-                <br />
-                Rédigez ensuite correctement le fichier ReadMe
-              </MKTypography>
+              <List
+                sx={{ width: "100%", maxWidth: 360, bgcolor: "background.paper" }}
+                component="nav"
+                aria-labelledby="nested-list-subheader"
+                subheader={
+                  <ListSubheader component="div" id="nested-list-subheader">
+                    Actuellement sur ce projet
+                  </ListSubheader>
+                }
+              >
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Remise de code" secondary="lorem ipsum dolor" />
+                </ListItemButton>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Deploiement" secondary="lorem ipsum dolor" />
+                </ListItemButton>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Revert fixing" secondary="lorem ipsum dolor" />
+                </ListItemButton>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText
+                    primary="Visioconference de fin de projet"
+                    secondary="lorem ipsum dolor"
+                  />
+                </ListItemButton>
+              </List>
             </MKBox>
             <Divider sx={{ my: 0 }} />
             <MKBox display="flex" justifyContent="space-between" p={1.5}>
               <MKButton variant="gradient" color="dark" onClick={toggleModal}>
                 Fermer
-              </MKButton>
-              <MKButton variant="gradient" color="info">
-                Sauvegarder
               </MKButton>
             </MKBox>
           </MKBox>

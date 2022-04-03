@@ -8,8 +8,9 @@ import Modal from "@mui/material/Modal";
 import Typography from "@mui/material/Typography";
 import { TextField } from "@mui/material";
 import Card from "@mui/material/Card";
-import Grid from "@mui/material/Grid";
+import Divider from "@mui/material/Divider";
 import MKButton from "../../../components/MKButton";
+import MKBox from "../../../components/MKBox";
 
 const style = {
   position: "absolute",
@@ -48,11 +49,10 @@ export default function FloatingActionButtons() {
         aria-describedby="modal-modal-description"
       >
         <Card sx={style}>
-          <box mb={5} mt={2}>
-            <Typography id="modal-modal-title" variant="h6" component="h2" bottom={15}>
-              Veuillez repondre a ces questions
-            </Typography>
-          </box>
+          <Typography id="modal-modal-title" variant="h6" component="h2" mb={3}>
+            Veuillez repondre a ces questions
+          </Typography>
+          <Divider />
           <Box
             component="form"
             sx={{
@@ -98,17 +98,20 @@ export default function FloatingActionButtons() {
               <input id="principal" name="principal" type="file" accept="*" />
             </div>
           </Box>
-          <br />
-          <Grid container item justifyContent="left" mx="auto">
-            <MKButton variant="contained" color="success" endIcon={<SendIcon />}>
-              Valider
+          <Divider sx={{ my: 0, mt: 3 }} />
+          <MKBox display="flex" justifyContent="space-between" p={1.5}>
+            <MKButton
+              variant="gradient"
+              color="dark"
+              onClick={handleClose}
+              startIcon={<SendIcon />}
+            >
+              Enregistrer
             </MKButton>
-          </Grid>
-          <Grid container item justifyContent="right" mx="auto" mt={2}>
-            <MKButton variant="contained" color="error" onClick={handleClose}>
+            <MKButton variant="gradient" color="primary" onClick={handleClose}>
               Annuler
             </MKButton>
-          </Grid>
+          </MKBox>
         </Card>
       </Modal>
     </>
