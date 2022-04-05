@@ -2,37 +2,36 @@
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
-
+// import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
+// import Button from "@mui/material/Button";
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
-// import MKTypography from "components/MKTypography";
 
-// Material Kit 2 React components
 import TransparentBlogCard from "examples/Cards/BlogCards/TransparentBlogCard";
-// import BackgroundBlogCard from "examples/Cards/BlogCards/BackgroundBlogCard";
 
 // Images
 import post1 from "assets/images/examples/testimonial-6-2.jpg";
 import post2 from "assets/images/examples/testimonial-6-3.jpg";
 import post3 from "assets/images/examples/blog-9-4.jpg";
+
 import Typography from "@mui/material/Typography";
 
 // import post4 from "assets/images/examples/blog2.jpg";
-function CoursesListing() {
+function ProjetsListing() {
   return (
     <MKBox component="section" py={2}>
       <Container>
         <Grid container spacing={3}>
           <Grid item xs={12} sm={6} lg={3}>
             <Accordion color="primary" bgcolor="dark">
-              <AccordionSummary aria-controls="panel1a-content" id="panel1a-header1">
+              <AccordionSummary aria-controls="panel1a-content" id="panel1a-header">
                 <TransparentBlogCard
                   image={post1}
                   title="Un projet "
                   description="App mobile flutter"
                   action={{
                     type: "internal",
-                    route: "",
+                    route: "#id",
                   }}
                 />
               </AccordionSummary>
@@ -181,4 +180,4 @@ function CoursesListing() {
   );
 }
 
-export default CoursesListing;
+export default ProjetsListing;

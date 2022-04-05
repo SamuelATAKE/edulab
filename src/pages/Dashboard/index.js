@@ -2,32 +2,20 @@ import React from "react";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import MKBox from "components/MKBox";
-import routes from "menu";
 import footerRoutes from "footer.routes";
 import { Card } from "@mui/material";
 import Container from "@mui/material/Container";
 import MKTypography from "components/MKTypography";
 import Counters from "pages/Presentation/sections/Counters";
 import Grid from "@mui/material/Grid";
+import routes from "./menu";
 // import Stack from "@mui/material/Stack";
 // import MKButton from "components/MKButton";
-
-import FloatingButton from "./FloatingButton";
 
 function Dashboard() {
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/connexion",
-          label: "Déconnexion",
-          color: "info",
-        }}
-        sticky
-      />
-
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
         minHeight="75vh"
         width="100%"
@@ -60,7 +48,6 @@ function Dashboard() {
           </Grid>
         </Container>
       </MKBox>
-
       <Card
         sx={{
           p: 2,
@@ -74,11 +61,9 @@ function Dashboard() {
       >
         <Counters />
       </Card>
-      <FloatingButton />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
-
       {/* <MKBox className="fab" component="nav"> */}
       {/* <ResponsiveDrawer className="fab" /> */}
       {/* </MKBox> */}

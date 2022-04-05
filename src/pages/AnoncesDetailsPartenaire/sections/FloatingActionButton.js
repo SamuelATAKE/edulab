@@ -35,7 +35,7 @@ export default function FloatingActionButtons() {
       <Box sx={{ "& > :not(style)": { m: 1 } }}>
         <Fab variant="extended" color="primary" onClick={handleOpen} aria-label="search">
           <AddIcon />
-          Ajouter un projet
+          Ajouter une annonce
         </Fab>
         <Fab variant="extended">
           <NavigationIcon sx={{ mr: 1 }} />
@@ -73,22 +73,6 @@ export default function FloatingActionButtons() {
               <TextField id="technologies" label="Technologies" defaultValue="Technologies" />
               <TextField id="prerequis" label="Prerequis" defaultValue="Prerequis" />
               <TextField id="duree" label="Duree" defaultValue="Duree" />
-              <TextField
-                id="nbmax"
-                label="Nombre de participants"
-                type="number"
-                InputLabelProps={{
-                  shrink: true,
-                }}
-              />
-              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
-              <label htmlFor="principal">
-                {" "}
-                <Typography id="modal-modal-title" variant="h6" component="h2" bottom={15}>
-                  Ressources
-                </Typography>
-              </label>
-              <input id="principal" name="principal" type="file" accept="*" />
             </div>
           </Box>
           <Divider sx={{ my: 0, mt: 3 }} />

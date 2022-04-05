@@ -39,12 +39,12 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Presentation page components
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { Chip } from "@mui/material";
 import MKTypography from "../../components/MKTypography";
+import routes from "./menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
@@ -53,16 +53,7 @@ import MKTypography from "../../components/MKTypography";
 function ContenuCours() {
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/connexion",
-          label: "Connexion",
-          color: "info",
-        }}
-        sticky
-      />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
         minHeight="5em"
         width="100%"
@@ -79,19 +70,23 @@ function ContenuCours() {
           p: 2,
           mx: { xs: 2, lg: 3 },
           mt: 1,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.9),
+          backgroundColor: "dark",
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
+        color="secondary"
       >
         <Typography
           variant="h4"
           component="h2"
+          bgcolor="white"
+          color="white"
           sx={{
             mb: 3,
             p: 2,
             border: "0.5px solid darkgray",
             borderRadius: "0.4em",
+            bgcolor: "dark",
           }}
         >
           Comment aborder la logique des composants reacts ?

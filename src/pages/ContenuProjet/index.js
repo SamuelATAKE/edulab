@@ -14,17 +14,12 @@ Coded by www.creative-tim.com
 */
 
 // @mui material components
-import Container from "@mui/material/Container";
-import Grid from "@mui/material/Grid";
+// import Container from "@mui/material/Container";
+// import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
-import Stack from "@mui/material/Stack";
-import Divider from "@mui/material/Divider";
-
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
-import MKTypography from "components/MKTypography";
 // import MKSocialButton from "components/MKSocialButton";
-import MKButton from "components/MKButton";
 
 // Material Kit 2 React examples
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
@@ -33,93 +28,91 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 
 // Presentation page sections
 // import Counters from "pages/Presentation/sections/Counters";
-import Information from "pages/Presentation/sections/Information";
+
 // import Flip from "pages/Presentation/sections/Flip";
 // import DesignBlocks from "pages/Presentation/sections/DesignBlocks";
 // import Pages from "pages/Presentation/sections/Pages";
-import Testimonials from "pages/Presentation/sections/Testimonials";
+
 // import Download from "pages/Presentation/sections/Download";
 
 // Presentation page components
-import BuiltByDevelopers from "pages/Presentation/components/BuiltByDevelopers";
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
+import Typography from "@mui/material/Typography";
+import MKTypography from "../../components/MKTypography";
+import FloatingActionButtons from "./FloatingActionButton";
+import routes from "./menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
 // import bgImage from "assets/images/bg-coworking.jpeg";
-import bgImage from "assets/images/Accueil/accueil1.jpg";
 
-function Presentation() {
+function ContenuProjet() {
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/connexion",
-          label: "Connexion",
-          color: "info",
-        }}
-        sticky
-      />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
-        minHeight="75vh"
+        minHeight="5em"
         width="100%"
         display="flex"
         alignItems="center"
         sx={{
-          backgroundImage: `url(${bgImage})`,
           backgroundSize: "cover",
-          backgroundPosition: "top",
           display: "grid",
           placeItems: "center",
         }}
-      >
-        <Container>
-          <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
-            <MKTypography
-              variant="h2"
-              color="white"
-              mb={3}
-              sx={({ breakpoints, typography: { size } }) => ({
-                [breakpoints.down("md")]: {
-                  fontSize: size["3xl"],
-                },
-              })}
-            >
-              Edulab
-            </MKTypography>
-            <MKTypography variant="h5" color="white" opacity={0.9} pr={6} mr={6}>
-              Plateforme de formation de développeurs compétents
-            </MKTypography>
-            <Stack direction="row" spacing={1} mt={3}>
-              <MKButton color="white" href="/connexion">
-                Commencer
-              </MKButton>
-            </Stack>
-          </Grid>
-        </Container>
-      </MKBox>
+      />
       <Card
         sx={{
           p: 2,
           mx: { xs: 2, lg: 3 },
-          mt: -8,
-          mb: 4,
+          mt: 1,
           backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.9),
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Container sx={{ mt: 6 }}>
-          <BuiltByDevelopers />
-        </Container>
-        <Information />
-        <Divider sx={{ my: 6 }} />
-        <Testimonials />
+        <FloatingActionButtons align="center" />
+        <Typography
+          variant="h4"
+          component="h2"
+          sx={{
+            mb: 3,
+            p: 2,
+            border: "0.5px solid darkgray",
+            borderRadius: "0.4em",
+          }}
+        >
+          Mon Ai Personnel
+        </Typography>
+        <hr />
+        <MKTypography mt={2} mb={3}>
+          <h3>Description</h3>
+          Les composants React sont des composants qui sont développés par des développeurs et qui
+          sont utilisés dans des applications web. Nous atelerons ici sur la maniere de concevoir
+          une achitecture efficace de composants reutilisables.
+        </MKTypography>
+        <hr />
+        <MKTypography mt={2} mb={3}>
+          <h3>Objectifs</h3>
+          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        </MKTypography>
+        <hr />
+        <MKTypography mt={2} mb={3}>
+          <h3>Technologies</h3>
+          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        </MKTypography>
+        <hr />
+        <MKTypography mt={2} mb={3}>
+          <h3>Prerequis</h3>
+          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        </MKTypography>
+        <hr />
+        <MKTypography mt={2} mb={3}>
+          <h3>Delais</h3>
+          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        </MKTypography>
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
@@ -128,4 +121,4 @@ function Presentation() {
   );
 }
 
-export default Presentation;
+export default ContenuProjet;

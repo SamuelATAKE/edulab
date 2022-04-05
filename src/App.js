@@ -31,6 +31,12 @@ import ProjetsDetailsMentor from "./pages/ProjetsDetailsMentor";
 import ContenuCours from "./pages/ContenuCours";
 import Forums from "./pages/Forums";
 import Commentaires from "./pages/Forums/Commentaires";
+import ContenuProjet from "./pages/ContenuProjet";
+import GestionContenuCours from "./pages/GestionCoursMentor";
+import GestionContenuProjet from "./pages/GestionProjetMentor";
+import AnnoncesDetails from "./pages/AnoncesDetails";
+import AnnoncesDetailsPartenaire from "./pages/AnoncesDetailsPartenaire";
+import Author from "./pages/LandingPages/Author";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -64,12 +70,16 @@ export default function App() {
         <Route path="/forums" element={<Forums />} />
         <Route path="/commentaires" element={<Commentaires />} />
         <Route path="/contenucours" element={<ContenuCours />} />
+        <Route path="/gestioncours" element={<GestionContenuCours />} />
+        <Route path="/gestionprojet" element={<GestionContenuProjet />} />
+        <Route path="/contenuprojet" element={<ContenuProjet />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/a-propos-de-nous" element={<AboutUsPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
         <Route path="/connexion" element={<SignIn />} />
         <Route path="/Projets" element={<Projetstutores />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/profil" element={<Author />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/Cours" element={<Cours />} />
         <Route path="/Cours-details" element={<CoursDetails />} />
@@ -77,6 +87,8 @@ export default function App() {
         <Route path="/CoursDetails" element={<CoursDetailsMentor />} />
         <Route path="/ProjetsDetails" element={<ProjetsDetailsMentor />} />
         <Route path="/Annonces" element={<Annonces />} />
+        <Route path="/Annonces-details" element={<AnnoncesDetails />} />
+        <Route path="/AnnoncesDetails" element={<AnnoncesDetailsPartenaire />} />
         <Route path="/" element={<Presentation />} />
         <Route path="*" element={<Navigate to="/" />} />
       </Routes>

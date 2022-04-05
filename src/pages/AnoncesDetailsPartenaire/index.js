@@ -8,19 +8,18 @@ import MKBox from "components/MKBox";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
-import Posts from "pages/CoursDetails/sections/Posts";
+import Posts from "pages/ProjetsDetailsMentor/sections/Posts";
 
 // Routes
-// eslint-disable-next-line import/extensions
 import footerRoutes from "footer.routes";
 
 // Images
-import bgImage from "assets/images/Cours/banniere.jpg";
+import bgImage from "assets/images/Projets/banniere.jpg";
+import FloatingActionButtons from "./sections/FloatingActionButton";
 import routes from "./menu";
 import TabsSimple from "./sections/PathApplet";
-import Search from "./sections/search";
 
-function CoursDetails() {
+function AnnoncesDetailsPartenaire() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -51,12 +50,10 @@ function CoursDetails() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
-          <MKBox mb={3} sx={{ maxWidth: "20%", alignCenter: true }}>
-            <Search />
-          </MKBox>
           <MKBox>
             <TabsSimple bottom={10} />
           </MKBox>
+          <FloatingActionButtons />
           <Posts />
         </Card>
         <MKBox pt={6} px={1} mt={6}>
@@ -67,4 +64,4 @@ function CoursDetails() {
   );
 }
 
-export default CoursDetails;
+export default AnnoncesDetailsPartenaire;

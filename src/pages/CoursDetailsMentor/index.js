@@ -11,13 +11,13 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 import Posts from "pages/CoursDetailsMentor/sections/Posts";
 
 // Routes
-import routes from "menu";
 import footerRoutes from "footer.routes";
 
 // Images
 import bgImage from "assets/images/Cours/banniere.jpg";
 import FloatingActionButtons from "./sections/FloatingActionButton";
 import TabsSimple from "./sections/PathApplet";
+import routes from "./menu";
 
 function CoursDetailsMentor() {
   return (
