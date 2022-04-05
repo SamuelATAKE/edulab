@@ -18,6 +18,7 @@ import footerRoutes from "footer.routes";
 import bgImage from "assets/images/Cours/banniere.jpg";
 import routes from "./menu";
 import TabsSimple from "./sections/PathApplet";
+import Search from "./sections/search";
 
 function CoursDetails() {
   return (
@@ -50,6 +51,9 @@ function CoursDetails() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
+          <MKBox mb={3} sx={{ maxWidth: "20%", alignCenter: true }}>
+            <Search />
+          </MKBox>
           <MKBox>
             <TabsSimple bottom={10} />
           </MKBox>

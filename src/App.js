@@ -33,6 +33,7 @@ import GestionContenuCours from "./pages/GestionCoursMentor";
 import GestionContenuProjet from "./pages/GestionProjetMentor";
 import AnnoncesDetails from "./pages/AnoncesDetails";
 import AnnoncesDetailsPartenaire from "./pages/AnoncesDetailsPartenaire";
+import Author from "./pages/LandingPages/Author";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/connexion" element={<SignIn />} />
         <Route path="/Projets" element={<Projetstutores />} />
         <Route path="/contact" element={<ContactUs />} />
+        <Route path="/profil" element={<Author />} />
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/Cours" element={<Cours />} />
         <Route path="/Cours-details" element={<CoursDetails />} />
