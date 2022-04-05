@@ -26,8 +26,6 @@ export default function FloatingButton() {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const handleRoute = () => {};
-
   return (
     <Box sx={{ height: 330, transform: "translateZ(0px)", flexGrow: 1 }}>
       <Backdrop open={open} />

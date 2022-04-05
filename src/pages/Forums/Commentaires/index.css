@@ -1,0 +1,76 @@
+body {
+    background-color: #FBFBFB!important;
+  }
+  
+        .grey.lighten-3 {
+      background-color: #F0F2F5!important;
+    }
+  
+  .fixed-sn .double-nav, .fixed-sn main, .fixed-sn footer, .card-intro {
+    padding-left: 0 !important;
+  }
+
+  main .container-fluid {
+    max-width: 1400px!important;
+  }
+
+  .card {
+    box-shadow: 0 10px 20px 0 rgba(0,0,0,.05) !important
+  }
+
+  .card .card-title {
+    font-size: 1.05rem;
+  }
+
+  .users-listing-small h5 {
+    font-size: 1.15rem;
+  }
+
+  .card .card-header h5 {
+    font-size: 1.15rem;
+  }
+
+  .card-intro {
+    background: #fff!important;
+    margin-top: 53px!important;
+    box-shadow: none!important;
+  }
+
+  .card-intro .rgba-black-light {
+    background: rgba(0,0,0,0.0)!important;
+  }
+
+  .card-intro h1 {
+    font-size: 1.4rem!important;
+    font-weight: 600!Important;
+    margin-top: 1rem!important;
+    margin-bottom: 1rem!important;
+    color: #4f4f4f!important;
+  }
+
+  .navbar {
+    height: 53px !important;
+    box-shadow: 0 5px 15px 0 rgba(0, 0, 0, 0.06) !important;
+  }
+  .navbar-light .navbar-nav .nav-link {
+    color: rgba(0, 0, 0, 0.55) !important;
+    font-weight: 400;
+  }
+  #navbarNotificationCounter {
+    position: absolute;
+    font-size: 0.6rem;
+    margin-top: -0.2rem;
+    margin-left: -0.5rem;
+  }
+
+  .hidden-arrow:after {
+    display: none;
+  }
+
+  .badge {
+    box-shadow: none!important;
+  }
+
+  .card-header {
+    background-color: #fff!important;
+  }

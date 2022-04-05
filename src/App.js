@@ -20,6 +20,7 @@ import routes from "menu";
 import Projetstutores from "pages/Projetstutores";
 import Cours from "pages/Cours";
 import Annonces from "pages/Annonces";
+import Author from "pages/LandingPages/Author";
 import AboutUsPage from "./layouts/pages/landing-pages/about-us";
 import Dashboard from "./pages/Dashboard";
 import CoursDetails from "./pages/CoursDetails";
@@ -27,6 +28,9 @@ import ProjetsDetails from "./pages/ProjetsDetails";
 import Notifications from "./pages/Notifications";
 import CoursDetailsMentor from "./pages/CoursDetailsMentor";
 import ProjetsDetailsMentor from "./pages/ProjetsDetailsMentor";
+import ContenuCours from "./pages/ContenuCours";
+import Forums from "./pages/Forums";
+import Commentaires from "./pages/Forums/Commentaires";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -56,6 +60,10 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
 
+        <Route path="/profil" element={<Author />} />
+        <Route path="/forums" element={<Forums />} />
+        <Route path="/commentaires" element={<Commentaires />} />
+        <Route path="/contenucours" element={<ContenuCours />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/a-propos-de-nous" element={<AboutUsPage />} />
         <Route path="/dashboard" element={<Dashboard />} />
