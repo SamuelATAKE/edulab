@@ -8,18 +8,16 @@ import MKBox from "components/MKBox";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
-import Posts from "pages/ProjetsDetailsMentor/sections/Posts";
+import Posts from "pages/ProjetsDetails/sections/Posts";
 
 // Routes
 import footerRoutes from "footer.routes";
 
 // Images
 import bgImage from "assets/images/Projets/banniere.jpg";
-import FloatingActionButtons from "./sections/FloatingActionButton";
 import routes from "./menu";
-import TabsSimple from "./sections/PathApplet";
 
-function ProjetsDetailsMentor() {
+function AnnoncesDetails() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -50,10 +48,6 @@ function ProjetsDetailsMentor() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
-          <MKBox>
-            <TabsSimple bottom={10} />
-          </MKBox>
-          <FloatingActionButtons />
           <Posts />
         </Card>
         <MKBox pt={6} px={1} mt={6}>
@@ -64,4 +58,4 @@ function ProjetsDetailsMentor() {
   );
 }
 
-export default ProjetsDetailsMentor;
+export default AnnoncesDetails;

@@ -16,7 +16,6 @@ function Dashboard() {
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
-
       <MKBox
         minHeight="75vh"
         width="100%"
@@ -49,7 +48,6 @@ function Dashboard() {
           </Grid>
         </Container>
       </MKBox>
-
       <Card
         sx={{
           p: 2,
@@ -66,7 +64,6 @@ function Dashboard() {
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
-
       {/* <MKBox className="fab" component="nav"> */}
       {/* <ResponsiveDrawer className="fab" /> */}
       {/* </MKBox> */}

@@ -2,6 +2,8 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import MailIcon from "@mui/icons-material/Mail";
 import AddIcon from "@mui/icons-material/Add";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 import Badge from "@mui/material/Badge";
 import PeopleIcon from "@mui/icons-material/People";
 import Button from "@mui/material/Button";
@@ -25,6 +27,9 @@ import {
   TextField,
 } from "@mui/material";
 
+import Card from "@mui/material/Card";
+import Typography from "@mui/material/Typography";
+import SendIcon from "@mui/icons-material/Send";
 import MKBox from "../../components/MKBox";
 import MKTypography from "../../components/MKTypography";
 import MKButton from "../../components/MKButton";
@@ -37,6 +42,10 @@ export default function FloatingActionButtons() {
   const handleClose = () => setOpen(false);
   const [showparticipants, setShowParticipants] = useState(false);
   const toggleModalparticipants = () => setShowParticipants(!showparticipants);
+  const [openEdit, setOpenEdit] = React.useState(false);
+  const handleOpenEdit = () => setOpenEdit(true);
+  const handleCloseEdit = () => setOpenEdit(false);
+
   const participants = [
     {
       id: 1,
@@ -91,6 +100,16 @@ export default function FloatingActionButtons() {
           startIcon={<PeopleIcon fontSize="medium" />}
         >
           <p>Participants</p>
+        </Button>
+        <Button
+          variant="extended"
+          onClick={handleOpenEdit}
+          startIcon={<EditIcon fontSize="medium" />}
+        >
+          <p>Reglages du projet</p>
+        </Button>
+        <Button variant="extended" href="/projets/1" startIcon={<DeleteIcon fontSize="medium" />}>
+          <p>Supprimer</p>
         </Button>
       </Box>
       <Modal open={show} onClose={toggleModal} sx={{ display: "grid", placeItems: "center" }}>
@@ -296,6 +315,84 @@ export default function FloatingActionButtons() {
             </MKBox>
           </MKBox>
         </Slide>
+      </Modal>
+      <Modal
+        open={openEdit}
+        onClose={handleCloseEdit}
+        aria-labelledby="modal-modal-title"
+        aria-describedby="modal-modal-description"
+      >
+        <Card
+          sx={{
+            position: "absolute",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            width: 700,
+            bgcolor: "background.paper",
+            borderRadius: "24px",
+            border: "1px solid white",
+            boxShadow: 24,
+            p: 4,
+          }}
+        >
+          <Typography id="modal-modal-title" variant="h6" component="h2" mb={3}>
+            Veuillez repondre a ces questions
+          </Typography>
+          <Divider />
+          <Box
+            component="form"
+            sx={{
+              "& .MuiTextField-root": { m: 1, width: "25ch" },
+            }}
+            autoComplete="off"
+          >
+            <div>
+              <TextField required id="titre" label="Titre" defaultValue="Titre" />
+              <TextField
+                id="description"
+                label="Description"
+                defaultValue="Description"
+                maxRows={8}
+                multiline
+              />
+              <TextField id="objectif" label="Objectif" defaultValue="Objectif" />
+              <TextField id="technologies" label="Technologies" defaultValue="Technologies" />
+              <TextField id="prerequis" label="Prerequis" defaultValue="Prerequis" />
+              <TextField id="duree" label="Duree" defaultValue="Duree" />
+              <TextField
+                id="nbmax"
+                label="Nombre de participants"
+                type="number"
+                InputLabelProps={{
+                  shrink: true,
+                }}
+              />
+              {/* eslint-disable-next-line jsx-a11y/label-has-associated-control */}
+              <label htmlFor="principal">
+                {" "}
+                <Typography id="modal-modal-title" variant="h6" component="h2" bottom={15}>
+                  Ressources
+                </Typography>
+              </label>
+              <input id="principal" name="principal" type="file" accept="*" />
+            </div>
+          </Box>
+          <Divider sx={{ my: 0, mt: 3 }} />
+          <MKBox display="flex" justifyContent="space-between" p={1.5}>
+            <MKButton
+              variant="gradient"
+              color="dark"
+              onClick={handleCloseEdit}
+              startIcon={<SendIcon />}
+            >
+              Enregistrer
+            </MKButton>
+            <MKButton variant="gradient" color="primary" onClick={handleCloseEdit}>
+              Annuler
+            </MKButton>
+          </MKBox>
+        </Card>
       </Modal>
     </>
   );

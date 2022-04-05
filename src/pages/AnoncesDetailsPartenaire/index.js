@@ -19,7 +19,7 @@ import FloatingActionButtons from "./sections/FloatingActionButton";
 import routes from "./menu";
 import TabsSimple from "./sections/PathApplet";
 
-function ProjetsDetailsMentor() {
+function AnnoncesDetailsPartenaire() {
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -64,4 +64,4 @@ function ProjetsDetailsMentor() {
   );
 }
 
-export default ProjetsDetailsMentor;
+export default AnnoncesDetailsPartenaire;
