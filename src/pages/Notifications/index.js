@@ -16,7 +16,7 @@ import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
 import routes from "menu";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
-import FloatingButton from "pages/Dashboard/FloatingButton";
+// import FloatingButton from "pages/Dashboard/FloatingButton";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
 
@@ -300,7 +300,6 @@ function Notifications() {
           </Modal>
         </Container>
       </Container>
-      <FloatingButton />
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>

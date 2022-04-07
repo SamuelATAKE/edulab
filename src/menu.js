@@ -15,7 +15,7 @@ const routes = [
     icon: <Icon>work</Icon>,
     collapse: [
       {
-        name: "Projets tutorés",
+        name: "Projets tuteurés",
         description: "Apprenez en pratiquant",
         href: "/Projets",
       },

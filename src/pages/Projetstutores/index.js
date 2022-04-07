@@ -9,7 +9,6 @@ import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 // Author page sections
 // import Profile from "pages/Projetstutores/sections/Profile";
-import Posts from "pages/Projetstutores/sections/Posts";
 // import Contact from "pages/Projetstutores/sections/Contact";
 
 // Routes
@@ -18,8 +17,25 @@ import footerRoutes from "footer.routes";
 
 // Images
 import bgImage from "assets/images/Projets/banniere.jpg";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import Grid from "@mui/material/Grid";
+import Container from "@mui/material/Container";
+import TransparentBlogCard from "../../examples/Cards/BlogCards/TransparentBlogCard";
+import post1 from "../../assets/images/examples/testimonial-6-2.jpg";
+import MKTypography from "../../components/MKTypography";
 
 function Projetstutores() {
+  const [projets, setProjets] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/cours/")
+      .then((res) => {
+        setProjets(res.data);
+      })
+      // eslint-disable-next-line
+            .catch((err) => console.log(err));
+  }, []);
   return (
     <>
       <DefaultNavbar routes={routes} transparent light />
@@ -50,7 +66,31 @@ function Projetstutores() {
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
-          <Posts />
+          <MKBox component="section" py={2}>
+            <Container>
+              <Grid container item xs={12} lg={6}>
+                <MKTypography variant="h3" mb={6}>
+                  Projets
+                </MKTypography>
+              </Grid>
+              <Grid container spacing={3}>
+                {projets.map((post) => (
+                  <Grid container item xs={3} lg={3} key={post.id}>
+                    <TransparentBlogCard
+                      image={post1}
+                      title={post.titre}
+                      description={post.description}
+                      action={{
+                        route: "connexion",
+                        color: "info",
+                        label: "Voir",
+                      }}
+                    />
+                  </Grid>
+                ))}
+              </Grid>
+            </Container>
+          </MKBox>
         </Card>
         <MKBox pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />
