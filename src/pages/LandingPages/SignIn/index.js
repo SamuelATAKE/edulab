@@ -14,9 +14,9 @@ Coded by www.creative-tim.com
 */
 
 import { useState } from "react";
-
 // react-router-dom components
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import axios from "axios";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -42,10 +42,45 @@ import MKButton from "components/MKButton";
 // Material Kit 2 React page layout routes
 // import routes from "menu";
 
+const initialState = {
+  email: "",
+  password: "",
+};
+
 function SignInBasic() {
+  const navigate = useNavigate();
+
   const [rememberMe, setRememberMe] = useState(false);
 
+  const [state, setState] = useState(initialState);
+
+  const { email, password } = state;
+
+  const { logged, setLogged } = useState(false);
+
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
+
+  // const navigate = useNavigate();
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
+  const onSubmit = (e) => {
+    axios.get(`http://localhost:8080/api/utilisateur`).then((res) => {
+      res.data.forEach((element) => {
+        if (element.email === state.email && element.password === state.password) {
+          // navigate("/", { replace: true });
+          setLogged(true);
+        }
+      });
+    });
+
+    if (logged === true) {
+      navigate("/", { replace: true });
+    }
+  };
 
   return (
     <>
@@ -87,12 +122,32 @@ function SignInBasic() {
                 </Grid>
               </MKBox>
               <MKBox pt={4} pb={3} px={3}>
-                <MKBox component="form" role="form">
+                <MKBox
+                  component="form"
+                  role="form"
+                  autoComplete="off"
+                  noValidate
+                  onSubmit={onSubmit}
+                >
                   <MKBox mb={2}>
-                    <MKInput type="email" label="Email" fullWidth />
+                    <MKInput
+                      type="email"
+                      name="email"
+                      value={email}
+                      onChange={handleInputChange}
+                      label="Email"
+                      fullWidth
+                    />
                   </MKBox>
                   <MKBox mb={2}>
-                    <MKInput type="password" label="Mot de passe" fullWidth />
+                    <MKInput
+                      type="password"
+                      name="password"
+                      value={password}
+                      onChange={handleInputChange}
+                      label="Mot de passe"
+                      fullWidth
+                    />
                   </MKBox>
                   <MKBox display="flex" alignItems="center" ml={-1}>
                     <Switch checked={rememberMe} onChange={handleSetRememberMe} />
@@ -107,7 +162,7 @@ function SignInBasic() {
                     </MKTypography>
                   </MKBox>
                   <MKBox mt={4} mb={1}>
-                    <MKButton variant="gradient" color="info" fullWidth>
+                    <MKButton variant="gradient" type="submit" color="info" fullWidth>
                       Connexion
                     </MKButton>
                   </MKBox>

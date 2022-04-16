@@ -13,12 +13,11 @@ Coded by www.creative-tim.com
 * The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
 */
 
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useState, useNavigate } from "react";
 import axios from "axios";
 
 // react-router-dom components
-// import { Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 // @mui material components
 import Card from "@mui/material/Card";
@@ -45,26 +44,11 @@ import MKButton from "components/MKButton";
 // import routes from "menu";
 
 const initialState = {
-  username: "",
-  aemail: "",
-  upassword: "",
-  passwordconfirm: "",
-};
-
-const userState = {
-  nom: "",
-  prenom: "",
-  institut: "",
-  pseudo: "",
-  password: "",
   email: "",
-  genre: "",
-  bio: "",
-  points: "",
-  role: "",
+  password: "",
 };
 
-function SignUpBasic() {
+function SignInBasic() {
   const navigate = useNavigate();
 
   const [rememberMe, setRememberMe] = useState(false);
@@ -73,11 +57,7 @@ function SignUpBasic() {
 
   const [state, setState] = useState(initialState);
 
-  const { username, aemail, upassword, passwordconfirm } = state;
-
-  const [utilisateur, setUtilisateur] = useState(userState);
-
-  const { nom, prenom, institut, pseudo, password, email, genre, bio, points, role } = utilisateur;
+  const { email, password } = state;
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -85,57 +65,20 @@ function SignUpBasic() {
   };
 
   const onSubmit = (e) => {
-    // eslint-disable-next-line
-    console.log("entered");
-    e.preventDefault();
-    setUtilisateur({ ...utilisateur, [nom]: null });
-    setUtilisateur({ ...utilisateur, [prenom]: null });
-    setUtilisateur({ ...utilisateur, [institut]: null });
-    setUtilisateur({ ...utilisateur, [pseudo]: state.username });
-    setUtilisateur({ ...utilisateur, [password]: state.upassword });
-    setUtilisateur({ ...utilisateur, [email]: state.aemail });
-    setUtilisateur({ ...utilisateur, [genre]: null });
-    setUtilisateur({ ...utilisateur, [bio]: null });
-    setUtilisateur({ ...utilisateur, [points]: null });
-    setUtilisateur({ ...utilisateur, [role]: null });
-    utilisateur.pseudo = state.username;
-    utilisateur.email = state.aemail;
-    utilisateur.password = state.upassword;
-    // eslint-disable-next-line
-    console.log("L'état");
-    // eslint-disable-next-line
-    console.log(utilisateur);
-    // eslint-disable-next-line
-    console.log(state);
-
-    axios
-      .post(`http://localhost:8080/api/utilisateur`, utilisateur, {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((res) => {
-        // eslint-disable-next-line
-        console.log(res);
-        // eslint-disable-next-line
-        console.log(res.data);
-        navigate("/connexion", { replace: true });
+    axios.get(`http://localhost:8080/api/utilisateur`).then((res) => {
+      res.data.forEach((element) => {
+        if (element.email === state.email && element.password === state.password) {
+          navigate("/", { replace: true });
+        }
       });
+    });
   };
 
   return (
     <>
-      <MKBox
-        position="absolute"
-        top={50}
-        zIndex={1}
-        width="100%"
-        Height="50%"
-        mx="auto"
-        Color="dark"
-      />
-      <MKBox px={1} mt="500" top={50} position="relative" zIndex={4}>
-        <Grid container spacing={1} justifyContent="center" alignItems="center" height="auto">
+      <MKBox position="absolute" top={0} left={0} zIndex={1} width="100%" minHeight="100vh" />
+      <MKBox px={1} width="100%" height="100vh" mx="auto" position="relative" zIndex={2}>
+        <Grid container spacing={1} justifyContent="center" alignItems="center" height="100%">
           <Grid item xs={11} sm={9} md={5} lg={4} xl={3}>
             <Card>
               <MKBox
@@ -150,7 +93,7 @@ function SignUpBasic() {
                 textAlign="center"
               >
                 <MKTypography variant="h4" fontWeight="medium" color="white" mt={1}>
-                  Créer un compte!
+                  Connectez-vous
                 </MKTypography>
                 <Grid container spacing={3} justifyContent="center" sx={{ mt: 1, mb: 2 }}>
                   <Grid item xs={2}>
@@ -170,7 +113,6 @@ function SignUpBasic() {
                   </Grid>
                 </Grid>
               </MKBox>
-
               <MKBox pt={4} pb={3} px={3}>
                 <MKBox
                   component="form"
@@ -181,41 +123,21 @@ function SignUpBasic() {
                 >
                   <MKBox mb={2}>
                     <MKInput
-                      type="text"
-                      label="Nom d'utilisateur(Pseudo)"
-                      name="username"
-                      value={username}
-                      onChange={handleInputChange}
-                      fullWidth
-                    />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput
                       type="email"
-                      name="aemail"
-                      value={aemail}
+                      name="email"
+                      value={email}
                       onChange={handleInputChange}
-                      label="Adresse email"
+                      label="Email"
                       fullWidth
                     />
                   </MKBox>
                   <MKBox mb={2}>
                     <MKInput
                       type="password"
-                      name="upassword"
-                      value={upassword}
+                      name="password"
+                      value={password}
                       onChange={handleInputChange}
                       label="Mot de passe"
-                      fullWidth
-                    />
-                  </MKBox>
-                  <MKBox mb={2}>
-                    <MKInput
-                      type="password"
-                      name="passwordconfirm"
-                      value={passwordconfirm}
-                      onChange={handleInputChange}
-                      label="Confirmez votre mot de passe"
                       fullWidth
                     />
                   </MKBox>
@@ -233,21 +155,21 @@ function SignUpBasic() {
                   </MKBox>
                   <MKBox mt={4} mb={1}>
                     <MKButton variant="gradient" type="submit" color="info" fullWidth>
-                      Inscription
+                      Connexion
                     </MKButton>
                   </MKBox>
                   <MKBox mt={3} mb={1} textAlign="center">
                     <MKTypography variant="button" color="text">
-                      Vous avez déjà un compte?{" "}
+                      Vous n avez pas de compte?{" "}
                       <MKTypography
                         component={Link}
-                        to="/connexion"
+                        to="/inscription"
                         variant="button"
                         color="info"
                         fontWeight="medium"
                         textGradient
                       >
-                        Connectez-vous
+                        Inscrivez-vous
                       </MKTypography>
                     </MKTypography>
                   </MKBox>
@@ -261,4 +183,4 @@ function SignUpBasic() {
   );
 }
 
-export default SignUpBasic;
+export default SignInBasic;

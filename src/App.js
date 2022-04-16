@@ -36,7 +36,6 @@ import GestionContenuCours from "./pages/GestionCoursMentor";
 import GestionContenuProjet from "./pages/GestionProjetMentor";
 import AnnoncesDetails from "./pages/AnoncesDetails";
 import AnnoncesDetailsPartenaire from "./pages/AnoncesDetailsPartenaire";
-import Author from "./pages/LandingPages/Author";
 
 export default function App() {
   const { pathname } = useLocation();

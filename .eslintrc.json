@@ -27,7 +27,8 @@
         "custom": "ignore"
       }
     ],
-    "react/jsx-curly-spacing": [2, "never"]
+    "react/jsx-curly-spacing": [2, "never"],
+    "no-unused-vars": ["error", { "vars": "local", "args": "none", "ignoreRestSiblings": true }]
   },
   "settings": { "import/resolver": { "node": { "paths": ["src"] } } }
 }
