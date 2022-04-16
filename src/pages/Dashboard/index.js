@@ -64,9 +64,6 @@ function Dashboard() {
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />
       </MKBox>
-      {/* <MKBox className="fab" component="nav"> */}
-      {/* <ResponsiveDrawer className="fab" /> */}
-      {/* </MKBox> */}
     </>
   );
 }
