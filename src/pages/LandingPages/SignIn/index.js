@@ -56,7 +56,7 @@ function SignInBasic() {
 
   const { email, password } = state;
 
-  const { logged, setLogged } = useState(false);
+  const [logged, setLogged] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -68,11 +68,22 @@ function SignInBasic() {
   };
 
   const onSubmit = (e) => {
+    e.preventDefault();
+    // eslint-disable-next-line
+    console.log("Submitting");
+    // eslint-disable-next-line
+    console.log(state);
     axios.get(`http://localhost:8080/api/utilisateur`).then((res) => {
       res.data.forEach((element) => {
+        // eslint-disable-next-line
+        console.log("element");
+        // eslint-disable-next-line
+        console.log(element);
         if (element.email === state.email && element.password === state.password) {
           // navigate("/", { replace: true });
           setLogged(true);
+          sessionStorage.setItem("user", JSON.stringify(element));
+          navigate("/", { replace: true });
         }
       });
     });

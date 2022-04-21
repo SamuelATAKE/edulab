@@ -1,22 +1,9 @@
-/*
-=========================================================
-* Material Kit 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
+import React, { useEffect } from "react";
 // @mui material components
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import "@mui/icons-material";
+import { InputLabel, MenuItem, Select } from "@mui/material";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -26,8 +13,141 @@ import MKTypography from "components/MKTypography";
 
 // Images
 import bgImage from "assets/images/examples/blog2.jpg";
+import axios from "axios";
+
+const user = JSON.parse(sessionStorage.getItem("user"));
+
+const userState = {
+  nom: "",
+  prenom: "",
+  institut: "",
+  pseudo: "",
+  password: "",
+  email: "",
+  genre: "",
+  bio: "",
+  points: "",
+  role: "",
+};
+
+const initialState = {
+  nomp: "",
+  prenomp: "",
+  institutp: "",
+  usernamep: "",
+  genrep: "",
+  emailp: "",
+  biop: "",
+};
 
 function Contact() {
+  const [state, setState] = React.useState(initialState);
+
+  const { nomp, prenomp, institutp, genrep, usernamep, emailp, biop } = state;
+
+  const [utilisateur, setUtilisateur] = React.useState(userState);
+
+  const {
+    id,
+    nom,
+    prenom,
+    institut,
+    pseudo,
+    password,
+    email,
+    genre,
+    bio,
+    points,
+    role,
+    cours,
+    imageUrl,
+    emailVerified,
+  } = utilisateur;
+
+  const handleInputChange = (e) => {
+    const { name, value } = e.target;
+    setState({ ...state, [name]: value });
+  };
+
+  // const handleSelectChange = (e) => {
+  //  e.preventDefault();
+  //  setState({ ...state.genrep, [genrep]: state.genrep });
+  // };
+
+  useEffect(() => {
+    setState({
+      nomp: user.nom,
+      prenomp: user.prenom,
+      institutp: user.institut,
+      usernamep: user.pseudo,
+      genrep: user.genre,
+      emailp: user.email,
+      biop: user.bio,
+    });
+  }, []);
+
+  const masculin = "Masculin";
+
+  const feminin = "Féminin";
+
+  const onSubmit = (e) => {
+    // eslint-disable-next-line
+    console.log("entered");
+    // eslint-disable-next-line
+    console.log(user);
+    e.preventDefault();
+    setUtilisateur({ ...utilisateur, [id]: user.id });
+    setUtilisateur({ ...utilisateur, [nom]: state.nomp });
+    setUtilisateur({ ...utilisateur, [prenom]: state.prenomp });
+    setUtilisateur({ ...utilisateur, [institut]: state.institutp });
+    setUtilisateur({ ...utilisateur, [pseudo]: state.usernamep });
+    setUtilisateur({ ...utilisateur, [password]: user.password });
+    setUtilisateur({ ...utilisateur, [email]: state.emailp });
+    setUtilisateur({ ...utilisateur, [genre]: state.genrep });
+    setUtilisateur({ ...utilisateur, [bio]: state.biop });
+    setUtilisateur({ ...utilisateur, [points]: user.points });
+    setUtilisateur({ ...utilisateur, [role]: user.role });
+    setUtilisateur({ ...utilisateur, [id]: user.id });
+    setUtilisateur({ ...utilisateur, [cours]: user.cours });
+    setUtilisateur({ ...utilisateur, [emailVerified]: user.emailVerified });
+    setUtilisateur({ ...utilisateur, [imageUrl]: user.imageUrl });
+    utilisateur.pseudo = state.usernamep;
+    utilisateur.nom = state.nomp;
+    utilisateur.prenom = state.prenomp;
+    utilisateur.email = state.emailp;
+    utilisateur.institut = state.institutp;
+    utilisateur.genre = state.genrep;
+    utilisateur.bio = state.biop;
+    utilisateur.points = user.points;
+    utilisateur.role = user.role;
+    utilisateur.password = user.password;
+    utilisateur.id = user.id;
+    utilisateur.cours = user.cours;
+    utilisateur.emailVerified = user.emailVerified;
+    utilisateur.imageUrl = user.imageUrl;
+
+    // eslint-disable-next-line
+    console.log("L'état");
+    // eslint-disable-next-line
+    console.log(utilisateur);
+    // eslint-disable-next-line
+    console.log(state);
+
+    axios
+      // .put(`http://localhost:8080/api/utilisateur/${user.id}`, utilisateur, {
+      .put(`http://localhost:8080/api/utilisateur/update/`, utilisateur, {
+        headers: {
+          "content-type": "application/json",
+        },
+      })
+      .then((res) => {
+        // eslint-disable-next-line
+        console.log(res);
+        // eslint-disable-next-line
+        console.log(res.data);
+      });
+  };
+
   return (
     <MKBox component="section" py={{ xs: 0, lg: 6 }}>
       <Container>
@@ -139,7 +259,7 @@ function Contact() {
                 </MKBox>
               </Grid>
               <Grid item xs={12} lg={7}>
-                <MKBox component="form" p={2} method="post">
+                <MKBox component="form" p={2} method="put" onSubmit={onSubmit}>
                   <MKBox px={3} py={{ xs: 2, sm: 6 }}>
                     <MKTypography variant="h2" mb={1}>
                       Vos informations personnelles
@@ -154,8 +274,11 @@ function Contact() {
                         <MKInput
                           variant="standard"
                           label="Nom"
+                          name="nomp"
+                          value={nomp}
                           placeholder="Votre nom"
                           InputLabelProps={{ shrink: true }}
+                          onChange={handleInputChange}
                           fullWidth
                         />
                       </Grid>
@@ -163,8 +286,11 @@ function Contact() {
                         <MKInput
                           variant="standard"
                           label="Prénom(s)"
+                          name="prenomp"
+                          value={prenomp}
                           placeholder="Votre prénom"
                           InputLabelProps={{ shrink: true }}
+                          onChange={handleInputChange}
                           fullWidth
                         />
                       </Grid>
@@ -172,26 +298,49 @@ function Contact() {
                         <MKInput
                           variant="standard"
                           label="Pseudonyme"
+                          name="usernamep"
+                          value={usernamep}
                           placeholder="Votre pseudo"
                           InputLabelProps={{ shrink: true }}
+                          onChange={handleInputChange}
                           fullWidth
                         />
                       </Grid>
                       <Grid item xs={12} pr={1} mb={6}>
                         <MKInput
                           variant="standard"
-                          label="Adresse mail"
+                          name="emailp"
+                          value={emailp}
                           placeholder="Votre adresse mail"
                           InputLabelProps={{ shrink: true }}
+                          onChange={handleInputChange}
+                          label="Adresse mail"
                           fullWidth
                         />
                       </Grid>
                       <Grid item xs={12} pr={1} mb={6}>
+                        <InputLabel id="demo-simple-select-label">Genre</InputLabel>
+                        <Select
+                          variant="standard"
+                          name="genrep"
+                          value={genrep}
+                          onChange={handleInputChange}
+                          label="Genre"
+                          fullWidth
+                        >
+                          <MenuItem value={feminin}>Féminin</MenuItem>
+                          <MenuItem value={masculin}>Masculin</MenuItem>
+                        </Select>
+                      </Grid>
+                      <Grid item xs={12} pr={1} mb={6}>
                         <MKInput
                           variant="standard"
-                          label="Téléphone"
-                          placeholder="Votre numéro de téléphone"
+                          label="Institut"
+                          name="institutp"
+                          value={institutp}
+                          placeholder="Votre institution de provenance"
                           InputLabelProps={{ shrink: true }}
+                          onChange={handleInputChange}
                           fullWidth
                         />
                       </Grid>
@@ -199,8 +348,11 @@ function Contact() {
                         <MKInput
                           variant="standard"
                           label="Biographie"
+                          name="biop"
+                          value={biop}
                           placeholder="Dites plus sur vous... Votre niveau d'études, vos technologies et langages préférés, vos projets réalisés..."
                           InputLabelProps={{ shrink: true }}
+                          onChange={handleInputChange}
                           fullWidth
                           multiline
                           rows={6}
@@ -216,7 +368,7 @@ function Contact() {
                       textAlign="right"
                       ml="auto"
                     >
-                      <MKButton variant="gradient" color="info">
+                      <MKButton type="submit" variant="gradient" color="info">
                         Enregistrer mon profil
                       </MKButton>
                     </Grid>
