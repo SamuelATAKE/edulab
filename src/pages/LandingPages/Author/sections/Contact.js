@@ -135,7 +135,7 @@ function Contact() {
 
     axios
       // .put(`http://localhost:8080/api/utilisateur/${user.id}`, utilisateur, {
-      .put(`http://localhost:8080/api/utilisateur/update/`, utilisateur, {
+      .put(`http://localhost:8080/api/utilisateur/update`, utilisateur, {
         headers: {
           "content-type": "application/json",
         },

@@ -123,6 +123,15 @@ function SignUpBasic() {
       });
   };
 
+  const oAuthGoogle = () => {
+    axios.get(`http://localhost:8080/api/home/login`).then((res) => {
+      // eslint-disable-next-line
+      console.log(res);
+      // eslint-disable-next-line
+      console.log(res.data);
+    });
+  };
+
   return (
     <>
       <MKBox
@@ -164,7 +173,13 @@ function SignUpBasic() {
                     </MKTypography>
                   </Grid>
                   <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                    <MKTypography
+                      component={MuiLink}
+                      onClick={oAuthGoogle}
+                      href="#"
+                      variant="body1"
+                      color="white"
+                    >
                       <GoogleIcon color="inherit" />
                     </MKTypography>
                   </Grid>
