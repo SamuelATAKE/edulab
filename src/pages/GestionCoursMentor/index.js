@@ -53,7 +53,7 @@ import Box from "@mui/material/Box";
 import SendIcon from "@mui/icons-material/Send";
 import MKButton from "../../components/MKButton";
 import MKTypography from "../../components/MKTypography";
-import routes from "./menu";
+import routes from "../MenuPerUset/Mentor/menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";

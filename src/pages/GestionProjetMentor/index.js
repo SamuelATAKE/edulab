@@ -42,7 +42,7 @@ import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
 import MKTypography from "../../components/MKTypography";
 import FloatingActionButtons from "./FloatingActionButton";
-import routes from "./menu";
+import routes from "../MenuPerUset/Mentor/menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";

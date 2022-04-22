@@ -14,18 +14,24 @@ import CloseIcon from "@mui/icons-material/Close";
 import MKBox from "components/MKBox";
 import MKButton from "components/MKButton";
 import MKTypography from "components/MKTypography";
-import routes from "menu";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 // import FloatingButton from "pages/Dashboard/FloatingButton";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import footerRoutes from "footer.routes";
+import routeMentor from "../MenuPerUset/Mentor/menu";
+import routeApprenant from "../MenuPerUset/Apprenant/menu";
 
 function Notifications() {
   const [show, setShow] = useState(false);
   const toggleModal = () => setShow(!show);
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  let isapprenant = false;
+  if (user.role === "Apprenant") {
+    isapprenant = true;
+  }
   return (
     <>
-      <DefaultNavbar routes={routes} />
+      <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} />
       <br />
       <br />
       <br />

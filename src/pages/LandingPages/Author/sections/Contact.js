@@ -38,12 +38,13 @@ const initialState = {
   genrep: "",
   emailp: "",
   biop: "",
+  rolep: "",
 };
 
 function Contact() {
   const [state, setState] = React.useState(initialState);
 
-  const { nomp, prenomp, institutp, genrep, usernamep, emailp, biop } = state;
+  const { nomp, prenomp, institutp, genrep, usernamep, emailp, biop, rolep } = state;
 
   const [utilisateur, setUtilisateur] = React.useState(userState);
 
@@ -83,12 +84,19 @@ function Contact() {
       genrep: user.genre,
       emailp: user.email,
       biop: user.bio,
+      rolep: user.role,
     });
   }, []);
 
   const masculin = "Masculin";
 
   const feminin = "Féminin";
+
+  const mentor = "Mentor";
+
+  const apprenant = "Apprenant";
+
+  const partenaire = "Partenaire";
 
   const onSubmit = (e) => {
     // eslint-disable-next-line
@@ -106,7 +114,7 @@ function Contact() {
     setUtilisateur({ ...utilisateur, [genre]: state.genrep });
     setUtilisateur({ ...utilisateur, [bio]: state.biop });
     setUtilisateur({ ...utilisateur, [points]: user.points });
-    setUtilisateur({ ...utilisateur, [role]: user.role });
+    setUtilisateur({ ...utilisateur, [role]: user.rolep });
     setUtilisateur({ ...utilisateur, [id]: user.id });
     setUtilisateur({ ...utilisateur, [cours]: user.cours });
     setUtilisateur({ ...utilisateur, [emailVerified]: user.emailVerified });
@@ -119,7 +127,7 @@ function Contact() {
     utilisateur.genre = state.genrep;
     utilisateur.bio = state.biop;
     utilisateur.points = user.points;
-    utilisateur.role = user.role;
+    utilisateur.role = state.rolep;
     utilisateur.password = user.password;
     utilisateur.id = user.id;
     utilisateur.cours = user.cours;
@@ -145,6 +153,8 @@ function Contact() {
         console.log(res);
         // eslint-disable-next-line
         console.log(res.data);
+        sessionStorage.removeItem("user");
+        sessionStorage.setItem("user", JSON.stringify(res.data));
       });
   };
 
@@ -330,6 +340,21 @@ function Contact() {
                         >
                           <MenuItem value={feminin}>Féminin</MenuItem>
                           <MenuItem value={masculin}>Masculin</MenuItem>
+                        </Select>
+                      </Grid>
+                      <Grid item xs={12} pr={1} mb={6}>
+                        <InputLabel id="demo-simple-select-label">Role</InputLabel>
+                        <Select
+                          variant="standard"
+                          name="rolep"
+                          value={rolep}
+                          onChange={handleInputChange}
+                          label="Role"
+                          fullWidth
+                        >
+                          <MenuItem value={apprenant}>Apprenant</MenuItem>
+                          <MenuItem value={mentor}>Mentor</MenuItem>
+                          <MenuItem value={partenaire}>Partenaire</MenuItem>
                         </Select>
                       </Grid>
                       <Grid item xs={12} pr={1} mb={6}>

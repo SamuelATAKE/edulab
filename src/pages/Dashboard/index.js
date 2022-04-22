@@ -8,14 +8,20 @@ import Container from "@mui/material/Container";
 import MKTypography from "components/MKTypography";
 import Counters from "pages/Presentation/sections/Counters";
 import Grid from "@mui/material/Grid";
-import routes from "./menu";
+import routeMentor from "../MenuPerUset/Mentor/menu";
+import routeApprenant from "../MenuPerUset/Apprenant/menu";
 // import Stack from "@mui/material/Stack";
 // import MKButton from "components/MKButton";
 
 function Dashboard() {
+  const user = JSON.parse(sessionStorage.getItem("user"));
+  let isapprenant = false;
+  if (user.role === "Apprenant") {
+    isapprenant = true;
+  }
   return (
     <>
-      <DefaultNavbar routes={routes} sticky />
+      <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} sticky />
       <MKBox
         minHeight="75vh"
         width="100%"

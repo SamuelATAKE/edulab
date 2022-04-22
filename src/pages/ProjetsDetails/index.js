@@ -16,7 +16,7 @@ import footerRoutes from "footer.routes";
 // Images
 import bgImage from "assets/images/Projets/banniere.jpg";
 import TabsSimple from "./sections/PathApplet";
-import routes from "./menu";
+import routes from "../MenuPerUset/Apprenant/menu";
 
 function ProjetsDetails() {
   return (
