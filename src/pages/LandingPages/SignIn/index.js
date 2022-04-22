@@ -1,18 +1,3 @@
-/**
-=========================================================
-* Material Kit 2 React - v2.0.0
-=========================================================
-
-* Product Page: https://www.creative-tim.com/product/material-kit-react
-* Copyright 2021 Creative Tim (https://www.creative-tim.com)
-
-Coded by www.creative-tim.com
-
- =========================================================
-
-* The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
-*/
-
 import { useState } from "react";
 // react-router-dom components
 import { Link, useNavigate } from "react-router-dom";
@@ -56,7 +41,7 @@ function SignInBasic() {
 
   const { email, password } = state;
 
-  const [logged, setLogged] = useState(false);
+  // const [logged, setLogged] = useState(false);
 
   const handleSetRememberMe = () => setRememberMe(!rememberMe);
 
@@ -80,17 +65,18 @@ function SignInBasic() {
         // eslint-disable-next-line
         console.log(element);
         if (element.email === state.email && element.password === state.password) {
-          // navigate("/", { replace: true });
-          setLogged(true);
+          // eslint-disable-next-line
+          console.log(true);
+          // setLogged(true);
           sessionStorage.setItem("user", JSON.stringify(element));
-          navigate("/", { replace: true });
+          if (element.role === "") {
+            navigate("/profil", { replace: true });
+          } else {
+            navigate("/dashboard", { replace: true });
+          }
         }
       });
     });
-
-    if (logged === true) {
-      navigate("/", { replace: true });
-    }
   };
 
   return (

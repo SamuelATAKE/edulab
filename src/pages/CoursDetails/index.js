@@ -1,5 +1,6 @@
 // @mui material components
 import Card from "@mui/material/Card";
+import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -8,56 +9,125 @@ import MKBox from "components/MKBox";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 
-import Posts from "pages/CoursDetails/sections/Posts";
-
 // Routes
 // eslint-disable-next-line import/extensions
 import footerRoutes from "footer.routes";
 
 // Images
-import bgImage from "assets/images/Cours/banniere.jpg";
+import Container from "@mui/material/Container";
+import Grid from "@mui/material/Grid";
+import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import AppBar from "@mui/material/AppBar";
+import Tabs from "@mui/material/Tabs";
+import Tab from "@mui/material/Tab";
+import { useState, useEffect } from "react";
+import Button from "@mui/material/Button";
+import axios from "axios";
 import routes from "./menu";
-import TabsSimple from "./sections/PathApplet";
-import Search from "./sections/search";
+import MKTypography from "../../components/MKTypography";
 
 function CoursDetails() {
+  const [activeTab, setActiveTab] = useState(0);
+
+  const handleTabType = (event, newValue) => setActiveTab(newValue);
+  const [cours, setCours] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://localhost:8080/api/cours/")
+      .then((res) => {
+        setCours(res.data);
+      })
+      // eslint-disable-next-line
+        .catch((err) => console.log(err));
+  }, []);
   return (
     <>
-      <DefaultNavbar routes={routes} transparent light />
-      <MKBox bgColor="#dadaf0">
+      <DefaultNavbar routes={routes} sticky dark />
+      <MKBox bgColor="#F4F4F4">
         <MKBox
           minHeight="25rem"
           width="100%"
           sx={{
-            backgroundImage: ({ functions: { linearGradient, rgba }, palette: { gradients } }) =>
-              `${linearGradient(
-                rgba(gradients.dark.main, 0.8),
-                rgba(gradients.dark.state, 0.8)
-              )}, url(${bgImage})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
             display: "grid",
             placeItems: "center",
+            bakgroundColor: "dark",
           }}
-        />
+        >
+          <MKTypography variant="h1">
+            {" "}
+            <LibraryBooksIcon />
+            Les cours{" "}
+          </MKTypography>
+        </MKBox>
         <Card
           sx={{
             p: 2,
             mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
-            backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
             backdropFilter: "saturate(200%) blur(30px)",
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
-          <MKBox mb={3} sx={{ maxWidth: "20%", alignCenter: true }}>
-            <Search />
+          <MKBox mb={3}>
+            <Container>
+              <Grid container item justifyContent="center" xs={12} lg={4} mx="auto">
+                <AppBar position="static">
+                  <Tabs value={activeTab} onChange={handleTabType}>
+                    <Tab label="Mes cours" />
+                    <Tab label="Decouverte" />
+                  </Tabs>
+                </AppBar>
+              </Grid>
+            </Container>
           </MKBox>
-          <MKBox>
-            <TabsSimple bottom={10} />
+          <MKBox component="section" py={2}>
+            <Container>
+              <Grid container spacing={6}>
+                {cours.map((post) => (
+                  <Grid item xs="6" sm="6" lg="6">
+                    <Accordion
+                      color="primary"
+                      bgcolor="dark"
+                      sx={{ width: "100%", height: "100%" }}
+                    >
+                      <AccordionSummary
+                        aria-controls="panel1a-content"
+                        id="panel1a-header1"
+                        sx={{ width: "100%" }}
+                      >
+                        <div style={{ margin: "5", width: "100%" }}>
+                          {" "}
+                          <MKTypography variant="h1" verticalAlign="center" SX={{ width: "100%" }}>
+                            {post.titre.substring(0, 2).toUpperCase()}
+                          </MKTypography>
+                        </div>{" "}
+                        <br />
+                        <div style={{ margin: "5", width: "100%" }}>
+                          <span>
+                            <MKTypography variant="h6">Titre : </MKTypography>{" "}
+                            <p style={{ fontSize: "14px" }}>{post.titre}</p>
+                          </span>
+                          <span>
+                            <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
+                            <p style={{ fontSize: "14px" }}>{post.dateCreation}</p>
+                          </span>
+                        </div>
+                        <hr />
+                      </AccordionSummary>
+                      <AccordionDetails>
+                        <Typography variant="body1">{post.description}</Typography>
+                        <MKBox left={0}>
+                          <Button color="primary">Rejoindre</Button>
+                        </MKBox>
+                      </AccordionDetails>
+                    </Accordion>
+                  </Grid>
+                ))}
+              </Grid>
+            </Container>
           </MKBox>
-          <Posts />
         </Card>
         <MKBox pt={6} px={1} mt={6}>
           <DefaultFooter content={footerRoutes} />

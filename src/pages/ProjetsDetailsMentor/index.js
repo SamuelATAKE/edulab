@@ -16,7 +16,7 @@ import footerRoutes from "footer.routes";
 // Images
 import bgImage from "assets/images/Projets/banniere.jpg";
 import FloatingActionButtons from "./sections/FloatingActionButton";
-import routes from "./menu";
+import routes from "../MenuPerUset/Mentor/menu";
 import TabsSimple from "./sections/PathApplet";
 
 function ProjetsDetailsMentor() {
