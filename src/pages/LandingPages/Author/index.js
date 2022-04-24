@@ -29,15 +29,22 @@ import Contact from "pages/LandingPages/Author/sections/Contact";
 import Footer from "pages/LandingPages/Author/sections/Footer";
 
 // Routes
-import routes from "menu";
-
-// Images
 import bgImage from "assets/images/city-profile.jpg";
+import routeMentor from "../../MenuPerUset/Mentor/menu";
+import routeApprenant from "../../MenuPerUset/Apprenant/menu";
+// Images
+const user = JSON.parse(sessionStorage.getItem("user"));
+let isapprenant = false;
+if (user != null) {
+  if (user.role === "Apprenant") {
+    isapprenant = true;
+  }
+}
 
 function Author() {
   return (
     <>
-      <DefaultNavbar routes={routes} transparent light />
+      <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} transparent light />
       <MKBox bgColor="white">
         <MKBox
           minHeight="25rem"

@@ -11,6 +11,7 @@ const routes = [
     href: "/presentation",
   },
   {
+    type: "external",
     name: "Projets",
     icon: <Icon>view_day</Icon>,
     collapse: [
@@ -27,27 +28,37 @@ const routes = [
     ],
   },
   {
+    type: "internal",
     name: "Cours",
     icon: <Icon>article</Icon>,
     href: "Cours-details",
   },
   {
-    type: "internal",
+    type: "external",
     label: "profil",
     icon: <Icon>person</Icon>,
     collapse: [
       {
+        type: "external",
         name: "Notifications",
         description: "Afficher les notifications",
         icon: <Icon>Notifications</Icon>,
         href: "/notifications",
       },
       {
+        type: "external",
         name: "Mon dashboard",
         description: "Afficher mes informations",
         href: "/dashboard",
       },
       {
+        type: "external",
+        name: "Profil",
+        description: "Modifier mon profil",
+        href: "/profil",
+      },
+      {
+        type: "external",
         name: "Déconnexion",
         description: "Se déconnecter",
         href: "/logout",

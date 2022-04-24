@@ -51,6 +51,9 @@ import * as React from "react";
 import Modal from "@mui/material/Modal";
 import Box from "@mui/material/Box";
 import SendIcon from "@mui/icons-material/Send";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import MKButton from "../../components/MKButton";
 import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
@@ -75,6 +78,13 @@ function ContenuCours() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+  const param = useParams();
+  const [cours, setCours] = useState({});
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
+      setCours(res.data);
+    });
+  });
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
@@ -109,7 +119,7 @@ function ContenuCours() {
             borderRadius: "0.4em",
           }}
         >
-          Comment aborder la logique des composants reacts ?
+          {cours.titre}
           <Stack direction="row" spacing={2} mt={3}>
             <Button color="primary" startIcon={<EditIcon />} onClick={handleOpen}>
               Modifier
@@ -129,17 +139,7 @@ function ContenuCours() {
 
         <MKTypography mt={2} mb={3}>
           <h3>Descriptif</h3>
-          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
-          <p>
-            Les composants React sont des composants qui sont développés par des développeurs et qui
-            sont utilisés dans des applications web. Nous atelerons ici sur la maniere de concevoir
-            une achitecture efficace de composants reutilisables.
-            <br />
-            Le support principal dans la prochaine section contiendra tous les elements de base pour
-            prendre en main ce concept.
-            <br />
-            D&apos autres ressources sont disponibles dans la sections ressources supplementaires.
-          </p>
+          {cours.description}
         </MKTypography>
         <hr />
         <MKBox bgColor="white" p="auto">

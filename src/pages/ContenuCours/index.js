@@ -43,6 +43,9 @@ import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { Chip } from "@mui/material";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
 import MKTypography from "../../components/MKTypography";
 import routes from "./menu";
 
@@ -51,6 +54,13 @@ import routes from "./menu";
 // import bgImage from "assets/images/bg-coworking.jpeg";
 
 function ContenuCours() {
+  const param = useParams();
+  const [cours, setCours] = useState({});
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
+      setCours(res.data);
+    });
+  });
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
@@ -89,7 +99,7 @@ function ContenuCours() {
             bgcolor: "dark",
           }}
         >
-          Comment aborder la logique des composants reacts ?
+          {cours.titre}
         </Typography>
         <hr />
         <MKBox bgColor="white" p="auto">

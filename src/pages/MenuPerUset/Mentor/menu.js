@@ -48,6 +48,11 @@ const routes = [
         href: "/dashboard",
       },
       {
+        name: "Profil",
+        description: "Modifier mes informations",
+        href: "/profil",
+      },
+      {
         name: "Déconnexion",
         description: "Se déconnecter",
         href: "/logout",
