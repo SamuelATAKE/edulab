@@ -29,7 +29,7 @@ const routes = [
   {
     name: "Cours",
     icon: <Icon>school</Icon>,
-    href: "Cours",
+    href: "/Cours",
   },
   {
     name: "A propos",
@@ -40,7 +40,7 @@ const routes = [
     type: "internal",
     name: "Contact",
     icon: <Icon>mail</Icon>,
-    href: "contact",
+    href: "/contact",
   },
 ];
 

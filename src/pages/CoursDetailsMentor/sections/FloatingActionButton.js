@@ -39,7 +39,7 @@ const coursState = {
   contenu: "",
   createur: "",
 };
-const user = JSON.parse(sessionStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
 export default function FloatingActionButtons() {
   const [open, setOpen] = React.useState(false);
   const handleOpen = () => setOpen(true);
@@ -58,7 +58,7 @@ export default function FloatingActionButtons() {
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    setCours({ ...cours, [titre]: state.titre });
+    setCours({ ...cours, [titre]: state.titref });
     setCours({ ...cours, [description]: state.descriptionf });
     setCours({ ...cours, [contenu]: null });
     setCours({ ...cours, [cible]: state.ciblef });
@@ -66,7 +66,8 @@ export default function FloatingActionButtons() {
     cours.titre = state.titref;
     cours.description = state.descriptionf;
     cours.cible = state.ciblef;
-    cours.createur = user;
+    cours.createur = Object.assign(user);
+    cours.contenu = null;
     // eslint-disable-next-line
     console.log(state);
     // eslint-disable-next-line

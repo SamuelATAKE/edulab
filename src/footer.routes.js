@@ -14,7 +14,7 @@ const date = new Date().getFullYear();
 
 export default {
   brand: {
-    name: "TrainYourDevSkills",
+    name: "EduLab",
     image: logoCT,
     route: "/",
   },
@@ -73,7 +73,7 @@ export default {
   ],
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
-      Tous droits reservés. Copyright &copy; {date} TrainYourDevSkills by{" "}
+      Tous droits reservés. Copyright &copy; {date} EduLab by{" "}
       <MKTypography
         component="a"
         href="#"
