@@ -68,7 +68,7 @@ function SignInBasic() {
           // eslint-disable-next-line
           console.log(true);
           // setLogged(true);
-          sessionStorage.setItem("user", JSON.stringify(element));
+          localStorage.setItem("user", JSON.stringify(element));
           if (element.role === "") {
             navigate("/profil", { replace: true });
           } else {

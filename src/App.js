@@ -37,6 +37,7 @@ import GestionContenuProjet from "./pages/GestionProjetMentor";
 import AnnoncesDetails from "./pages/AnoncesDetails";
 import AnnoncesDetailsPartenaire from "./pages/AnoncesDetailsPartenaire";
 import CoursForm from "./pages/CoursDetailsMentor/CoursForm";
+import EditCoursForm from "./pages/CoursDetailsMentor/EditCoursForm";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -71,6 +72,7 @@ export default function App() {
         <Route path="/commentaires" element={<Commentaires />} />
         <Route path="/contenucours" element={<ContenuCours />} />
         <Route path="/gestioncours/:id" element={<GestionContenuCours />} />
+        <Route path="/modifiercours/:id" element={<EditCoursForm />} />
         <Route path="/gestionprojet" element={<GestionContenuProjet />} />
         <Route path="/contenuprojet" element={<ContenuProjet />} />
         <Route path="/notifications" element={<Notifications />} />

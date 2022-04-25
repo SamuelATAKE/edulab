@@ -15,8 +15,8 @@ import footerRoutes from "footer.routes";
 // import AppBar from "@mui/material/AppBar";
 // import Tabs from "@mui/material/Tabs";
 // import Tab from "@mui/material/Tab";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -33,30 +33,48 @@ import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
 import MKButton from "../../components/MKButton";
 
-const initialState = {
-  titref: "",
-  descriptionf: "",
-  ciblef: "",
-};
-const coursState = {
-  titre: "",
-  description: "",
-  cible: "",
-  contenu: "",
-  createur: "",
-};
 const user = JSON.parse(localStorage.getItem("user"));
-function CoursForm() {
+function EditCoursForm() {
+  const param = useParams();
+  let initialState = {
+    titref: "",
+    descriptionf: "",
+    ciblef: "",
+  };
+  const coursState = {
+    id: `${param.id}`,
+    titre: "",
+    description: "",
+    cible: "",
+    contenu: "",
+    createur: "",
+  };
   const navigate = useNavigate();
   const [state, setState] = useState(initialState);
   const { titref, descriptionf, ciblef } = state;
   const [cours, setCours] = useState(coursState);
   const { titre, description, cible, contenu, createur } = cours;
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/cours/${param.id}`)
+      .then((res) => {
+        initialState = {
+          titref: res.data.titre,
+          descriptionf: res.data.description,
+          ciblef: res.data.cible,
+        };
+        setState(initialState);
+        // eslint-disable-next-line
+                console.log(res.data)
+        // eslint-disable-next-line
+                console.log(initialState.titref)
+      })
+      // eslint-disable-next-line
+            .catch((err) => console.log(err));
+  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
-    // eslint-disable-next-line
-        console.log(e);
     setState({ ...state, [name]: value });
   };
   const onSubmit = (e) => {
@@ -79,7 +97,7 @@ function CoursForm() {
     // eslint-disable-next-line
         console.log("Submitting");
     axios
-      .post(`http://localhost:8080/api/cours/`, cours, {
+      .put(`http://localhost:8080/api/cours/`, cours, {
         headers: {
           "content-type": "application/json",
         },
@@ -104,14 +122,14 @@ function CoursForm() {
       // eslint-disable-next-line
           console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
-      navigate("/coursdetails");
+      navigate(`/gestioncours/${param.id}`);
     });
-  };
-  const handleFileUploadError = (error) => {
-    // Do something...
   };
 
   const handleFilesChange = (files) => {
+    // Do something...
+  };
+  const handleFileUploadError = (files) => {
     // Do something...
   };
   const handleClose = () => {
@@ -158,7 +176,7 @@ function CoursForm() {
                 textAlign: "center",
               }}
             >
-              Veuillez repondre a ces questions
+              Modification du cours
             </Typography>
             <Divider />
             <Grid
@@ -296,4 +314,4 @@ function CoursForm() {
   );
 }
 
-export default CoursForm;
+export default EditCoursForm;

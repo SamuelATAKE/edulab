@@ -15,7 +15,7 @@ import MKTypography from "components/MKTypography";
 import bgImage from "assets/images/examples/blog2.jpg";
 import axios from "axios";
 
-const user = JSON.parse(sessionStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
 
 const userState = {
   nom: "",
@@ -153,8 +153,8 @@ function Contact() {
         console.log(res);
         // eslint-disable-next-line
         console.log(res.data);
-        sessionStorage.removeItem("user");
-        sessionStorage.setItem("user", JSON.stringify(res.data));
+        localStorage.removeItem("user");
+        localStorage.setItem("user", JSON.stringify(res.data));
       });
   };
 

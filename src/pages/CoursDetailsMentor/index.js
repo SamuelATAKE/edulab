@@ -31,7 +31,7 @@ import Link from "@mui/material/Link";
 import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
 
-const user = JSON.parse(sessionStorage.getItem("user"));
+const user = JSON.parse(localStorage.getItem("user"));
 function CoursDetailsMentor() {
   const [activeTab, setActiveTab] = useState(0);
   const [cours, setCours] = useState([]);
@@ -39,6 +39,7 @@ function CoursDetailsMentor() {
   const handleTabType = (event, newValue) => setActiveTab(newValue);
   const navigate = useNavigate();
   const [empty, isEmpty] = useState(true);
+  const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
 
   const handleOpen = () => {
     navigate("/coursform");
@@ -49,8 +50,8 @@ function CoursDetailsMentor() {
       // eslint-disable-next-line
           console.log(secres1.data);
       setCours(secres1.data.cours);
-      sessionStorage.removeItem("user");
-      sessionStorage.setItem("user", JSON.stringify(secres1.data));
+      localStorage.removeItem("user");
+      localStorage.setItem("user", JSON.stringify(secres1.data));
       navigate("/coursdetails");
     });
 
@@ -127,12 +128,22 @@ function CoursDetailsMentor() {
                           id="panel1a-header1"
                           sx={{ width: "100%" }}
                         >
-                          <div style={{ margin: "5", width: "100%" }}>
+                          <div
+                            style={{
+                              margin: "5",
+                              width: "100%",
+                              alignSelf: "center",
+                            }}
+                          >
                             {" "}
                             <MKTypography
                               variant="h1"
                               verticalAlign="center"
-                              SX={{ width: "100%" }}
+                              SX={{
+                                width: "100%",
+                                alignSelf: "center",
+                                border: "1px solid darkgrey",
+                              }}
                             >
                               {post.titre.substring(0, 2).toUpperCase()}
                             </MKTypography>
@@ -144,8 +155,14 @@ function CoursDetailsMentor() {
                               <p style={{ fontSize: "14px" }}>{post.titre}</p>
                             </span>
                             <span>
+                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
+                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
+                            </span>
+                            <span>
                               <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.dateCreation}</p>
+                              <p style={{ fontSize: "14px" }}>
+                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                              </p>
                             </span>
                           </div>
                           <hr />
@@ -158,8 +175,12 @@ function CoursDetailsMentor() {
                           <MKBox sx={{ alignSelf: "center" }}>
                             <Link
                               href={`/gestioncours/${post.id}`}
-                              color="primary"
-                              sx={{ alignSelf: "center" }}
+                              sx={{
+                                alignSelf: "center",
+                                borderRadius: "0.1em",
+                                fontSize: "13.5px",
+                                color: "white",
+                              }}
                             >
                               {" "}
                               Explorer
