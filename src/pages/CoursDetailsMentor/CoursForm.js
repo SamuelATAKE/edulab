@@ -158,7 +158,7 @@ function CoursForm() {
                 textAlign: "center",
               }}
             >
-              Veuillez repondre a ces questions
+              Configuration du cours
             </Typography>
             <Divider />
             <Grid

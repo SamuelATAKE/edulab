@@ -74,38 +74,18 @@ function ContenuCours() {
     <>
       <DefaultNavbar routes={routes} sticky />
       <MKBox
-        minHeight="5em"
+        minHeight="25rem"
         width="100%"
-        display="flex"
-        alignItems="center"
         sx={{
-          backgroundSize: "cover",
           display: "grid",
           placeItems: "center",
-        }}
-      />
-      <Card
-        sx={{
-          p: 2,
-          mx: { xs: 2, lg: 3 },
-          mt: 1,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.9),
-          backdropFilter: "saturate(200%) blur(30px)",
-          boxShadow: ({ boxShadows: { xxl } }) => xxl,
+          bakgroundColor: "dark",
         }}
       >
-        <Typography
-          variant="h4"
-          component="h2"
-          sx={{
-            mb: 3,
-            p: 2,
-            border: "0.5px solid darkgray",
-            borderRadius: "0.4em",
-          }}
-        >
-          {cours.titre}
-          <Stack direction="row" spacing={2} mt={3}>
+        <MKTypography variant="h2">
+          {" "}
+          <h2 style={{ textAlign: "center" }}>{cours.titre} </h2>
+          <Stack direction="row" spacing={2}>
             <Button color="primary" href={`/modifiercours/${param.id}`} startIcon={<EditIcon />}>
               Modifier
             </Button>
@@ -113,33 +93,70 @@ function ContenuCours() {
               Supprimer
             </Button>
           </Stack>
+        </MKTypography>
+      </MKBox>
+      <Card
+        sx={{
+          p: 2,
+          mx: { xs: 2, lg: 3 },
+          mt: 1,
+          mb: 4,
+          backdropFilter: "saturate(200%) blur(30px)",
+          boxShadow: ({ boxShadows: { xxl } }) => xxl,
+        }}
+      >
+        <Typography
+          variant="h4"
+          component="h4"
+          sx={{
+            mb: 3,
+            p: 2,
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          {cours.titre}
         </Typography>
-        <hr />
-        <MKBox bgColor="white" p="auto">
-          {" "}
-          <Divider color="secondary">
-            <Chip color="secondary" label="Generalites" />
-          </Divider>
-        </MKBox>
 
-        <MKTypography mt={2} mb={3}>
-          <h3>Descriptif</h3>
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Descriptif</h4>
           {cours.description}
         </MKTypography>
-        <hr />
-        <MKBox bgColor="white" p="auto">
+        <MKBox p="auto">
           {" "}
-          <Divider color="secondary">
-            <Chip color="secondary" label="Supports et Ressources du cours" />
+          <Divider
+            sx={{
+              border: "0.5px solid darkblue",
+              borderRadius: "0.4em",
+              color: "darkblue",
+              backgroundColor: "darkblue",
+            }}
+          >
+            <Chip
+              sx={{
+                color: "darkblue",
+              }}
+              label="Supports et Ressources du cours"
+            />
           </Divider>
         </MKBox>
         <MKTypography mt={5} mb={3}>
-          <h3>Support Principal</h3>
+          <h4>Support Principal</h4>
         </MKTypography>
         <br />
         <br />
         <MKTypography mt={5} mb={3}>
-          <h3>Ressources secondaires</h3>
+          <h4>Ressources secondaires</h4>
         </MKTypography>
         <br />
         <br />

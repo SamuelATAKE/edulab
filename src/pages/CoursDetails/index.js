@@ -24,34 +24,50 @@ import Tab from "@mui/material/Tab";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
 import routes from "./menu";
 import MKTypography from "../../components/MKTypography";
 
-const user = JSON.parse(localStorage.getItem("user"));
 function CoursDetails() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
 
-  const handleTabType = (event, newValue) => setActiveTab(newValue);
+  const handleTabType = (event, newValue) => {
+    setActiveTab(newValue);
+    if (activeTab) {
+      setActiveTab(0);
+    } else {
+      setActiveTab(1);
+    }
+  };
   const handleJoin = (id) => {
     let item;
     axios.get(`http://localhost:8080/api/cours/${id}`).then((res) => {
       item = res.data;
+      axios
+        .put(`http://localhost:8080/api/utilisateur/joincourse/${user.id}`, res.data, {
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+        .then((secres) => {
+          // eslint-disable-next-line
+                console.log(secres.data);
+          // eslint-disable-next-line
+                console.log(item);
+        });
     });
-    axios
-      .put(`http://localhost:8080/api/utilisateur/joincourse/${user.id}`, item, {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((secres) => {
-        // eslint-disable-next-line
-              console.log(secres.data);
-      });
+
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
           console.log(secres1.data);
+      // eslint-disable-next-line
+        console.log(item);
       localStorage.setItem("user", JSON.stringify(secres1.data));
+      setUser(JSON.parse(localStorage.getItem("user")));
     });
+    navigate(`/contenucours/${id}`);
   };
   const [empty, isEmpty] = useState(true);
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
@@ -60,14 +76,19 @@ function CoursDetails() {
     axios
       .get("http://localhost:8080/api/cours/")
       .then((res) => {
-        setCours(res.data);
+        if (activeTab) {
+          setCours(res.data.filter((x) => !user.joinedCours.includes(x)));
+        } else {
+          setCours(user.joinedCours);
+        }
       })
       // eslint-disable-next-line
         .catch((err) => console.log(err));
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
     }
-  }, []);
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, [activeTab]);
   return (
     <>
       <DefaultNavbar routes={routes} sticky dark />
@@ -175,18 +196,35 @@ function CoursDetails() {
                           </Typography>
                           <hr />
                           <MKBox sx={{ alignSelf: "center" }}>
-                            <Button
-                              onClick={handleJoin(post.id)}
-                              sx={{
-                                alignSelf: "center",
-                                borderRadius: "0.1em",
-                                fontSize: "13.5px",
-                                color: "white",
-                              }}
-                            >
-                              {" "}
-                              Rejoindre
-                            </Button>
+                            {activeTab ? (
+                              <Button
+                                onClick={() => {
+                                  handleJoin(post.id);
+                                }}
+                                sx={{
+                                  alignSelf: "center",
+                                  borderRadius: "0.1em",
+                                  fontSize: "13.5px",
+                                  color: "white",
+                                }}
+                              >
+                                {" "}
+                                Rejoindre
+                              </Button>
+                            ) : (
+                              <Button
+                                href={`contenucours/${post.id}`}
+                                sx={{
+                                  alignSelf: "center",
+                                  borderRadius: "0.1em",
+                                  fontSize: "12.5px",
+                                  color: "white",
+                                }}
+                              >
+                                {" "}
+                                Plus
+                              </Button>
+                            )}
                           </MKBox>
                         </AccordionDetails>
                       </Accordion>
