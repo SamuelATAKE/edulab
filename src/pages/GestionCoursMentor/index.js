@@ -48,7 +48,7 @@ import { Chip } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MKTypography from "../../components/MKTypography";
@@ -60,16 +60,26 @@ import routes from "../MenuPerUset/Mentor/menu";
 
 function ContenuCours() {
   const param = useParams();
-  // const navigate = useNavigate();
-  // const handleEdit = () => {
-  //  navigate(`modifiercours/${param.id}`);
-  // };
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const [cours, setCours] = useState({});
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}/${param.id}`)
+      .then((res) => {
+        setCours(res.data);
+        axios.delete(`http://localhost:8080/api/cours/${param.id}`).then((sres) => {
+          setCours(sres.data);
+        });
+      });
+
+    navigate("/coursdetails");
+  };
   useEffect(() => {
     axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
       setCours(res.data);
     });
-  });
+  }, []);
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
@@ -89,7 +99,7 @@ function ContenuCours() {
             <Button color="primary" href={`/modifiercours/${param.id}`} startIcon={<EditIcon />}>
               Modifier
             </Button>
-            <Button color="secondary" endIcon={<DeleteIcon />} href="">
+            <Button color="secondary" endIcon={<DeleteIcon />} onClick={handleDelete}>
               Supprimer
             </Button>
           </Stack>

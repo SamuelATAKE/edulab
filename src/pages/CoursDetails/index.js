@@ -76,11 +76,17 @@ function CoursDetails() {
     axios
       .get("http://localhost:8080/api/cours/")
       .then((res) => {
-        if (activeTab) {
-          setCours(res.data.filter((x) => !user.joinedCours.includes(x)));
-        } else {
-          setCours(user.joinedCours);
-        }
+        axios
+          .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+          .then((secres1) => {
+            // eslint-disable-next-line
+              console.log(secres1.data);
+            if (activeTab) {
+              setCours(res.data.filter((x) => !secres1.data.includes(x)));
+            } else {
+              setCours(secres1.data);
+            }
+          });
       })
       // eslint-disable-next-line
         .catch((err) => console.log(err));
@@ -184,7 +190,9 @@ function CoursDetails() {
                             <span>
                               <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
                               <p style={{ fontSize: "14px" }}>
-                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                                {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                  new Date(post.dateCreation)
+                                )}
                               </p>
                             </span>
                           </div>

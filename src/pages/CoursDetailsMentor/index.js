@@ -46,19 +46,16 @@ function CoursDetailsMentor() {
   };
   useEffect(() => {
     // eslint-disable-next-line
-      axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
+      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
           console.log(secres1.data);
-      setCours(secres1.data.cours);
-      localStorage.removeItem("user");
-      localStorage.setItem("user", JSON.stringify(secres1.data));
-      navigate("/coursdetails");
+      setCours(secres1.data);
     });
 
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
     }
-  }, []);
+  }, [user]);
   return (
     <>
       <DefaultNavbar routes={routes} sticky dark />
@@ -161,7 +158,9 @@ function CoursDetailsMentor() {
                             <span>
                               <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
                               <p style={{ fontSize: "14px" }}>
-                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                                {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                  new Date(post.dateCreation)
+                                )}
                               </p>
                             </span>
                           </div>
