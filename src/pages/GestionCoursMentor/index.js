@@ -63,6 +63,11 @@ function ContenuCours() {
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [cours, setCours] = useState({});
+  const [sp, setSp] = useState({
+    id: "",
+    nom: "",
+  });
+  // const [so, setSo] = useState({});
   const handleDelete = () => {
     axios
       .delete(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}/${param.id}`)
@@ -78,6 +83,17 @@ function ContenuCours() {
   useEffect(() => {
     axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
       setCours(res.data);
+      // eslint-disable-next-line
+        console.log(res.data);
+      axios
+        .get(`http://localhost:8080/api/documents/${res.data.supportPrincipal.id}`)
+        .then((sres) => {
+          setSp(sres);
+          // eslint-disable-next-line
+            console.log(sres.data);
+          // eslint-disable-next-line
+            console.log(sp);
+        });
     });
   }, []);
   return (
@@ -163,6 +179,11 @@ function ContenuCours() {
         <MKTypography mt={5} mb={3}>
           <h4>Support Principal</h4>
         </MKTypography>
+        <ul style={{ margin: 5 }}>
+          <li>
+            <pre>{sp.nom}</pre>
+          </li>
+        </ul>
         <br />
         <br />
         <MKTypography mt={5} mb={3}>
