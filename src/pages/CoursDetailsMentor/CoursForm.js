@@ -210,7 +210,8 @@ function CoursForm() {
                 name="descriptionf"
                 value={descriptionf}
                 onChange={handleInputChange}
-                maxRows={8}
+                maxRows={12}
+                rows={8}
                 multiline
                 sx={{
                   m: 3,

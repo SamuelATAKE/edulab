@@ -74,14 +74,19 @@ function CoursDetails() {
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   const [cours, setCours] = useState([]);
   const [search, setSearch] = useState("recherche");
+  const [changed, isChanged] = useState(0);
   const handleInputChange = (event) => {
     const { value } = event.target;
-    setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())));
-    setSearch(value);
+    if (cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []) {
+      setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())));
+      setSearch(value);
+      isChanged(changed + 1);
+    }
     // eslint-disable-next-line
     console.log(cours);
   };
   useEffect(() => {
+    document.title = "Cours";
     axios
       .get("http://localhost:8080/api/cours/")
       .then((res) => {
@@ -112,6 +117,9 @@ function CoursDetails() {
     }
     setUser(JSON.parse(localStorage.getItem("user")));
   }, [activeTab]);
+  useEffect(() => {
+    setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(search.toLowerCase())));
+  }, [changed]);
   return (
     <>
       <DefaultNavbar routes={routes} sticky dark />
