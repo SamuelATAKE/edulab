@@ -1,5 +1,6 @@
 // @mui material components
 import Card from "@mui/material/Card";
+import FileUpload from "react-mui-fileuploader";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";

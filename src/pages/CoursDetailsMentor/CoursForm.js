@@ -1,5 +1,6 @@
 // @mui material components
 import Card from "@mui/material/Card";
+// import FileUpload from "react-mui-fileuploader";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -90,22 +91,8 @@ function CoursForm() {
     // eslint-disable-next-line
     console.log("Submitting");
     const formData = new FormData();
-    // eslint-disable-next-line
-    const formData1 = new FormData();
     formData.append("file", selectedFile, selectedFile.name);
-    formData1.append("file", selectedFile1, selectedFile1.name);
-    // axios
-    //  .post(`http://localhost:8080/api/uploadFile`, formData, {
-    //    headers: {
-    //      "content-type": "multipart/form-data",
-    //    },
-    //  })
-    //  .then((res) => {
-    // eslint-disable-next-line
-    //          console.log(res);
-    // eslint-disable-next-line
-    //          console.log(res.data);
-    //  });
+    formData.append("file1", selectedFile1, selectedFile1.name);
     axios
       .post(`http://localhost:8080/api/cours/`, cours, {
         headers: {
@@ -118,15 +105,22 @@ function CoursForm() {
         // eslint-disable-next-line
         console.log(res.data);
         axios
-          .put(`http://localhost:8080/api/utilisateur/addcourse/${user.id}`, res.data, {
+          .post(`http://localhost:8080/api/cours/${res.data.id}`, formData, {
             headers: {
-              "content-type": "application/json",
+              "content-type": "multipart/form-data",
             },
           })
-          .then((secres) => {
+          .then((sres) => {
             // eslint-disable-next-line
-            console.log(secres.data);
+            console.log(sres);
+            // eslint-disable-next-line
+            console.log(sres.data);
           });
+        axios.put(`http://localhost:8080/api/utilisateur/addcourse/${user.id}`, res.data, {
+          headers: {
+            "content-type": "application/json",
+          },
+        });
       });
 
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
@@ -217,7 +211,8 @@ function CoursForm() {
                 name="descriptionf"
                 value={descriptionf}
                 onChange={handleInputChange}
-                maxRows={8}
+                maxRows={12}
+                rows={8}
                 multiline
                 sx={{
                   m: 3,

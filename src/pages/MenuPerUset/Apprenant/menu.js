@@ -23,7 +23,7 @@ const routes = [
       {
         name: "Annonces",
         description: "Participez à de vrais projets",
-        href: "/annonces",
+        href: "/annonces-details",
       },
     ],
   },

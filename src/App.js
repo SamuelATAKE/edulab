@@ -21,6 +21,7 @@ import Projetstutores from "pages/Projetstutores";
 import Cours from "pages/Cours";
 import Annonces from "pages/Annonces";
 import Author from "pages/LandingPages/Author";
+import SignOut from "pages/LandingPages/SignOut";
 import AboutUsPage from "./layouts/pages/landing-pages/about-us";
 import Dashboard from "./pages/Dashboard";
 import CoursDetails from "./pages/CoursDetails";
@@ -67,6 +68,7 @@ export default function App() {
       <Routes>
         {getRoutes(routes)}
 
+        <Route path="/deconnexion" element={<SignOut />} />
         <Route path="/profil" element={<Author />} />
         <Route path="/forums" element={<Forums />} />
         <Route path="/commentaires" element={<Commentaires />} />

@@ -53,18 +53,35 @@ import footerRoutes from "footer.routes";
 import bgImage from "assets/images/Accueil/accueil1.jpg";
 
 function Presentation() {
+  const loggeduser = JSON.parse(localStorage.getItem("user"));
+  // eslint-disable-next-line
+  console.log(loggeduser);
   return (
     <>
-      <DefaultNavbar
-        routes={routes}
-        action={{
-          type: "external",
-          route: "/connexion",
-          label: "Connexion",
-          color: "info",
-        }}
-        sticky
-      />
+      {loggeduser ? (
+        <DefaultNavbar
+          routes={routes}
+          action={{
+            type: "external",
+            route: "/deconnexion",
+            label: "Déconnexion",
+            color: "info",
+          }}
+          sticky
+        />
+      ) : (
+        <DefaultNavbar
+          routes={routes}
+          action={{
+            type: "external",
+            route: "/connexion",
+            label: "Connexion",
+            color: "info",
+          }}
+          sticky
+        />
+      )}
+
       <MKBox
         minHeight="75vh"
         width="100%"

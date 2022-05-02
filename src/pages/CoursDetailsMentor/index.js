@@ -28,6 +28,7 @@ import * as React from "react";
 // import axios from "axios";
 import axios from "axios";
 import Link from "@mui/material/Link";
+import SearchIcon from "@mui/icons-material/Search";
 import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
 
@@ -39,23 +40,53 @@ function CoursDetailsMentor() {
   const handleTabType = (event, newValue) => setActiveTab(newValue);
   const navigate = useNavigate();
   const [empty, isEmpty] = useState(true);
+  const [changed, isChanged] = useState(0);
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
 
   const handleOpen = () => {
     navigate("/coursform");
   };
   useEffect(() => {
+    document.title = "Cours";
     // eslint-disable-next-line
-      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((secres1) => {
+        axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-          console.log(secres1.data);
+            console.log(secres1.data);
       setCours(secres1.data);
+      if (secres1.data.length === 0) {
+        isEmpty(true);
+      } else {
+        isEmpty(false);
+      }
     });
-
-    if (Object.keys(cours).length === 0) {
-      isEmpty(false);
-    }
   }, [user]);
+
+  const [search, setSearch] = useState("");
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    if (value !== "" && value.length > 2) {
+      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((bd) => {
+        if (
+          bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []
+        ) {
+          setCours(
+            bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase()))
+          );
+          isChanged(changed + 1);
+        }
+      });
+    } else {
+      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((bd) => {
+        setCours(bd.data);
+        isChanged(changed + 1);
+      });
+    }
+    setSearch(value);
+
+    // eslint-disable-next-line
+        console.log(cours);
+  };
+
   return (
     <>
       <DefaultNavbar routes={routes} sticky dark />
@@ -102,6 +133,35 @@ function CoursDetailsMentor() {
                   </Tabs>
                 </AppBar>
               </Grid>
+              <MKBox position="static" sx={{ margin: 2, alignSelf: "left" }}>
+                <span
+                  style={{
+                    margin: "0 auto",
+                    border: "1px solid #ccc",
+                    outline: "none",
+                    fontSize: "1rem",
+                    padding: "0.5rem",
+                    backgroundColor: "white",
+                    color: "black",
+                    borderRadius: "0.5rem",
+                  }}
+                >
+                  {" "}
+                  <SearchIcon sx={{ marginRight: 2 }} />
+                  <input
+                    type="search"
+                    placeholder="Rechercher"
+                    value={search}
+                    onChange={handleInputChange}
+                    style={{
+                      margin: "0 auto",
+                      border: "none",
+                      outline: "none",
+                      fontSize: "1rem",
+                    }}
+                  />
+                </span>
+              </MKBox>
             </Container>
           </MKBox>
           <MKBox component="section" py={2}>
@@ -109,7 +169,8 @@ function CoursDetailsMentor() {
               {empty ? (
                 <MKTypography sx={{ textAlign: "center" }}>
                   {" "}
-                  Vous n&apos avez soumis aucun cours pour l&apos instant
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  <pre>Vous n'avez pas encore ajouté de cours.</pre>
                 </MKTypography>
               ) : (
                 <Grid container spacing={6}>

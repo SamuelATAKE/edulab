@@ -123,19 +123,13 @@ function SignUpBasic() {
       });
   };
 
-  const oAuthLogin = () => {
-    axios
-      .get(`http://localhost:8080/api/home/login`)
-      .then((res) => {
-        // eslint-disable-next-line
-        console.log(res);
-        // eslint-disable-next-line
-        console.log(res.data);
-      })
-      .catch((err) => {
-        // eslint-disable-next-line
-        console.log(err);
-      });
+  const oAuthGoogle = () => {
+    axios.get(`http://localhost:8080/api/home/login`).then((res) => {
+      // eslint-disable-next-line
+      console.log(res);
+      // eslint-disable-next-line
+      console.log(res.data);
+    });
   };
 
   return (
@@ -181,7 +175,7 @@ function SignUpBasic() {
                   <Grid item xs={2}>
                     <MKTypography
                       component={MuiLink}
-                      onClick={oAuthLogin}
+                      onClick={oAuthGoogle}
                       href="#"
                       variant="body1"
                       color="white"

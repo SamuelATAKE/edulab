@@ -145,7 +145,7 @@ function Contact() {
 
     axios
       // .put(`http://localhost:8080/api/utilisateur/${user.id}`, utilisateur, {
-      .put(`http://localhost:8080/api/utilisateur/update/`, utilisateur, {
+      .put(`http://localhost:8080/api/utilisateur/update`, utilisateur, {
         headers: {
           "content-type": "application/json",
         },
@@ -155,7 +155,6 @@ function Contact() {
         console.log(res);
         // eslint-disable-next-line
         console.log(res.data);
-        localStorage.removeItem("user");
         localStorage.setItem("user", JSON.stringify(res.data));
       });
   };

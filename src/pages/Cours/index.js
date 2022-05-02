@@ -16,6 +16,7 @@ import footerRoutes from "footer.routes";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
+// import Moment from "react-moment";
 import axios from "axios";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
@@ -34,7 +35,7 @@ function Cours() {
         setCours(res.data);
       })
       // eslint-disable-next-line
-            .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
 
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
