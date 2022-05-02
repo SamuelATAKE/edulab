@@ -72,7 +72,7 @@ export default function App() {
         <Route path="/profil" element={<Author />} />
         <Route path="/forums" element={<Forums />} />
         <Route path="/commentaires" element={<Commentaires />} />
-        <Route path="/contenucours" element={<ContenuCours />} />
+        <Route path="/contenucours/:id" element={<ContenuCours />} />
         <Route path="/gestioncours/:id" element={<GestionContenuCours />} />
         <Route path="/modifiercours/:id" element={<EditCoursForm />} />
         <Route path="/gestionprojet" element={<GestionContenuProjet />} />

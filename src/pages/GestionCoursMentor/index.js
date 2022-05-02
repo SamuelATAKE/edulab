@@ -48,7 +48,7 @@ import { Chip } from "@mui/material";
 import Button from "@mui/material/Button";
 import Stack from "@mui/material/Stack";
 import * as React from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import MKTypography from "../../components/MKTypography";
@@ -60,86 +60,134 @@ import routes from "../MenuPerUset/Mentor/menu";
 
 function ContenuCours() {
   const param = useParams();
-  // const navigate = useNavigate();
-  // const handleEdit = () => {
-  //  navigate(`modifiercours/${param.id}`);
-  // };
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const [cours, setCours] = useState({});
+  const [sp, setSp] = useState({
+    id: "",
+    nom: "",
+  });
+  // const [so, setSo] = useState({});
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}/${param.id}`)
+      .then((res) => {
+        setCours(res.data);
+        axios.delete(`http://localhost:8080/api/cours/${param.id}`).then((sres) => {
+          setCours(sres.data);
+        });
+      });
+
+    navigate("/coursdetails");
+  };
   useEffect(() => {
     axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
       setCours(res.data);
+      // eslint-disable-next-line
+        console.log(res.data);
+      axios
+        .get(`http://localhost:8080/api/documents/${res.data.supportPrincipal.id}`)
+        .then((sres) => {
+          setSp(sres);
+          // eslint-disable-next-line
+            console.log(sres.data);
+          // eslint-disable-next-line
+            console.log(sp);
+        });
     });
-  });
+  }, []);
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
       <MKBox
-        minHeight="5em"
+        minHeight="25rem"
         width="100%"
-        display="flex"
-        alignItems="center"
         sx={{
-          backgroundSize: "cover",
           display: "grid",
           placeItems: "center",
+          bakgroundColor: "dark",
         }}
-      />
+      >
+        <MKTypography variant="h2">
+          {" "}
+          <h2 style={{ textAlign: "center" }}>{cours.titre} </h2>
+          <Stack direction="row" spacing={2}>
+            <Button color="primary" href={`/modifiercours/${param.id}`} startIcon={<EditIcon />}>
+              Modifier
+            </Button>
+            <Button color="secondary" endIcon={<DeleteIcon />} onClick={handleDelete}>
+              Supprimer
+            </Button>
+          </Stack>
+        </MKTypography>
+      </MKBox>
       <Card
         sx={{
           p: 2,
           mx: { xs: 2, lg: 3 },
           mt: 1,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.9),
+          mb: 4,
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
         <Typography
           variant="h4"
-          component="h2"
+          component="h4"
           sx={{
             mb: 3,
             p: 2,
-            border: "0.5px solid darkgray",
-            borderRadius: "0.4em",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
           }}
         >
           {cours.titre}
-          <Stack direction="row" spacing={2} mt={3}>
-            <Button color="primary" href={`/modifiercours/${param.id}`} startIcon={<EditIcon />}>
-              Modifier
-            </Button>
-            <Button color="secondary" endIcon={<DeleteIcon />} href="">
-              Supprimer
-            </Button>
-          </Stack>
         </Typography>
-        <hr />
-        <MKBox bgColor="white" p="auto">
-          {" "}
-          <Divider color="secondary">
-            <Chip color="secondary" label="Generalites" />
-          </Divider>
-        </MKBox>
 
-        <MKTypography mt={2} mb={3}>
-          <h3>Descriptif</h3>
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Descriptif</h4>
           {cours.description}
         </MKTypography>
-        <hr />
-        <MKBox bgColor="white" p="auto">
+        <MKBox p="auto">
           {" "}
-          <Divider color="secondary">
-            <Chip color="secondary" label="Supports et Ressources du cours" />
+          <Divider
+            sx={{
+              border: "0.5px solid darkblue",
+              borderRadius: "0.4em",
+              color: "darkblue",
+              backgroundColor: "darkblue",
+            }}
+          >
+            <Chip
+              sx={{
+                color: "darkblue",
+              }}
+              label="Supports et Ressources du cours"
+            />
           </Divider>
         </MKBox>
         <MKTypography mt={5} mb={3}>
-          <h3>Support Principal</h3>
+          <h4>Support Principal</h4>
         </MKTypography>
+        <ul style={{ margin: 5 }}>
+          <li>
+            <pre>{sp.nom}</pre>
+          </li>
+        </ul>
         <br />
         <br />
         <MKTypography mt={5} mb={3}>
-          <h3>Ressources secondaires</h3>
+          <h4>Ressources secondaires</h4>
         </MKTypography>
         <br />
         <br />

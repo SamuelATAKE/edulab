@@ -21,12 +21,13 @@ import axios from "axios";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import Typography from "@mui/material/Typography";
-import Button from "@mui/material/Button";
+import Link from "@mui/material/Link";
 import MKTypography from "../../components/MKTypography";
 
 function Cours() {
   const [cours, setCours] = useState([]);
-  // const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
+  const [empty, isEmpty] = useState(true);
+  const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   useEffect(() => {
     axios
       .get("http://localhost:8080/api/cours/")
@@ -35,6 +36,10 @@ function Cours() {
       })
       // eslint-disable-next-line
       .catch((err) => console.log(err));
+
+    if (Object.keys(cours).length === 0) {
+      isEmpty(false);
+    }
   }, []);
   return (
     <>
@@ -68,55 +73,89 @@ function Cours() {
           <MKBox mb={3} />
           <MKBox component="section" py={2}>
             <Container>
-              <Grid container spacing={6}>
-                {cours.map((post) => (
-                  <Grid item xs="6" sm="6" lg="6">
-                    <Accordion
-                      color="primary"
-                      bgcolor="dark"
-                      sx={{ width: "100%", height: "100%" }}
-                    >
-                      <AccordionSummary
-                        aria-controls="panel1a-content"
-                        id="panel1a-header1"
-                        sx={{ width: "100%" }}
+              {empty ? (
+                <MKTypography sx={{ textAlign: "center" }}>
+                  {" "}
+                  Vous n&apos avez soumis aucun cours pour l&apos instant
+                </MKTypography>
+              ) : (
+                <Grid container spacing={6}>
+                  {cours.map((post) => (
+                    <Grid item xs="6" sm="6" lg="6">
+                      <Accordion
+                        color="primary"
+                        bgcolor="dark"
+                        sx={{ width: "100%", height: "100%" }}
                       >
-                        <div style={{ margin: "5", width: "100%" }}>
-                          {" "}
-                          <MKTypography variant="h1" verticalAlign="center" SX={{ width: "100%" }}>
-                            {post.titre.substring(0, 2).toUpperCase()}
-                          </MKTypography>
-                        </div>{" "}
-                        <br />
-                        <div style={{ margin: "5", width: "100%" }}>
-                          <span>
-                            <MKTypography variant="h6">Titre : </MKTypography>{" "}
-                            <p style={{ fontSize: "14px" }}>{post.titre}</p>
-                          </span>
-                          <span>
-                            <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
-                            <p style={{ fontSize: "14px" }}>
-                              {post.dateCreation
-                                .toString()
-                                .split(",", 3)
-                                .toString()
-                                .replace(",", "-")
-                                .replace(",", "-")}
-                            </p>
-                          </span>
-                        </div>
-                        <hr />
-                      </AccordionSummary>
-                      <AccordionDetails>
-                        <Typography variant="body1">{post.description}</Typography>
-                        <MKBox left={0}>
-                          <Button color="primary">Rejoindre</Button>
-                        </MKBox>
-                      </AccordionDetails>
-                    </Accordion>
-                  </Grid>
-                ))}
-              </Grid>
+                        <AccordionSummary
+                          aria-controls="panel1a-content"
+                          id="panel1a-header1"
+                          sx={{ width: "100%" }}
+                        >
+                          <div
+                            style={{
+                              margin: "5",
+                              width: "100%",
+                              alignSelf: "center",
+                            }}
+                          >
+                            {" "}
+                            <MKTypography
+                              variant="h1"
+                              verticalAlign="center"
+                              SX={{
+                                width: "100%",
+                                alignSelf: "center",
+                                border: "1px solid darkgrey",
+                              }}
+                            >
+                              {post.titre.substring(0, 2).toUpperCase()}
+                            </MKTypography>
+                          </div>{" "}
+                          <br />
+                          <div style={{ margin: "5", width: "100%" }}>
+                            <span>
+                              <MKTypography variant="h6">Titre : </MKTypography>{" "}
+                              <p style={{ fontSize: "14px" }}>{post.titre}</p>
+                            </span>
+                            <span>
+                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
+                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
+                            </span>
+                            <span>
+                              <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
+                              <p style={{ fontSize: "14px" }}>
+                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                              </p>
+                            </span>
+                          </div>
+                          <hr />
+                        </AccordionSummary>
+                        <AccordionDetails>
+                          <Typography variant="body1" sx={{ fontSize: "13px" }}>
+                            {post.description}
+                          </Typography>
+                          <hr />
+                          <MKBox sx={{ alignSelf: "center" }}>
+                            <Link
+                              href={`/gestioncours/${post.id}`}
+                              sx={{
+                                alignSelf: "center",
+                                borderRadius: "0.1em",
+                                fontSize: "13.5px",
+                                color: "white",
+                              }}
+                            >
+                              {" "}
+                              Explorer
+                            </Link>
+                          </MKBox>
+                        </AccordionDetails>
+                      </Accordion>
+                    </Grid>
+                  ))}
+                </Grid>
+              )}
             </Container>
           </MKBox>
         </Card>

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // @mui material components
 import Container from "@mui/material/Container";
@@ -23,8 +23,11 @@ import routeApprenant from "../MenuPerUset/Apprenant/menu";
 
 function Notifications() {
   const [show, setShow] = useState(false);
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const toggleModal = () => setShow(!show);
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, []);
   let isapprenant = false;
   if (user.role === "Apprenant") {
     isapprenant = true;

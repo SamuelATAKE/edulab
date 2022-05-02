@@ -24,51 +24,102 @@ import Tab from "@mui/material/Tab";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import * as React from "react";
+import { useNavigate } from "react-router-dom";
+import SearchIcon from "@mui/icons-material/Search";
 import routes from "./menu";
 import MKTypography from "../../components/MKTypography";
 
-const user = JSON.parse(localStorage.getItem("user"));
 function CoursDetails() {
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")));
   const [activeTab, setActiveTab] = useState(0);
+  const navigate = useNavigate();
 
-  const handleTabType = (event, newValue) => setActiveTab(newValue);
-
+  const handleTabType = (event, newValue) => {
+    setActiveTab(newValue);
+    if (activeTab) {
+      setActiveTab(0);
+    } else {
+      setActiveTab(1);
+    }
+  };
   const handleJoin = (id) => {
     let item;
     axios.get(`http://localhost:8080/api/cours/${id}`).then((res) => {
       item = res.data;
+      axios
+        .put(`http://localhost:8080/api/utilisateur/joincourse/${user.id}`, res.data, {
+          headers: {
+            "content-type": "application/json",
+          },
+        })
+        .then((secres) => {
+          // eslint-disable-next-line
+                console.log(secres.data);
+          // eslint-disable-next-line
+                console.log(item);
+        });
     });
-    axios
-      .put(`http://localhost:8080/api/utilisateur/joincourse/${user.id}`, item, {
-        headers: {
-          "content-type": "application/json",
-        },
-      })
-      .then((secres) => {
-        // eslint-disable-next-line
-        console.log(secres.data);
-      });
+
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-      console.log(secres1.data);
+          console.log(secres1.data);
+      // eslint-disable-next-line
+        console.log(item);
       localStorage.setItem("user", JSON.stringify(secres1.data));
+      setUser(JSON.parse(localStorage.getItem("user")));
     });
+    navigate(`/contenucours/${id}`);
   };
   const [empty, isEmpty] = useState(true);
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   const [cours, setCours] = useState([]);
+  const [search, setSearch] = useState("recherche");
+  const [changed, isChanged] = useState(0);
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    if (cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []) {
+      setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())));
+      setSearch(value);
+      isChanged(changed + 1);
+    }
+    // eslint-disable-next-line
+    console.log(cours);
+  };
   useEffect(() => {
+    document.title = "Cours";
     axios
       .get("http://localhost:8080/api/cours/")
       .then((res) => {
-        setCours(res.data);
+        axios
+          .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+          .then((secres1) => {
+            // eslint-disable-next-line
+              console.log(secres1.data);
+            if (activeTab) {
+              if (res.data.filter((x) => !secres1.data.includes(x)).length > 0) {
+                isEmpty(false);
+                setCours(res.data.filter((x) => !secres1.data.includes(x)));
+              } else {
+                isEmpty(true);
+              }
+            } else if (secres1.data.length > 0) {
+              isEmpty(false);
+              setCours(secres1.data);
+            } else {
+              isEmpty(true);
+            }
+          });
       })
       // eslint-disable-next-line
       .catch((err) => console.log(err));
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
     }
-  }, []);
+    setUser(JSON.parse(localStorage.getItem("user")));
+  }, [activeTab]);
+  useEffect(() => {
+    setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(search.toLowerCase())));
+  }, [changed]);
   return (
     <>
       <DefaultNavbar routes={routes} sticky dark />
@@ -107,6 +158,35 @@ function CoursDetails() {
                     <Tab label="Decouverte" />
                   </Tabs>
                 </AppBar>
+                <MKBox position="static" sx={{ margin: 2 }}>
+                  <span
+                    style={{
+                      margin: "0 auto",
+                      border: "1px solid #ccc",
+                      outline: "none",
+                      fontSize: "1rem",
+                      padding: "0.5rem",
+                      backgroundColor: "white",
+                      color: "black",
+                      borderRadius: "0.5rem",
+                    }}
+                  >
+                    {" "}
+                    <SearchIcon sx={{ marginRight: 2 }} />
+                    <input
+                      type="search"
+                      defaultValue="Recherche"
+                      value={search}
+                      onChange={handleInputChange}
+                      style={{
+                        margin: "0 auto",
+                        border: "none",
+                        outline: "none",
+                        fontSize: "1rem",
+                      }}
+                    />
+                  </span>
+                </MKBox>
               </Grid>
             </Container>
           </MKBox>
@@ -114,8 +194,8 @@ function CoursDetails() {
             <Container>
               {empty ? (
                 <MKTypography sx={{ textAlign: "center" }}>
-                  {" "}
-                  Vous n&apos avez soumis aucun cours pour l&apos instant
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  <pre>Aucun cours n'est disponible pour l' instant</pre>
                 </MKTypography>
               ) : (
                 <Grid container spacing={6}>
@@ -164,7 +244,9 @@ function CoursDetails() {
                             <span>
                               <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
                               <p style={{ fontSize: "14px" }}>
-                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                                {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                  new Date(post.dateCreation)
+                                )}
                               </p>
                             </span>
                           </div>
@@ -176,18 +258,35 @@ function CoursDetails() {
                           </Typography>
                           <hr />
                           <MKBox sx={{ alignSelf: "center" }}>
-                            <Button
-                              onClick={() => handleJoin(post.id)}
-                              sx={{
-                                alignSelf: "center",
-                                borderRadius: "0.1em",
-                                fontSize: "13.5px",
-                                color: "white",
-                              }}
-                            >
-                              {" "}
-                              Rejoindre
-                            </Button>
+                            {activeTab ? (
+                              <Button
+                                onClick={() => {
+                                  handleJoin(post.id);
+                                }}
+                                sx={{
+                                  alignSelf: "center",
+                                  borderRadius: "0.1em",
+                                  fontSize: "13.5px",
+                                  color: "white",
+                                }}
+                              >
+                                {" "}
+                                Rejoindre
+                              </Button>
+                            ) : (
+                              <Button
+                                href={`contenucours/${post.id}`}
+                                sx={{
+                                  alignSelf: "center",
+                                  borderRadius: "0.1em",
+                                  fontSize: "12.5px",
+                                  color: "white",
+                                }}
+                              >
+                                {" "}
+                                Plus
+                              </Button>
+                            )}
                           </MKBox>
                         </AccordionDetails>
                       </Accordion>

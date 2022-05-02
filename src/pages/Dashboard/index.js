@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DefaultNavbar from "examples/Navbars/DefaultNavbar";
 import DefaultFooter from "examples/Footers/DefaultFooter";
 import MKBox from "components/MKBox";
@@ -6,19 +6,37 @@ import footerRoutes from "footer.routes";
 import { Card } from "@mui/material";
 import Container from "@mui/material/Container";
 import MKTypography from "components/MKTypography";
-import Counters from "pages/Presentation/sections/Counters";
 import Grid from "@mui/material/Grid";
+import Divider from "@mui/material/Divider";
+import axios from "axios";
 import routeMentor from "../MenuPerUset/Mentor/menu";
 import routeApprenant from "../MenuPerUset/Apprenant/menu";
+import DefaultCounterCard from "../../examples/Cards/CounterCards/DefaultCounterCard";
+import MKButton from "../../components/MKButton";
 // import Stack from "@mui/material/Stack";
 // import MKButton from "components/MKButton";
 
 function Dashboard() {
   const user = JSON.parse(localStorage.getItem("user"));
+  // eslint-disable-next-line no-unused-vars
+  const [projetCounter, setProjetCounter] = React.useState(0);
+  const [coursCounter, setCoursCounter] = React.useState(0);
   let isapprenant = false;
   if (user.role === "Apprenant") {
     isapprenant = true;
   }
+  useEffect(() => {
+    document.title = "Dashboard";
+    if (isapprenant) {
+      axios.get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`).then((res) => {
+        setCoursCounter(res.data.length);
+      });
+    } else {
+      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((res) => {
+        setCoursCounter(res.data.length);
+      });
+    }
+  }, []);
   return (
     <>
       <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} sticky />
@@ -46,7 +64,7 @@ function Dashboard() {
                 },
               })}
             >
-              Bienvenu Amah KWTACHA
+              {`Bienvenue  ${user.prenom}`}
             </MKTypography>
             <MKTypography variant="body1" color="dark" opacity={0.8} pr={6} mr={6}>
               Sur votre tableau de bord.
@@ -65,7 +83,54 @@ function Dashboard() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Counters />
+        <MKBox component="section" py={3}>
+          <Container sx={{ alignContent: "center", alignSelf: "center", justifyContent: "center" }}>
+            <Grid
+              container
+              sx={{ alignContent: "center", alignSelf: "center", justifyContent: "center" }}
+            >
+              <MKBox sx={{ alignContent: "center", alignSelf: "center", justifyContent: "center" }}>
+                <DefaultCounterCard
+                  count={0}
+                  title="Projets"
+                  description={
+                    isapprenant
+                      ? "Participez à plus de projets, développez vos compétences"
+                      : "Créez des projets, partagez vos compétences"
+                  }
+                />
+                <MKButton variant="outlined" color="secondary" sx={{ border: "none" }}>
+                  {" "}
+                  {isapprenant ? "Participer à un projet" : "Créer un projet"}
+                </MKButton>
+              </MKBox>
+              <Divider
+                orientation="vertical"
+                sx={{ display: { xs: "none", md: "block" }, mx: 0 }}
+              />
+              <MKBox sx={{ alignContent: "center", alignSelf: "center", justifyContent: "center" }}>
+                <DefaultCounterCard
+                  count={coursCounter}
+                  title={isapprenant ? "Cours suivis" : "Cours proposés"}
+                  description={
+                    isapprenant
+                      ? "Suivez plus de cours, enrichissez vos connaissances"
+                      : "Proposez des cours, développez vos compétences"
+                  }
+                />
+                <MKButton
+                  variant="outlined"
+                  color="secondary"
+                  sx={{ border: "none" }}
+                  href={isapprenant ? "/cours-details" : "/coursdetails"}
+                >
+                  {" "}
+                  {isapprenant ? "Suivre un cours" : "Proposer un cours"}
+                </MKButton>
+              </MKBox>
+            </Grid>
+          </Container>
+        </MKBox>
       </Card>
       <MKBox pt={6} px={1} mt={6}>
         <DefaultFooter content={footerRoutes} />

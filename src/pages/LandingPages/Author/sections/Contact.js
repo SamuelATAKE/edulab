@@ -153,7 +153,6 @@ function Contact() {
         console.log(res);
         // eslint-disable-next-line
         console.log(res.data);
-        localStorage.removeItem("user");
         localStorage.setItem("user", JSON.stringify(res.data));
       });
   };
