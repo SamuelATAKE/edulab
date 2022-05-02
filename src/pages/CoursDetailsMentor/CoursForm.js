@@ -67,7 +67,7 @@ function CoursForm() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     // eslint-disable-next-line
-        console.log(e);
+    console.log(e);
     setState({ ...state, [name]: value });
   };
   const onSubmit = (e) => {
@@ -82,30 +82,30 @@ function CoursForm() {
     cours.cible = state.ciblef;
     cours.createur = user;
     // eslint-disable-next-line
-        console.log(state);
+    console.log(state);
     // eslint-disable-next-line
-        console.log(cours);
+    console.log(cours);
     // eslint-disable-next-line
-      console.log(user);
+    console.log(user);
     // eslint-disable-next-line
-        console.log("Submitting");
+    console.log("Submitting");
     const formData = new FormData();
     // eslint-disable-next-line
     const formData1 = new FormData();
     formData.append("file", selectedFile, selectedFile.name);
     formData1.append("file", selectedFile1, selectedFile1.name);
-    axios
-      .post(`http://localhost:8080/api/uploadFile`, formData, {
-        headers: {
-          "content-type": "multipart/form-data",
-        },
-      })
-      .then((res) => {
-        // eslint-disable-next-line
-              console.log(res);
-        // eslint-disable-next-line
-              console.log(res.data);
-      });
+    // axios
+    //  .post(`http://localhost:8080/api/uploadFile`, formData, {
+    //    headers: {
+    //      "content-type": "multipart/form-data",
+    //    },
+    //  })
+    //  .then((res) => {
+    // eslint-disable-next-line
+    //          console.log(res);
+    // eslint-disable-next-line
+    //          console.log(res.data);
+    //  });
     axios
       .post(`http://localhost:8080/api/cours/`, cours, {
         headers: {
@@ -114,9 +114,9 @@ function CoursForm() {
       })
       .then((res) => {
         // eslint-disable-next-line
-                console.log(res);
+        console.log(res);
         // eslint-disable-next-line
-                console.log(res.data);
+        console.log(res.data);
         axios
           .put(`http://localhost:8080/api/utilisateur/addcourse/${user.id}`, res.data, {
             headers: {
@@ -125,13 +125,13 @@ function CoursForm() {
           })
           .then((secres) => {
             // eslint-disable-next-line
-                  console.log(secres.data);
+            console.log(secres.data);
           });
       });
 
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-          console.log(secres1.data);
+      console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       navigate("/coursdetails");
     });

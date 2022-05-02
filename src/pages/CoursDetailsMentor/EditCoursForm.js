@@ -26,7 +26,6 @@ import Typography from "@mui/material/Typography";
 // import Box from "@mui/material/Box";
 import * as React from "react";
 import Divider from "@mui/material/Divider";
-import FileUpload from "react-mui-fileuploader";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
 import MKTypography from "../../components/MKTypography";
@@ -65,12 +64,12 @@ function EditCoursForm() {
         };
         setState(initialState);
         // eslint-disable-next-line
-                console.log(res.data)
+        console.log(res.data);
         // eslint-disable-next-line
-                console.log(initialState.titref)
+        console.log(initialState.titref);
       })
       // eslint-disable-next-line
-            .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   const handleInputChange = (e) => {
@@ -89,13 +88,13 @@ function EditCoursForm() {
     cours.cible = state.ciblef;
     cours.createur = user;
     // eslint-disable-next-line
-        console.log(state);
+    console.log(state);
     // eslint-disable-next-line
-        console.log(cours);
+    console.log(cours);
     // eslint-disable-next-line
-      console.log(user);
+    console.log(user);
     // eslint-disable-next-line
-        console.log("Submitting");
+    console.log("Submitting");
     axios
       .put(`http://localhost:8080/api/cours/`, cours, {
         headers: {
@@ -104,9 +103,9 @@ function EditCoursForm() {
       })
       .then((res) => {
         // eslint-disable-next-line
-                console.log(res);
+        console.log(res);
         // eslint-disable-next-line
-                console.log(res.data);
+        console.log(res.data);
       });
     axios
       .put(`http://localhost:8080/api/utilisateur/addcourse/${user.id}`, cours, {
@@ -116,22 +115,22 @@ function EditCoursForm() {
       })
       .then((secres) => {
         // eslint-disable-next-line
-          console.log(secres.data);
+        console.log(secres.data);
       });
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-          console.log(secres1.data);
+      console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       navigate(`/gestioncours/${param.id}`);
     });
   };
 
-  const handleFilesChange = (files) => {
-    // Do something...
-  };
-  const handleFileUploadError = (files) => {
-    // Do something...
-  };
+  // const handleFilesChange = (files) => {
+  // Do something...
+  // };
+  // const handleFileUploadError = (files) => {
+  // Do something...
+  // };
   const handleClose = () => {
     navigate("/coursdetails");
   };
@@ -232,68 +231,6 @@ function EditCoursForm() {
                   alignSelf: "center",
                 }}
               />
-              <MKBox
-                sx={{
-                  m: 3,
-                  width: "75%",
-                  alignSelf: "center",
-                }}
-              >
-                <FileUpload
-                  multiFile
-                  disabled={false}
-                  title="Support principal"
-                  header="Glissez-deposer"
-                  leftLabel="ou"
-                  rightLabel=" pour selectionner"
-                  buttonLabel="Cliquez ici"
-                  maxFileSize={10}
-                  maxUploadFiles={0}
-                  maxFilesContainerHeight={150}
-                  errorSizeMessage="fill it or move it to use the default error message"
-                  allowedExtensions={["jpg", "jpeg"]}
-                  onFilesChange={handleFilesChange}
-                  onError={handleFileUploadError}
-                  bannerProps={{ elevation: 0, variant: "gradiant" }}
-                  containerProps={{ elevation: 0, variant: "gradiant" }}
-                  sx={{
-                    m: 3,
-                    width: "75%",
-                    alignSelf: "center",
-                  }}
-                />
-              </MKBox>
-              <MKBox
-                sx={{
-                  m: 3,
-                  width: "75%",
-                  alignSelf: "center",
-                }}
-              >
-                <FileUpload
-                  multiFile
-                  disabled={false}
-                  title="Supports Optionnels"
-                  header="Glissez-deposer"
-                  leftLabel="ou"
-                  rightLabel=" pour selectionner"
-                  buttonLabel="Cliquez ici"
-                  maxFileSize={10}
-                  maxUploadFiles={0}
-                  maxFilesContainerHeight={150}
-                  errorSizeMessage="fill it or move it to use the default error message"
-                  allowedExtensions={["jpg", "jpeg"]}
-                  onFilesChange={handleFilesChange}
-                  onError={handleFileUploadError}
-                  bannerProps={{ elevation: 0, variant: "gradiant" }}
-                  containerProps={{ elevation: 0, variant: "gradiant" }}
-                  sx={{
-                    m: 3,
-                    width: "75%",
-                    alignSelf: "center",
-                  }}
-                />
-              </MKBox>
               <Divider sx={{ my: 0, mt: 3 }} />
               <MKBox display="flex" justifyContent="space-between" p={1.5}>
                 <MKButton variant="gradient" color="primary" type="submit">

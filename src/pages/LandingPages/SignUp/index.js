@@ -123,6 +123,21 @@ function SignUpBasic() {
       });
   };
 
+  const oAuthLogin = () => {
+    axios
+      .get(`http://localhost:8080/api/home/login`)
+      .then((res) => {
+        // eslint-disable-next-line
+        console.log(res);
+        // eslint-disable-next-line
+        console.log(res.data);
+      })
+      .catch((err) => {
+        // eslint-disable-next-line
+        console.log(err);
+      });
+  };
+
   return (
     <>
       <MKBox
@@ -164,7 +179,13 @@ function SignUpBasic() {
                     </MKTypography>
                   </Grid>
                   <Grid item xs={2}>
-                    <MKTypography component={MuiLink} href="#" variant="body1" color="white">
+                    <MKTypography
+                      component={MuiLink}
+                      onClick={oAuthLogin}
+                      href="#"
+                      variant="body1"
+                      color="white"
+                    >
                       <GoogleIcon color="inherit" />
                     </MKTypography>
                   </Grid>

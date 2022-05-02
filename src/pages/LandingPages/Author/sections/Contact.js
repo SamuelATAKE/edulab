@@ -76,6 +76,8 @@ function Contact() {
   // };
 
   useEffect(() => {
+    // eslint-disable-next-line
+    console.log(user);
     setState({
       nomp: user.nom,
       prenomp: user.prenom,
