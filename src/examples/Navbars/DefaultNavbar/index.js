@@ -341,7 +341,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 const linkComponent = {
                   component: MuiLink,
                   href: item.href,
-                  target: "", // _blank
                   rel: "noreferrer",
                 };
 
@@ -508,7 +507,6 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
                 <MKButton
                   component="a"
                   href={action.route}
-                  target="" // _blank
                   rel="noreferrer"
                   variant={
                     action.color === "white" || action.color === "default"

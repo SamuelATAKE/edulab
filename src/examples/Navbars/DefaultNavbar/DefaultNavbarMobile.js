@@ -71,7 +71,7 @@ function DefaultNavbarMobile({ routes, open }) {
                         component={el.route ? Link : MuiLink}
                         to={el.route ? el.route : ""}
                         href={el.href ? el.href : ""}
-                        target={el.href ? "_blank" : ""}
+                        target={el.href ? "" : ""}
                         rel={el.href ? "noreferrer" : "noreferrer"}
                         minWidth="11.25rem"
                         display="block"
@@ -103,7 +103,7 @@ function DefaultNavbarMobile({ routes, open }) {
                     component={item.route ? Link : MuiLink}
                     to={item.route ? item.route : ""}
                     href={item.href ? item.href : ""}
-                    target={item.href ? "_blank" : ""}
+                    target={item.href ? "" : ""}
                     rel={item.href ? "noreferrer" : "noreferrer"}
                     sx={({ palette: { grey, dark }, borders: { borderRadius } }) => ({
                       borderRadius: borderRadius.md,

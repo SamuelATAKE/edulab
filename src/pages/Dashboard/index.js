@@ -14,7 +14,7 @@ import routeApprenant from "../MenuPerUset/Apprenant/menu";
 // import MKButton from "components/MKButton";
 
 function Dashboard() {
-  const user = JSON.parse(sessionStorage.getItem("user"));
+  const user = JSON.parse(localStorage.getItem("user"));
   let isapprenant = false;
   if (user.role === "Apprenant") {
     isapprenant = true;
