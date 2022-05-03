@@ -1,6 +1,5 @@
 // @mui material components
 import Card from "@mui/material/Card";
-// import FileUpload from "react-mui-fileuploader";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -45,6 +44,14 @@ const coursState = {
   cible: "",
   contenu: "",
   createur: "",
+  supportPrincipal: {
+    id: "",
+    nom: "",
+  },
+  supportsOptionnels: {
+    id: "",
+    nom: "",
+  },
 };
 const user = JSON.parse(localStorage.getItem("user"));
 function CoursForm() {
@@ -52,7 +59,8 @@ function CoursForm() {
   const [state, setState] = useState(initialState);
   const { titref, descriptionf, ciblef } = state;
   const [cours, setCours] = useState(coursState);
-  const { titre, description, cible, contenu, createur } = cours;
+  const { titre, description, cible, contenu, createur, supportPrincipal, supportsOptionnels } =
+    cours;
   const [selectedFile, setSelectedFile] = useState();
   const [selectedFile1, setSelectedFile1] = useState();
 
@@ -68,7 +76,7 @@ function CoursForm() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     // eslint-disable-next-line
-    console.log(e);
+        console.log(e);
     setState({ ...state, [name]: value });
   };
   const onSubmit = (e) => {
@@ -78,18 +86,20 @@ function CoursForm() {
     setCours({ ...cours, [contenu]: null });
     setCours({ ...cours, [cible]: state.ciblef });
     setCours({ ...cours, [createur]: user });
+    setCours({ ...cours, [supportPrincipal]: null });
+    setCours({ ...cours, [supportsOptionnels]: null });
     cours.titre = state.titref;
     cours.description = state.descriptionf;
     cours.cible = state.ciblef;
     cours.createur = user;
     // eslint-disable-next-line
-    console.log(state);
+        console.log(state);
     // eslint-disable-next-line
-    console.log(cours);
+        console.log(cours);
     // eslint-disable-next-line
-    console.log(user);
+      console.log(user);
     // eslint-disable-next-line
-    console.log("Submitting");
+        console.log("Submitting");
     const formData = new FormData();
     formData.append("file", selectedFile, selectedFile.name);
     formData.append("file1", selectedFile1, selectedFile1.name);
@@ -101,9 +111,9 @@ function CoursForm() {
       })
       .then((res) => {
         // eslint-disable-next-line
-        console.log(res);
+                console.log(res);
         // eslint-disable-next-line
-        console.log(res.data);
+                console.log(res.data);
         axios
           .post(`http://localhost:8080/api/cours/${res.data.id}`, formData, {
             headers: {
@@ -112,9 +122,9 @@ function CoursForm() {
           })
           .then((sres) => {
             // eslint-disable-next-line
-            console.log(sres);
+                  console.log(sres);
             // eslint-disable-next-line
-            console.log(sres.data);
+                  console.log(sres.data);
           });
         axios.put(`http://localhost:8080/api/utilisateur/addcourse/${user.id}`, res.data, {
           headers: {
@@ -125,7 +135,7 @@ function CoursForm() {
 
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-      console.log(secres1.data);
+          console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       navigate("/coursdetails");
     });
@@ -140,7 +150,7 @@ function CoursForm() {
       <DefaultNavbar routes={routes} sticky dark />
       <MKBox bgColor="#F4F4F4">
         <MKBox
-          minHeight="25rem"
+          height="14em"
           width="100%"
           sx={{
             display: "grid",
@@ -148,7 +158,7 @@ function CoursForm() {
             bakgroundColor: "dark",
           }}
         >
-          <MKTypography variant="h1">
+          <MKTypography variant="h2">
             {" "}
             <LibraryBooksIcon />
             Les cours{" "}
@@ -157,9 +167,10 @@ function CoursForm() {
         <Card
           sx={{
             p: 2,
-            mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
+            ml: 14,
+            mr: 14,
             backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
             backdropFilter: "saturate(200%) blur(30px)",
             boxShadow: ({ boxShadows: { xxl } }) => xxl,

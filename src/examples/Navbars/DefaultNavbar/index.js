@@ -419,6 +419,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
       popperRef={null}
       open={Boolean(nestedDropdown)}
       placement="right-start"
+      width="100%"
       transition
       style={{ zIndex: 10 }}
       onMouseEnter={() => {
@@ -449,7 +450,7 @@ function DefaultNavbar({ brand, routes, transparent, light, action, sticky, rela
   );
 
   return (
-    <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10 } : null}>
+    <Container sx={sticky ? { position: "sticky", top: 0, zIndex: 10, width: "100%" } : null}>
       <MKBox
         py={1}
         px={{ xs: 4, sm: transparent ? 2 : 3, lg: transparent ? 0 : 2 }}

@@ -16,12 +16,13 @@ import footerRoutes from "footer.routes";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
-// import Moment from "react-moment";
 import axios from "axios";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
+import Divider from "@mui/material/Divider";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import MKTypography from "../../components/MKTypography";
 
 function Cours() {
@@ -35,7 +36,7 @@ function Cours() {
         setCours(res.data);
       })
       // eslint-disable-next-line
-      .catch((err) => console.log(err));
+            .catch((err) => console.log(err));
 
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
@@ -46,7 +47,7 @@ function Cours() {
       <DefaultNavbar routes={routes} sticky dark />
       <MKBox bgColor="#F4F4F4">
         <MKBox
-          minHeight="25rem"
+          height="15em"
           width="100%"
           sx={{
             display: "grid",
@@ -54,7 +55,7 @@ function Cours() {
             bakgroundColor: "dark",
           }}
         >
-          <MKTypography variant="h1">
+          <MKTypography variant="h2">
             {" "}
             <LibraryBooksIcon />
             Les cours{" "}
@@ -63,9 +64,10 @@ function Cours() {
         <Card
           sx={{
             p: 2,
-            mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
+            ml: 13,
+            mr: 13,
             backdropFilter: "saturate(200%) blur(30px)",
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
@@ -94,7 +96,7 @@ function Cours() {
                         >
                           <div
                             style={{
-                              margin: "5",
+                              margin: "3",
                               width: "100%",
                               alignSelf: "center",
                             }}
@@ -107,25 +109,41 @@ function Cours() {
                                 width: "100%",
                                 alignSelf: "center",
                                 border: "1px solid darkgrey",
+                                fontSize: "2rem",
                               }}
                             >
                               {post.titre.substring(0, 2).toUpperCase()}
                             </MKTypography>
                           </div>{" "}
+                          <Divider orientation="vertical" />
                           <br />
-                          <div style={{ margin: "5", width: "100%" }}>
+                          <div style={{ margin: "3", width: "100%" }}>
                             <span>
-                              <MKTypography variant="h6">Titre : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.titre}</p>
+                              <MKTypography variant="h6">
+                                <p
+                                  style={{
+                                    fontSize: "18px",
+                                    fontFamily: "sans-serif",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {post.titre}
+                                </p>
+                              </MKTypography>{" "}
                             </span>
                             <span>
-                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
+                              <p style={{ fontSize: "14px" }}> Pour {post.cible}</p>
                             </span>
-                            <span>
-                              <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>
-                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                            <span style={{ justifySelf: "right", alignSelf: "right" }}>
+                              <p
+                                style={{ fontSize: "12px", color: "darkgrey", fontStyle: "italic" }}
+                              >
+                                <AccessTimeFilledIcon mr={4} ml={3} />
+                                <p>
+                                  {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                    new Date(post.dateCreation)
+                                  )}
+                                </p>
                               </p>
                             </span>
                           </div>

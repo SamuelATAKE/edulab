@@ -19,6 +19,7 @@ import Container from "@mui/material/Container";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Fab from "@mui/material/Fab";
@@ -29,6 +30,7 @@ import * as React from "react";
 import axios from "axios";
 import Link from "@mui/material/Link";
 import SearchIcon from "@mui/icons-material/Search";
+import Divider from "@mui/material/Divider";
 import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
 
@@ -89,10 +91,10 @@ function CoursDetailsMentor() {
 
   return (
     <>
-      <DefaultNavbar routes={routes} sticky dark />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox bgColor="#F4F4F4">
         <MKBox
-          minHeight="25rem"
+          height="15em"
           width="100%"
           sx={{
             display: "grid",
@@ -100,7 +102,7 @@ function CoursDetailsMentor() {
             bakgroundColor: "dark",
           }}
         >
-          <MKTypography variant="h1">
+          <MKTypography variant="h2">
             {" "}
             <LibraryBooksIcon />
             Les cours{" "}
@@ -109,7 +111,8 @@ function CoursDetailsMentor() {
         <Card
           sx={{
             p: 2,
-            mx: { xs: 2, lg: 3 },
+            ml: 15.5,
+            mr: 15.5,
             mt: -8,
             mb: 4,
             backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
@@ -188,7 +191,7 @@ function CoursDetailsMentor() {
                         >
                           <div
                             style={{
-                              margin: "5",
+                              margin: "3",
                               width: "100%",
                               alignSelf: "center",
                             }}
@@ -201,27 +204,41 @@ function CoursDetailsMentor() {
                                 width: "100%",
                                 alignSelf: "center",
                                 border: "1px solid darkgrey",
+                                fontSize: "2rem",
                               }}
                             >
                               {post.titre.substring(0, 2).toUpperCase()}
                             </MKTypography>
                           </div>{" "}
+                          <Divider orientation="vertical" />
                           <br />
-                          <div style={{ margin: "5", width: "100%" }}>
+                          <div style={{ margin: "3", width: "100%" }}>
                             <span>
-                              <MKTypography variant="h6">Titre : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.titre}</p>
+                              <MKTypography variant="h6">
+                                <p
+                                  style={{
+                                    fontSize: "18px",
+                                    fontFamily: "sans-serif",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {post.titre}
+                                </p>
+                              </MKTypography>{" "}
                             </span>
                             <span>
-                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
+                              <p style={{ fontSize: "14px" }}> Pour {post.cible}</p>
                             </span>
-                            <span>
-                              <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>
-                                {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
-                                  new Date(post.dateCreation)
-                                )}
+                            <span style={{ justifySelf: "right", alignSelf: "right" }}>
+                              <p
+                                style={{ fontSize: "12px", color: "darkgrey", fontStyle: "italic" }}
+                              >
+                                <AccessTimeFilledIcon mr={4} ml={3} />
+                                <p>
+                                  {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                    new Date(post.dateCreation)
+                                  )}
+                                </p>
                               </p>
                             </span>
                           </div>

@@ -60,14 +60,10 @@ import routes from "../MenuPerUset/Mentor/menu";
 
 function ContenuCours() {
   const param = useParams();
+  const { id } = param;
   const navigate = useNavigate();
   const user = JSON.parse(localStorage.getItem("user"));
   const [cours, setCours] = useState({});
-  const [sp, setSp] = useState({
-    id: "",
-    nom: "",
-  });
-  // const [so, setSo] = useState({});
   const handleDelete = () => {
     axios
       .delete(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}/${param.id}`)
@@ -81,26 +77,27 @@ function ContenuCours() {
     navigate("/coursdetails");
   };
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
+    axios.get(`http://localhost:8080/api/cours/${id}`).then((res) => {
       setCours(res.data);
       // eslint-disable-next-line
+        console.log("contenu de la reponse");
+      // eslint-disable-next-line
         console.log(res.data);
-      axios
-        .get(`http://localhost:8080/api/documents/${res.data.supportPrincipal.id}`)
-        .then((sres) => {
-          setSp(sres);
-          // eslint-disable-next-line
-            console.log(sres.data);
-          // eslint-disable-next-line
-            console.log(sp);
-        });
     });
   }, []);
+  // eslint-disable-next-line
+    console.log("Contenu du cours hors useffect");
+  // eslint-disable-next-line
+    console.log(cours);
+  // eslint-disable-next-line
+    console.log("Indexation du supportPrincipal hors useffect");
+  // eslint-disable-next-line
+    console.log(cours.supportPrincipal);
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
       <MKBox
-        minHeight="25rem"
+        height="14em"
         width="100%"
         sx={{
           display: "grid",
@@ -108,10 +105,10 @@ function ContenuCours() {
           bakgroundColor: "dark",
         }}
       >
-        <MKTypography variant="h2">
+        <MKTypography variant="h2" mt={2}>
           {" "}
           <h2 style={{ textAlign: "center" }}>{cours.titre} </h2>
-          <Stack direction="row" spacing={2}>
+          <Stack alignItems="center" justifyContent="center" direction="row" spacing={2}>
             <Button color="primary" href={`/modifiercours/${param.id}`} startIcon={<EditIcon />}>
               Modifier
             </Button>
@@ -124,7 +121,8 @@ function ContenuCours() {
       <Card
         sx={{
           p: 2,
-          mx: { xs: 2, lg: 3 },
+          ml: 15,
+          mr: 15,
           mt: 1,
           mb: 4,
           backdropFilter: "saturate(200%) blur(30px)",
@@ -178,12 +176,8 @@ function ContenuCours() {
         </MKBox>
         <MKTypography mt={5} mb={3}>
           <h4>Support Principal</h4>
+          <p> </p>
         </MKTypography>
-        <ul style={{ margin: 5 }}>
-          <li>
-            <pre>{sp.nom}</pre>
-          </li>
-        </ul>
         <br />
         <br />
         <MKTypography mt={5} mb={3}>

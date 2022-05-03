@@ -26,6 +26,8 @@ import axios from "axios";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
 import SearchIcon from "@mui/icons-material/Search";
+import Divider from "@mui/material/Divider";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import routes from "./menu";
 import MKTypography from "../../components/MKTypography";
 
@@ -73,18 +75,10 @@ function CoursDetails() {
   const [empty, isEmpty] = useState(true);
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   const [cours, setCours] = useState([]);
-  const [search, setSearch] = useState("recherche");
+  // eslint-disable-next-line no-unused-vars
+  const [mescours, setMesCours] = useState([]);
+  const [search, setSearch] = useState("");
   const [changed, isChanged] = useState(0);
-  const handleInputChange = (event) => {
-    const { value } = event.target;
-    if (cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []) {
-      setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())));
-      setSearch(value);
-      isChanged(changed + 1);
-    }
-    // eslint-disable-next-line
-    console.log(cours);
-  };
   useEffect(() => {
     document.title = "Cours";
     axios
@@ -95,10 +89,15 @@ function CoursDetails() {
           .then((secres1) => {
             // eslint-disable-next-line
               console.log(secres1.data);
+            const s = new Set(res.data.map(({ id }) => id));
+            setMesCours(secres1.data.filter(({ id }) => s.has(id)));
+            // setMesCours(mescours.filter((x) => x.id));
+            // eslint-disable-next-line
+              console.log(mescours);
             if (activeTab) {
-              if (res.data.filter((x) => !secres1.data.includes(x)).length > 0) {
+              if (res.data.length > 0) {
                 isEmpty(false);
-                setCours(res.data.filter((x) => !secres1.data.includes(x)));
+                setCours(res.data);
               } else {
                 isEmpty(true);
               }
@@ -111,21 +110,93 @@ function CoursDetails() {
           });
       })
       // eslint-disable-next-line
-      .catch((err) => console.log(err));
+        .catch((err) => console.log(err));
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
     }
     setUser(JSON.parse(localStorage.getItem("user")));
   }, [activeTab]);
-  useEffect(() => {
-    setCours(cours.filter((cour) => cour.titre.toLowerCase().includes(search.toLowerCase())));
-  }, [changed]);
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    if (value !== "" && value.length > 2) {
+      axios.get("http://localhost:8080/api/cours/").then((res) => {
+        axios
+          .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+          .then((secres1) => {
+            if (activeTab) {
+              isEmpty(false);
+              if (
+                res.data.filter((cour) =>
+                  cour.titre.toLowerCase().includes(value.toLowerCase())
+                ) !== []
+              ) {
+                setCours(
+                  res.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase()))
+                );
+                isChanged(changed + 1);
+              } else {
+                isEmpty(true);
+              }
+            } else if (secres1.data.length > 0) {
+              isEmpty(false);
+              if (
+                secres1.data.filter((cour) =>
+                  cour.titre.toLowerCase().includes(value.toLowerCase())
+                ) !== []
+              ) {
+                setCours(
+                  secres1.data.filter((cour) =>
+                    cour.titre.toLowerCase().includes(value.toLowerCase())
+                  )
+                );
+                isChanged(changed + 1);
+              }
+            } else {
+              isEmpty(true);
+            }
+          });
+      });
+    } else {
+      axios
+        .get("http://localhost:8080/api/cours/")
+        .then((res) => {
+          axios
+            .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+            .then((secres1) => {
+              // eslint-disable-next-line
+                        console.log(secres1.data);
+              const s = new Set(res.data.map(({ id }) => id));
+              setMesCours(secres1.data.filter(({ id }) => s.has(id)));
+              // setMesCours(mescours.filter((x) => x.id));
+              // eslint-disable-next-line
+                        console.log(mescours);
+              if (activeTab) {
+                if (res.data.length > 0) {
+                  isEmpty(false);
+                  setCours(res.data);
+                } else {
+                  isEmpty(true);
+                }
+              } else if (secres1.data.length > 0) {
+                isEmpty(false);
+                setCours(secres1.data);
+              } else {
+                isEmpty(true);
+              }
+            });
+        })
+        // eslint-disable-next-line
+            .catch((err) => console.log(err));
+    }
+    setSearch(value);
+  };
+
   return (
     <>
       <DefaultNavbar routes={routes} sticky dark />
       <MKBox bgColor="#F4F4F4">
         <MKBox
-          minHeight="25rem"
+          height="14em"
           width="100%"
           sx={{
             display: "grid",
@@ -133,16 +204,17 @@ function CoursDetails() {
             bakgroundColor: "dark",
           }}
         >
-          <MKTypography variant="h1">
+          <MKTypography variant="h2">
             {" "}
-            <LibraryBooksIcon />
+            <LibraryBooksIcon mr={2} />
             Les cours{" "}
           </MKTypography>
         </MKBox>
         <Card
           sx={{
             p: 2,
-            mx: { xs: 2, lg: 3 },
+            mr: 15,
+            ml: 15,
             mt: -8,
             mb: 4,
             backdropFilter: "saturate(200%) blur(30px)",
@@ -175,7 +247,7 @@ function CoursDetails() {
                     <SearchIcon sx={{ marginRight: 2 }} />
                     <input
                       type="search"
-                      defaultValue="Recherche"
+                      placeholder="recherche"
                       value={search}
                       onChange={handleInputChange}
                       style={{
@@ -200,20 +272,28 @@ function CoursDetails() {
               ) : (
                 <Grid container spacing={6}>
                   {cours.map((post) => (
-                    <Grid item xs="6" sm="6" lg="6">
+                    <Grid item xs="6" sm="6" lg="6" key={post.id}>
                       <Accordion
-                        color="primary"
-                        bgcolor="dark"
                         sx={{ width: "100%", height: "100%" }}
+                        bgcolor={
+                          mescours.filter((cour) => cour.id === post.id).length > 0
+                            ? "#a9a9a9"
+                            : "#FFF"
+                        }
                       >
                         <AccordionSummary
                           aria-controls="panel1a-content"
                           id="panel1a-header1"
                           sx={{ width: "100%" }}
+                          bgcolor={
+                            mescours.filter((cour) => cour.id === post.id).length > 0
+                              ? "#a9a9a9"
+                              : "#FFF"
+                          }
                         >
                           <div
                             style={{
-                              margin: "5",
+                              margin: "3",
                               width: "100%",
                               alignSelf: "center",
                             }}
@@ -226,27 +306,41 @@ function CoursDetails() {
                                 width: "100%",
                                 alignSelf: "center",
                                 border: "1px solid darkgrey",
+                                fontSize: "2rem",
                               }}
                             >
                               {post.titre.substring(0, 2).toUpperCase()}
                             </MKTypography>
                           </div>{" "}
+                          <Divider orientation="vertical" />
                           <br />
-                          <div style={{ margin: "5", width: "100%" }}>
+                          <div style={{ margin: "3", width: "100%" }}>
                             <span>
-                              <MKTypography variant="h6">Titre : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.titre}</p>
+                              <MKTypography variant="h6">
+                                <p
+                                  style={{
+                                    fontSize: "18px",
+                                    fontFamily: "sans-serif",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {post.titre}
+                                </p>
+                              </MKTypography>{" "}
                             </span>
                             <span>
-                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
+                              <p style={{ fontSize: "14px" }}> Pour {post.cible}</p>
                             </span>
-                            <span>
-                              <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>
-                                {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
-                                  new Date(post.dateCreation)
-                                )}
+                            <span style={{ justifySelf: "right", alignSelf: "right" }}>
+                              <p
+                                style={{ fontSize: "12px", color: "darkgrey", fontStyle: "italic" }}
+                              >
+                                <AccessTimeFilledIcon mr={4} ml={3} />
+                                <p>
+                                  {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                    new Date(post.dateCreation)
+                                  )}
+                                </p>
                               </p>
                             </span>
                           </div>
@@ -263,6 +357,7 @@ function CoursDetails() {
                                 onClick={() => {
                                   handleJoin(post.id);
                                 }}
+                                disabled={mescours.filter((cour) => cour.id === post.id).length > 0}
                                 sx={{
                                   alignSelf: "center",
                                   borderRadius: "0.1em",

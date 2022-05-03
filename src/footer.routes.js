@@ -14,7 +14,7 @@ const date = new Date().getFullYear();
 
 export default {
   brand: {
-    name: "EduLab",
+    name: "TrainYourDevSkills",
     image: logoCT,
     route: "/",
   },
@@ -38,42 +38,13 @@ export default {
   ],
   menus: [
     {
-      name: "Liens rapides",
-      items: [
-        { name: "Projets tutorés", href: "#" },
-        { name: "Annonces", href: "#" },
-        { name: "Cours", href: "#" },
-        { name: "Forum", href: "#" },
-      ],
-    },
-    {
-      name: "Ressources",
-      items: [
-        { name: "illustrations", href: "#" },
-        { name: "bits & snippets", href: "#" },
-        { name: "affiliate program", href: "#" },
-      ],
-    },
-    {
       name: "Aide et support",
-      items: [
-        { name: "Contactez-nous", href: "#" },
-        { name: "Development", href: "#" },
-        { name: "Sponsors", href: "#" },
-      ],
-    },
-    {
-      name: "Normes",
-      items: [
-        { name: "Termes et conditions", href: "#" },
-        { name: "Politiques de confidentialité", href: "#" },
-        { name: "Licences (EULA)", href: "#" },
-      ],
+      items: [{ name: "Contactez-nous", href: "#" }],
     },
   ],
   copyright: (
     <MKTypography variant="button" fontWeight="regular">
-      Tous droits reservés. Copyright &copy; {date} EduLab by{" "}
+      Tous droits reservés. Copyright &copy; {date} TrainYourDevSkills by{" "}
       <MKTypography
         component="a"
         href="#"
