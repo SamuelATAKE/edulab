@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unescaped-entities */
 // @mui material components
 import Card from "@mui/material/Card";
 
@@ -17,7 +18,7 @@ import footerRoutes from "footer.routes";
 // import Tab from "@mui/material/Tab";
 import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
-import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
+import CampaignIcon from "@mui/icons-material/Campaign";
 import { TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
 // import Button from "@mui/material/Button";
@@ -33,7 +34,7 @@ import routes from "../MenuPerUset/Mentor/menu";
 import MKButton from "../../components/MKButton";
 
 const user = JSON.parse(localStorage.getItem("user"));
-function EditCoursForm() {
+function EditAnnoncesForm() {
   const param = useParams();
   let initialState = {
     titref: "",
@@ -44,29 +45,23 @@ function EditCoursForm() {
     id: `${param.id}`,
     titre: "",
     description: "",
-    cible: "",
-    contenu: "",
     createur: "",
   };
   const navigate = useNavigate();
   const [state, setState] = useState(initialState);
-  const { titref, descriptionf, ciblef } = state;
+  const { titref, descriptionf } = state;
   const [cours, setCours] = useState(coursState);
-  const { titre, description, cible, contenu, createur } = cours;
+  const { titre, description, createur } = cours;
   const [selectedFile, setSelectedFile] = useState();
-  const [selectedFile1, setSelectedFile1] = useState();
 
   // const [isFilePicked, setIsFilePicked] = useState(false);
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-  const changeHandler1 = (event) => {
-    setSelectedFile1(event.target.files[0]);
-  };
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/cours/${param.id}`)
+      .get(`http://localhost:8080/api/annonces/${param.id}`)
       .then((res) => {
         initialState = {
           titref: res.data.titre,
@@ -91,8 +86,6 @@ function EditCoursForm() {
     e.preventDefault();
     setCours({ ...cours, [titre]: state.titre });
     setCours({ ...cours, [description]: state.descriptionf });
-    setCours({ ...cours, [contenu]: null });
-    setCours({ ...cours, [cible]: state.ciblef });
     setCours({ ...cours, [createur]: user });
     cours.titre = state.titref;
     cours.description = state.descriptionf;
@@ -110,10 +103,8 @@ function EditCoursForm() {
       const formData = new FormData();
     // eslint-disable-next-line
       formData.append("file", selectedFile, selectedFile.name);
-    // eslint-disable-next-line
-      formData.append("file1", selectedFile1, selectedFile1.name);
     axios
-      .put(`http://localhost:8080/api/cours/`, cours, {
+      .put(`http://localhost:8080/api/annonces/`, cours, {
         headers: {
           "content-type": "application/json",
         },
@@ -124,7 +115,7 @@ function EditCoursForm() {
         // eslint-disable-next-line
                 console.log(res.data);
         axios
-          .post(`http://localhost:8080/api/cours/${res.data.id}`, formData, {
+          .post(`http://localhost:8080/api/annonces/${res.data.id}`, formData, {
             headers: {
               "content-type": "multipart/form-data",
             },
@@ -140,12 +131,12 @@ function EditCoursForm() {
       // eslint-disable-next-line
           console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
-      navigate(`/gestioncours/${param.id}`);
+      navigate(`/gestionannonces/${param.id}`);
     });
   };
 
   const handleClose = () => {
-    navigate("/coursdetails");
+    navigate("/annoncesdetails");
   };
 
   return (
@@ -163,8 +154,8 @@ function EditCoursForm() {
         >
           <MKTypography variant="h2">
             {" "}
-            <LibraryBooksIcon />
-            Les cours{" "}
+            <CampaignIcon sx={{ marginRight: 2, fontSize: "medium" }} />
+            Annonces{" "}
           </MKTypography>
         </MKBox>
         <Card
@@ -189,7 +180,7 @@ function EditCoursForm() {
                 textAlign: "center",
               }}
             >
-              Modification du cours
+              Parametrage de l'annonce
             </Typography>
             <Divider />
             <Grid
@@ -233,18 +224,6 @@ function EditCoursForm() {
                   alignSelf: "center",
                 }}
               />
-              <TextField
-                id="cible"
-                label="Cible"
-                name="ciblef"
-                value={ciblef}
-                onChange={handleInputChange}
-                sx={{
-                  m: 3,
-                  width: "75%",
-                  alignSelf: "center",
-                }}
-              />
               <MKBox
                 sx={{
                   m: 1,
@@ -252,7 +231,7 @@ function EditCoursForm() {
                   alignSelf: "center",
                 }}
               >
-                <MKTypography sx={{ mb: 3 }}>Support principal</MKTypography>
+                <MKTypography sx={{ mb: 3 }}>Ressources Jointes</MKTypography>
                 <input type="file" name="file" onChange={changeHandler} />
               </MKBox>
               <MKBox
@@ -261,10 +240,7 @@ function EditCoursForm() {
                   width: "75%",
                   alignSelf: "center",
                 }}
-              >
-                <MKTypography sx={{ mb: 3 }}>Supports Additionnels</MKTypography>
-                <input type="file" name="file1" onChange={changeHandler1} />
-              </MKBox>
+              />
               <Divider sx={{ my: 0, mt: 3 }} />
               <MKBox display="flex" justifyContent="space-between" p={1.5}>
                 <MKButton variant="gradient" color="primary" type="submit">
@@ -285,4 +261,4 @@ function EditCoursForm() {
   );
 }
 
-export default EditCoursForm;
+export default EditAnnoncesForm;

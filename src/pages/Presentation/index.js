@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /*
 =========================================================
 * Material Kit 2 React - v2.0.0
@@ -63,7 +64,8 @@ function Presentation() {
           label: "Connexion",
           color: "info",
         }}
-        sticky
+        transparent
+        light
       />
       <MKBox
         minHeight="75vh"
@@ -114,9 +116,6 @@ function Presentation() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <Container sx={{ mt: 6 }}>
-          <BuiltByDevelopers />
-        </Container>
         <Information />
         <Divider sx={{ my: 6 }} />
         <Testimonials />

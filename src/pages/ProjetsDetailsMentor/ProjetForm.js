@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 // @mui material components
 import Card from "@mui/material/Card";
 
@@ -15,8 +16,8 @@ import footerRoutes from "footer.routes";
 // import AppBar from "@mui/material/AppBar";
 // import Tabs from "@mui/material/Tabs";
 // import Tab from "@mui/material/Tab";
-import { useNavigate, useParams } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { useState } from "react";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { TextField } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -26,94 +27,112 @@ import Typography from "@mui/material/Typography";
 // import Box from "@mui/material/Box";
 import * as React from "react";
 import Divider from "@mui/material/Divider";
+// import FileUpload from "react-mui-fileuploader";
 import axios from "axios";
 import Grid from "@mui/material/Grid";
 import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
 import MKButton from "../../components/MKButton";
 
+const initialState = {
+  nomf: "",
+  descriptionf: "",
+  objectiff: "",
+  technologiesf: "",
+  prerequisf: "",
+  dureef: "",
+  npmbreMaxApprenantf: "",
+  dateDebutProjetf: "",
+  createurf: "",
+};
+const projetState = {
+  nom: "",
+  description: "",
+  objectif: "",
+  technologies: "",
+  prerequis: "",
+  dureef: "",
+  npmbreMaxApprenant: "",
+  dateDebutProjet: "",
+  createurf: "",
+};
 const user = JSON.parse(localStorage.getItem("user"));
-function EditCoursForm() {
-  const param = useParams();
-  let initialState = {
-    titref: "",
-    descriptionf: "",
-    ciblef: "",
-  };
-  const coursState = {
-    id: `${param.id}`,
-    titre: "",
-    description: "",
-    cible: "",
-    contenu: "",
-    createur: "",
-  };
+function ProjetForm() {
   const navigate = useNavigate();
   const [state, setState] = useState(initialState);
-  const { titref, descriptionf, ciblef } = state;
-  const [cours, setCours] = useState(coursState);
-  const { titre, description, cible, contenu, createur } = cours;
+  const {
+    nomf,
+    objectiff,
+    descriptionf,
+    technologiesf,
+    prerequisf,
+    dureef,
+    nombreMaxApprenantf,
+    dateDebutProjetf,
+  } = state;
+  const [projet, setprojet] = useState(projetState);
+  const {
+    nom,
+    objectif,
+    description,
+    technologies,
+    prerequis,
+    duree,
+    nombreMaxApprenant,
+    dateDebutProjet,
+    createur,
+  } = projet;
   const [selectedFile, setSelectedFile] = useState();
-  const [selectedFile1, setSelectedFile1] = useState();
 
   // const [isFilePicked, setIsFilePicked] = useState(false);
 
   const changeHandler = (event) => {
     setSelectedFile(event.target.files[0]);
   };
-  const changeHandler1 = (event) => {
-    setSelectedFile1(event.target.files[0]);
+  const onChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
   };
-  useEffect(() => {
-    axios
-      .get(`http://localhost:8080/api/cours/${param.id}`)
-      .then((res) => {
-        initialState = {
-          titref: res.data.titre,
-          descriptionf: res.data.description,
-          ciblef: res.data.cible,
-        };
-        setState(initialState);
-        // eslint-disable-next-line
-                console.log(res.data)
-        // eslint-disable-next-line
-                console.log(initialState.titref)
-      })
-      // eslint-disable-next-line
-            .catch((err) => console.log(err));
-  }, []);
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
+    // eslint-disable-next-line
+        console.log(e);
     setState({ ...state, [name]: value });
   };
   const onSubmit = (e) => {
     e.preventDefault();
-    setCours({ ...cours, [titre]: state.titre });
-    setCours({ ...cours, [description]: state.descriptionf });
-    setCours({ ...cours, [contenu]: null });
-    setCours({ ...cours, [cible]: state.ciblef });
-    setCours({ ...cours, [createur]: user });
-    cours.titre = state.titref;
-    cours.description = state.descriptionf;
-    cours.cible = state.ciblef;
-    cours.createur = user;
+    setprojet({ ...projet, [nom]: state.titre });
+    setprojet({ ...projet, [description]: state.descriptionf });
+    setprojet({ ...projet, [objectif]: state.objectiff });
+    setprojet({ ...projet, [technologies]: state.technologiesf });
+    setprojet({ ...projet, [duree]: state.dureef });
+    setprojet({ ...projet, [createur]: user });
+    setprojet({ ...projet, [prerequis]: state.prerequisf });
+    setprojet({ ...projet, [dateDebutProjet]: null });
+    setprojet({ ...projet, [nombreMaxApprenant]: state.npmbreMaxApprenantf });
+    projet.nom = state.nomf;
+    projet.description = state.descriptionf;
+    projet.objectif = state.objectiff;
+    projet.technologies = state.technologiesf;
+    projet.duree = state.dureef;
+    projet.npmbreMaxApprenant = state.npmbreMaxApprenantf;
+    projet.prerequis = state.prerequisf;
+    projet.nom = state.nomf;
     // eslint-disable-next-line
         console.log(state);
     // eslint-disable-next-line
-        console.log(cours);
+        console.log(projet);
     // eslint-disable-next-line
       console.log(user);
     // eslint-disable-next-line
         console.log("Submitting");
-    // eslint-disable-next-line
-      const formData = new FormData();
-    // eslint-disable-next-line
-      formData.append("file", selectedFile, selectedFile.name);
-    // eslint-disable-next-line
-      formData.append("file1", selectedFile1, selectedFile1.name);
+    const formData = new FormData();
+    formData.append("file", selectedFile, selectedFile.name);
     axios
-      .put(`http://localhost:8080/api/cours/`, cours, {
+      .post(`http://localhost:8080/api/projet/`, projet, {
         headers: {
           "content-type": "application/json",
         },
@@ -124,7 +143,7 @@ function EditCoursForm() {
         // eslint-disable-next-line
                 console.log(res.data);
         axios
-          .post(`http://localhost:8080/api/cours/${res.data.id}`, formData, {
+          .post(`http://localhost:8080/api/projet/${res.data.id}`, formData, {
             headers: {
               "content-type": "multipart/form-data",
             },
@@ -136,16 +155,17 @@ function EditCoursForm() {
                   console.log(sres.data);
           });
       });
+
     axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
           console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
-      navigate(`/gestioncours/${param.id}`);
+      navigate("/projetsdetails");
     });
   };
 
   const handleClose = () => {
-    navigate("/coursdetails");
+    navigate("/projetsdetails");
   };
 
   return (
@@ -164,16 +184,16 @@ function EditCoursForm() {
           <MKTypography variant="h2">
             {" "}
             <LibraryBooksIcon />
-            Les cours{" "}
+            Les projet{" "}
           </MKTypography>
         </MKBox>
         <Card
           sx={{
             p: 2,
-            ml: 14,
-            mr: 14,
             mt: -8,
             mb: 4,
+            ml: 14,
+            mr: 14,
             backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
             backdropFilter: "saturate(200%) blur(30px)",
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
@@ -189,7 +209,7 @@ function EditCoursForm() {
                 textAlign: "center",
               }}
             >
-              Modification du cours
+              Configuration du projet
             </Typography>
             <Divider />
             <Grid
@@ -208,10 +228,10 @@ function EditCoursForm() {
             >
               <TextField
                 required
-                id="titre"
-                label="Titre"
-                name="titref"
-                value={titref}
+                id="Nom"
+                label="Nom"
+                name="nomf"
+                value={nomf}
                 onChange={handleInputChange}
                 sx={{
                   m: 3,
@@ -225,7 +245,8 @@ function EditCoursForm() {
                 name="descriptionf"
                 value={descriptionf}
                 onChange={handleInputChange}
-                maxRows={8}
+                maxRows={12}
+                rows={8}
                 multiline
                 sx={{
                   m: 3,
@@ -233,11 +254,12 @@ function EditCoursForm() {
                   alignSelf: "center",
                 }}
               />
+
               <TextField
-                id="cible"
-                label="Cible"
-                name="ciblef"
-                value={ciblef}
+                id="prerequis"
+                label="Prerequis"
+                name="prerequisf"
+                value={prerequisf}
                 onChange={handleInputChange}
                 sx={{
                   m: 3,
@@ -245,6 +267,43 @@ function EditCoursForm() {
                   alignSelf: "center",
                 }}
               />
+              <TextField
+                id="technolohies"
+                label="Technologies"
+                name="technologiesf"
+                value={technologiesf}
+                onChange={handleInputChange}
+                sx={{
+                  m: 3,
+                  width: "75%",
+                  alignSelf: "center",
+                }}
+              />
+              <TextField
+                id="nombreMaxApprenant"
+                label="Nombre maximum de participant"
+                name="nombreMaxApprenantf"
+                value={nombreMaxApprenantf}
+                onChange={handleInputChange}
+                sx={{
+                  m: 3,
+                  width: "75%",
+                  alignSelf: "center",
+                }}
+              />
+              <TextField
+                id="duree"
+                label="Durée"
+                name="dureef"
+                value={dureef}
+                onChange={handleInputChange}
+                sx={{
+                  m: 3,
+                  width: "75%",
+                  alignSelf: "center",
+                }}
+              />
+
               <MKBox
                 sx={{
                   m: 1,
@@ -252,7 +311,7 @@ function EditCoursForm() {
                   alignSelf: "center",
                 }}
               >
-                <MKTypography sx={{ mb: 3 }}>Support principal</MKTypography>
+                <MKTypography sx={{ mb: 3 }}>Ressources</MKTypography>
                 <input type="file" name="file" onChange={changeHandler} />
               </MKBox>
               <MKBox
@@ -261,10 +320,7 @@ function EditCoursForm() {
                   width: "75%",
                   alignSelf: "center",
                 }}
-              >
-                <MKTypography sx={{ mb: 3 }}>Supports Additionnels</MKTypography>
-                <input type="file" name="file1" onChange={changeHandler1} />
-              </MKBox>
+              />
               <Divider sx={{ my: 0, mt: 3 }} />
               <MKBox display="flex" justifyContent="space-between" p={1.5}>
                 <MKButton variant="gradient" color="primary" type="submit">
@@ -285,4 +341,4 @@ function EditCoursForm() {
   );
 }
 
-export default EditCoursForm;
+export default ProjetForm;

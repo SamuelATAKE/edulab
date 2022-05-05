@@ -44,14 +44,6 @@ const coursState = {
   cible: "",
   contenu: "",
   createur: "",
-  supportPrincipal: {
-    id: "",
-    nom: "",
-  },
-  supportsOptionnels: {
-    id: "",
-    nom: "",
-  },
 };
 const user = JSON.parse(localStorage.getItem("user"));
 function CoursForm() {
@@ -59,8 +51,7 @@ function CoursForm() {
   const [state, setState] = useState(initialState);
   const { titref, descriptionf, ciblef } = state;
   const [cours, setCours] = useState(coursState);
-  const { titre, description, cible, contenu, createur, supportPrincipal, supportsOptionnels } =
-    cours;
+  const { titre, description, cible, contenu, createur } = cours;
   const [selectedFile, setSelectedFile] = useState();
   const [selectedFile1, setSelectedFile1] = useState();
 
@@ -86,8 +77,6 @@ function CoursForm() {
     setCours({ ...cours, [contenu]: null });
     setCours({ ...cours, [cible]: state.ciblef });
     setCours({ ...cours, [createur]: user });
-    setCours({ ...cours, [supportPrincipal]: null });
-    setCours({ ...cours, [supportsOptionnels]: null });
     cours.titre = state.titref;
     cours.description = state.descriptionf;
     cours.cible = state.ciblef;

@@ -1,5 +1,6 @@
 // @mui material components
 import Card from "@mui/material/Card";
+import Divider from "@mui/material/Divider";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -18,6 +19,7 @@ import Grid from "@mui/material/Grid";
 import { useEffect, useState } from "react";
 import axios from "axios";
 import CampaignIcon from "@mui/icons-material/Campaign";
+import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
 import { Accordion, AccordionDetails, AccordionSummary } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
@@ -29,7 +31,7 @@ function Annonces() {
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/cours/")
+      .get("http://localhost:8080/api/annonces/")
       .then((res) => {
         setAnnonces(res.data);
       })
@@ -62,9 +64,10 @@ function Annonces() {
         <Card
           sx={{
             p: 2,
-            mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
+            ml: 13,
+            mr: 13,
             backdropFilter: "saturate(200%) blur(30px)",
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
@@ -75,8 +78,7 @@ function Annonces() {
               {empty ? (
                 <MKTypography sx={{ textAlign: "center" }}>
                   {" "}
-                  {/* eslint-disable-next-line react/no-unescaped-entities */}
-                  <pre>Aucun cours n'est disponible pour l' instant</pre>
+                  Vous n&apos avez soumis aucun cours pour l&apos instant
                 </MKTypography>
               ) : (
                 <Grid container spacing={6}>
@@ -94,7 +96,7 @@ function Annonces() {
                         >
                           <div
                             style={{
-                              margin: "5",
+                              margin: "3",
                               width: "100%",
                               alignSelf: "center",
                             }}
@@ -107,25 +109,41 @@ function Annonces() {
                                 width: "100%",
                                 alignSelf: "center",
                                 border: "1px solid darkgrey",
+                                fontSize: "2rem",
                               }}
                             >
                               {post.titre.substring(0, 2).toUpperCase()}
                             </MKTypography>
                           </div>{" "}
+                          <Divider orientation="vertical" />
                           <br />
-                          <div style={{ margin: "5", width: "100%" }}>
+                          <div style={{ margin: "3", width: "100%" }}>
                             <span>
-                              <MKTypography variant="h6">Titre : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.titre}</p>
+                              <MKTypography variant="h6">
+                                <p
+                                  style={{
+                                    fontSize: "18px",
+                                    fontFamily: "sans-serif",
+                                    fontWeight: "bold",
+                                  }}
+                                >
+                                  {post.titre}
+                                </p>
+                              </MKTypography>{" "}
                             </span>
                             <span>
-                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
+                              <p style={{ fontSize: "14px" }}> Pour {post.cible}</p>
                             </span>
-                            <span>
-                              <MKTypography variant="h6">Date de creation : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>
-                                {new Date(post.dateCreation).toLocaleString("fr-FR", DATE_OPTIONS)}
+                            <span style={{ justifySelf: "right", alignSelf: "right" }}>
+                              <p
+                                style={{ fontSize: "12px", color: "darkgrey", fontStyle: "italic" }}
+                              >
+                                <AccessTimeFilledIcon mr={4} ml={3} />
+                                <p>
+                                  {new Intl.DateTimeFormat("fr-FR", DATE_OPTIONS).format(
+                                    new Date(post.dateCreation)
+                                  )}
+                                </p>
                               </p>
                             </span>
                           </div>

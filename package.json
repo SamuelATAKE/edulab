@@ -18,6 +18,7 @@
     "npm": ">=6"
   },
   "dependencies": {
+    "@date-io/date-fns": "^2.13.1",
     "@emotion/cache": "11.4.0",
     "@emotion/react": "11.4.1",
     "@emotion/styled": "11.3.0",
@@ -25,6 +26,7 @@
     "@mui/icons-material": "5.2.0",
     "@mui/material": "5.2.0",
     "@mui/styled-engine": "5.2.0",
+    "@mui/x-date-pickers": "^5.0.0-alpha.2",
     "@testing-library/jest-dom": "5.11.4",
     "@testing-library/react": "11.1.0",
     "@testing-library/user-event": "12.1.10",
@@ -39,6 +41,7 @@
     "react-chat-app": "^0.1.9",
     "react-copy-to-clipboard": "5.0.4",
     "react-countup": "6.1.0",
+    "react-datetime-picker": "^3.5.0",
     "react-dom": "17.0.2",
     "react-flatpickr": "3.10.7",
     "react-icons": "^4.3.1",

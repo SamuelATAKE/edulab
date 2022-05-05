@@ -32,19 +32,29 @@ import Footer from "pages/LandingPages/Author/sections/Footer";
 import bgImage from "assets/images/city-profile.jpg";
 import routeMentor from "../../MenuPerUset/Mentor/menu";
 import routeApprenant from "../../MenuPerUset/Apprenant/menu";
+import routePartenaire from "../../MenuPerUset/Partenaire/menu";
 // Images
 const user = JSON.parse(sessionStorage.getItem("user"));
 let isapprenant = false;
+let ispartenaire = false;
 if (user != null) {
   if (user.role === "Apprenant") {
     isapprenant = true;
+  }
+  if (user.role === "Partenaire") {
+    ispartenaire = true;
   }
 }
 
 function Author() {
   return (
     <>
-      <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} transparent light />
+      {ispartenaire ? (
+        <DefaultNavbar routes={routePartenaire} transparent light />
+      ) : (
+        <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} transparent light />
+      )}
+
       <MKBox bgColor="white">
         <MKBox
           minHeight="25rem"

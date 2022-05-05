@@ -5,7 +5,7 @@ function index() {
   const navigate = useNavigate();
   React.useEffect = () => {
     localStorage.remove("user");
-    navigate("/dashboard", { replace: true });
+    navigate("", { replace: true });
   };
 
   return null;

@@ -62,7 +62,7 @@ function AnnoncesDetails() {
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   const [annonces, setAnnonces] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/cours/").then((res) => {
+    axios.get("http://localhost:8080/api/annonces/").then((res) => {
       setAnnonces(res.data);
       if (res.data.length === 0) {
         isEmpty(true);
@@ -72,9 +72,33 @@ function AnnoncesDetails() {
     });
     setUser(JSON.parse(localStorage.getItem("user")));
   }, []);
+
+  const [search, setSearch] = useState("");
+  const handleInputChange = (event) => {
+    const { value } = event.target;
+    if (value !== "" && value.length > 2) {
+      axios.get(`http://localhost:8080/api/annonces/`).then((bd) => {
+        if (
+          bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []
+        ) {
+          setAnnonces(
+            bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase()))
+          );
+        }
+      });
+    } else {
+      axios.get(`http://localhost:8080/api/annonces/`).then((bd) => {
+        setAnnonces(bd.data);
+      });
+    }
+    setSearch(value);
+
+    // eslint-disable-next-line
+        console.log(annonces);
+  };
   return (
     <>
-      <DefaultNavbar routes={routes} sticky dark />
+      <DefaultNavbar routes={routes} transparent />
       <MKBox bgColor="#F4F4F4">
         <MKBox
           minHeight="25rem"
@@ -121,7 +145,9 @@ function AnnoncesDetails() {
                     <SearchIcon sx={{ marginRight: 2 }} />
                     <input
                       type="search"
-                      defaultValue="Recherche"
+                      placeholder="recherche"
+                      value={search}
+                      onChange={handleInputChange}
                       style={{
                         margin: "0 auto",
                         border: "none",
@@ -181,10 +207,6 @@ function AnnoncesDetails() {
                             <span>
                               <MKTypography variant="h6">Titre : </MKTypography>{" "}
                               <p style={{ fontSize: "14px" }}>{post.titre}</p>
-                            </span>
-                            <span>
-                              <MKTypography variant="h6">Cible : </MKTypography>{" "}
-                              <p style={{ fontSize: "14px" }}>{post.cible}</p>
                             </span>
                             <span>
                               <MKTypography variant="h6">Date de creation : </MKTypography>{" "}

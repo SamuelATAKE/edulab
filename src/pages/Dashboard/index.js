@@ -11,6 +11,7 @@ import Divider from "@mui/material/Divider";
 import axios from "axios";
 import routeMentor from "../MenuPerUset/Mentor/menu";
 import routeApprenant from "../MenuPerUset/Apprenant/menu";
+import routePartenaire from "../MenuPerUset/Partenaire/menu";
 import DefaultCounterCard from "../../examples/Cards/CounterCards/DefaultCounterCard";
 import MKButton from "../../components/MKButton";
 // import Stack from "@mui/material/Stack";
@@ -22,8 +23,14 @@ function Dashboard() {
   const [projetCounter, setProjetCounter] = React.useState(0);
   const [coursCounter, setCoursCounter] = React.useState(0);
   let isapprenant = false;
-  if (user.role === "Apprenant") {
-    isapprenant = true;
+  let ispartenaire = false;
+  if (user != null) {
+    if (user.role === "Apprenant") {
+      isapprenant = true;
+    }
+    if (user.role === "Partenaire") {
+      ispartenaire = true;
+    }
   }
   useEffect(() => {
     document.title = "Dashboard";
@@ -37,9 +44,15 @@ function Dashboard() {
       });
     }
   }, []);
+  // eslint-disable-next-line
+   console.log(user.role);
   return (
     <>
-      <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} sticky />
+      {ispartenaire ? (
+        <DefaultNavbar routes={routePartenaire} transparent />
+      ) : (
+        <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} transparent />
+      )}
       <MKBox
         minHeight="75vh"
         width="100%"

@@ -17,6 +17,8 @@ Coded by www.creative-tim.com
 // import Container from "@mui/material/Container";
 // import Grid from "@mui/material/Grid";
 import Card from "@mui/material/Card";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EditIcon from "@mui/icons-material/Edit";
 
 // Material Kit 2 React components
 import MKBox from "components/MKBox";
@@ -43,33 +45,59 @@ import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
 import Divider from "@mui/material/Divider";
 import { Chip } from "@mui/material";
-import { useParams } from "react-router-dom";
+import Button from "@mui/material/Button";
+import Stack from "@mui/material/Stack";
+import * as React from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import routes from "./menu";
 import MKTypography from "../../components/MKTypography";
+import routes from "../MenuPerUset/Mentor/menu";
 
 // Images
 // import bgImage from "assets/images/bg-presentation.jpg";
 // import bgImage from "assets/images/bg-coworking.jpeg";
 
-function ContenuCours() {
+function GestionAnnonces() {
   const param = useParams();
-  // const navigate = useNavigate();
-  // const handleEdit = () => {
-  //  navigate(`modifiercours/${param.id}`);
-  // };
+  const { id } = param;
+  const navigate = useNavigate();
+  const user = JSON.parse(localStorage.getItem("user"));
   const [cours, setCours] = useState({});
+  const handleDelete = () => {
+    axios
+      .delete(`http://localhost:8080/api/utilisateur/addedannonces/${user.id}/${param.id}`)
+      .then((res) => {
+        setCours(res.data);
+        axios.delete(`http://localhost:8080/api/annonces/${param.id}`).then((sres) => {
+          setCours(sres.data);
+        });
+      });
+
+    navigate("/coursdetails");
+  };
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
+    axios.get(`http://localhost:8080/api/annonces/${id}`).then((res) => {
       setCours(res.data);
+      // eslint-disable-next-line
+        console.log("contenu de la reponse");
+      // eslint-disable-next-line
+        console.log(res.data);
     });
-  });
+  }, []);
+  // eslint-disable-next-line
+    console.log("Contenu du cours hors useffect");
+  // eslint-disable-next-line
+    console.log(cours);
+  // eslint-disable-next-line
+    console.log("Indexation du supportPrincipal hors useffect");
+  // eslint-disable-next-line
+    console.log(cours.supportPrincipal);
   return (
     <>
-      <DefaultNavbar routes={routes} transparent />
+      <DefaultNavbar routes={routes} sticky />
       <MKBox
-        height="15em"
+        height="14em"
         width="100%"
         sx={{
           display: "grid",
@@ -77,13 +105,24 @@ function ContenuCours() {
           bakgroundColor: "dark",
         }}
       >
-        <MKTypography variant="h3"> {cours.titre} </MKTypography>
+        <MKTypography variant="h2" mt={2}>
+          {" "}
+          <h2 style={{ textAlign: "center" }}>{cours.titre} </h2>
+          <Stack alignItems="center" justifyContent="center" direction="row" spacing={2}>
+            <Button color="primary" href={`/modifierannonces/${param.id}`} startIcon={<EditIcon />}>
+              Modifier
+            </Button>
+            <Button color="secondary" endIcon={<DeleteIcon />} onClick={handleDelete}>
+              Supprimer
+            </Button>
+          </Stack>
+        </MKTypography>
       </MKBox>
       <Card
         sx={{
           p: 2,
-          mr: 15.5,
-          ml: 15.5,
+          ml: 15,
+          mr: 15,
           mt: 1,
           mb: 4,
           backdropFilter: "saturate(200%) blur(30px)",
@@ -131,17 +170,12 @@ function ContenuCours() {
               sx={{
                 color: "darkblue",
               }}
-              label="Supports et Ressources du cours"
+              label="Ressources"
             />
           </Divider>
         </MKBox>
         <MKTypography mt={5} mb={3}>
-          <h4>Support Principal</h4>
-        </MKTypography>
-        <br />
-        <br />
-        <MKTypography mt={5} mb={3}>
-          <h4>Ressources secondaires</h4>
+          <h4>Ressources Jointes</h4>
         </MKTypography>
         <br />
         <br />
@@ -152,5 +186,4 @@ function ContenuCours() {
     </>
   );
 }
-
-export default ContenuCours;
+export default GestionAnnonces;

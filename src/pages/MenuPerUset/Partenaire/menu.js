@@ -11,25 +11,14 @@ const routes = [
     href: "/presentation",
   },
   {
-    name: "Projets",
+    name: "Annonces",
     icon: <Icon>view_day</Icon>,
-    collapse: [
-      {
-        name: "Projets tuteurés",
-        description: "Apprenez en pratiquant",
-        href: "/projets-details",
-      },
-      {
-        name: "Annonces",
-        description: "Participez à de vrais projets",
-        href: "/annonces",
-      },
-    ],
+    href: "/annoncesdetails",
   },
   {
     name: "Cours",
     icon: <Icon>article</Icon>,
-    href: "Cours-details",
+    href: "/Cours-details",
   },
   {
     type: "internal",
@@ -46,6 +35,11 @@ const routes = [
         name: "Mon dashboard",
         description: "Afficher mes informations",
         href: "/dashboard",
+      },
+      {
+        name: "Profil",
+        description: "Modifier mes informations",
+        href: "/profil",
       },
       {
         name: "Déconnexion",

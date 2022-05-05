@@ -23,6 +23,7 @@ import Typography from "@mui/material/Typography";
 import Link from "@mui/material/Link";
 import Divider from "@mui/material/Divider";
 import AccessTimeFilledIcon from "@mui/icons-material/AccessTimeFilled";
+import SearchIcon from "@mui/icons-material/Search";
 import MKTypography from "../../components/MKTypography";
 
 function Cours() {
@@ -44,10 +45,10 @@ function Cours() {
   }, []);
   return (
     <>
-      <DefaultNavbar routes={routes} sticky dark />
+      <DefaultNavbar routes={routes} transparent />
       <MKBox bgColor="#F4F4F4">
         <MKBox
-          height="15em"
+          height="18em"
           width="100%"
           sx={{
             display: "grid",
@@ -64,21 +65,50 @@ function Cours() {
         <Card
           sx={{
             p: 2,
+            mx: { xs: 2, lg: 3 },
             mt: -8,
             mb: 4,
-            ml: 13,
-            mr: 13,
             backdropFilter: "saturate(200%) blur(30px)",
             boxShadow: ({ boxShadows: { xxl } }) => xxl,
           }}
         >
+          <Grid container item justifyContent="center" xs={12} lg={4} mx="auto">
+            <MKBox position="static">
+              <span
+                style={{
+                  margin: "0 auto",
+                  border: "1px solid #ccc",
+                  outline: "none",
+                  fontSize: "1rem",
+                  padding: "0.5rem",
+                  backgroundColor: "white",
+                  color: "black",
+                  borderRadius: "0.5rem",
+                }}
+              >
+                {" "}
+                <SearchIcon sx={{ marginRight: 2 }} />
+                <input
+                  type="search"
+                  placeholder="recherhe"
+                  style={{
+                    margin: "0 auto",
+                    border: "none",
+                    outline: "none",
+                    fontSize: "1rem",
+                  }}
+                />
+              </span>
+            </MKBox>
+          </Grid>
           <MKBox mb={3} />
           <MKBox component="section" py={2}>
             <Container>
               {empty ? (
                 <MKTypography sx={{ textAlign: "center" }}>
                   {" "}
-                  Vous n&apos avez soumis aucun cours pour l&apos instant
+                  {/* eslint-disable-next-line react/no-unescaped-entities */}
+                  <pre>Aucun cours n'est disponible pour l' instant</pre>
                 </MKTypography>
               ) : (
                 <Grid container spacing={6}>

@@ -21,6 +21,9 @@ import Projetstutores from "pages/Projetstutores";
 import Cours from "pages/Cours";
 import Annonces from "pages/Annonces";
 import Author from "pages/LandingPages/Author";
+import EditAnnoncesForm from "pages/AnoncesDetailsPartenaire/EditAnnoncesForm";
+import AnnoncesForm from "pages/AnoncesDetailsPartenaire/AnnoncesForm";
+import GestionAnnonces from "pages/ContenuAnnoncesPartenaire";
 import AboutUsPage from "./layouts/pages/landing-pages/about-us";
 import Dashboard from "./pages/Dashboard";
 import CoursDetails from "./pages/CoursDetails";
@@ -38,6 +41,7 @@ import AnnoncesDetails from "./pages/AnoncesDetails";
 import AnnoncesDetailsPartenaire from "./pages/AnoncesDetailsPartenaire";
 import CoursForm from "./pages/CoursDetailsMentor/CoursForm";
 import EditCoursForm from "./pages/CoursDetailsMentor/EditCoursForm";
+import ProjetForm from "./pages/ProjetsDetailsMentor/ProjetForm";
 
 export default function App() {
   const { pathname } = useLocation();
@@ -72,7 +76,9 @@ export default function App() {
         <Route path="/commentaires" element={<Commentaires />} />
         <Route path="/contenucours/:id" element={<ContenuCours />} />
         <Route path="/gestioncours/:id" element={<GestionContenuCours />} />
+        <Route path="/gestionannonces/:id" element={<GestionAnnonces />} />
         <Route path="/modifiercours/:id" element={<EditCoursForm />} />
+        <Route path="/modifierannonces/:id" element={<EditAnnoncesForm />} />
         <Route path="/gestionprojet" element={<GestionContenuProjet />} />
         <Route path="/contenuprojet" element={<ContenuProjet />} />
         <Route path="/notifications" element={<Notifications />} />
@@ -84,6 +90,8 @@ export default function App() {
         <Route path="/inscription" element={<SignUp />} />
         <Route path="/Cours" element={<Cours />} />
         <Route path="/Coursform" element={<CoursForm />} />
+        <Route path="/Projetform" element={<ProjetForm />} />
+        <Route path="/annoncesform" element={<AnnoncesForm />} />
         <Route path="/Cours-details" element={<CoursDetails />} />
         <Route path="/Projets-details" element={<ProjetsDetails />} />
         <Route path="/CoursDetails" element={<CoursDetailsMentor />} />
