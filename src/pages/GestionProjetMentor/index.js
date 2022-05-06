@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/label-has-associated-control */
+/* eslint-disable react/jsx-no-comment-textnodes */
 /*
 =========================================================
 * Material Kit 2 React - v2.0.0
@@ -40,6 +42,12 @@ import DefaultFooter from "examples/Footers/DefaultFooter";
 // Routes
 import footerRoutes from "footer.routes";
 import Typography from "@mui/material/Typography";
+import { useParams } from "react-router-dom";
+import { useEffect, useState } from "react";
+import axios from "axios";
+
+import { Divider, Chip } from "@mui/material";
+
 import MKTypography from "../../components/MKTypography";
 import FloatingActionButtons from "./FloatingActionButton";
 import routes from "../MenuPerUset/Mentor/menu";
@@ -49,6 +57,13 @@ import routes from "../MenuPerUset/Mentor/menu";
 // import bgImage from "assets/images/bg-coworking.jpeg";
 
 function GestionContenuProjet() {
+  const param = useParams();
+  const [projet, setProjet] = useState({});
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/projet/${param.id}`).then((res) => {
+      setProjet(res.data);
+    });
+  }, []);
   return (
     <>
       <DefaultNavbar routes={routes} sticky />
@@ -66,52 +81,118 @@ function GestionContenuProjet() {
       <Card
         sx={{
           p: 2,
-          mx: { xs: 2, lg: 3 },
+          ml: 15,
+          mr: 15,
           mt: 1,
-          backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.9),
+          mb: 4,
           backdropFilter: "saturate(200%) blur(30px)",
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <FloatingActionButtons align="center" />
+        <FloatingActionButtons projet={projet} align="center" />
         <Typography
           variant="h4"
-          component="h2"
+          component="h4"
           sx={{
             mb: 3,
             p: 2,
-            border: "0.5px solid darkgray",
-            borderRadius: "0.4em",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
           }}
         >
-          Mon Ai Personnel
+          {projet.nom}
         </Typography>
-        <hr />
-        <MKTypography mt={2} mb={3}>
-          <h3>Description</h3>
-          Les composants React sont des composants qui sont développés par des développeurs et qui
-          sont utilisés dans des applications web. Nous atelerons ici sur la maniere de concevoir
-          une achitecture efficace de composants reutilisables.
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Description</h4>
+          {projet.description}
         </MKTypography>
-        <hr />
-        <MKTypography mt={2} mb={3}>
-          <h3>Objectifs</h3>
-          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Objectifs</h4>
+          <p>{projet.objectifs}</p>
         </MKTypography>
-        <hr />
-        <MKTypography mt={2} mb={3}>
-          <h3>Technologies</h3>
-          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Technologies</h4>
+          <p>{projet.technologies}</p>
         </MKTypography>
-        <hr />
-        <MKTypography mt={2} mb={3}>
-          <h3>Prerequis</h3>
-          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Prerequis</h4>
+          <p>{projet.prerequis}</p>
         </MKTypography>
-        <hr />
-        <MKTypography mt={2} mb={3}>
-          <h3>Delais</h3>
-          <p>Le but de ce cours est de vous apprendre à utiliser les composants React.</p>
+        <MKTypography
+          mt={3}
+          mb={3}
+          sx={{
+            mb: 3,
+            p: 2,
+            fontSize: "14px",
+            borderRadius: "0.1em",
+            boxShadow: ({ boxShadows: { xs } }) => xs,
+          }}
+        >
+          <h4>Duree</h4>
+          <p>{projet.dureeProjet} Jours</p>
+        </MKTypography>
+        <MKBox p="auto">
+          {" "}
+          <Divider
+            sx={{
+              border: "0.5px solid darkblue",
+              borderRadius: "0.4em",
+              color: "darkblue",
+              backgroundColor: "darkblue",
+            }}
+          >
+            <Chip
+              sx={{
+                color: "darkblue",
+              }}
+              label="Supports et Ressources"
+            />
+          </Divider>
+        </MKBox>
+        <MKTypography mt={5} mb={3}>
+          <h4>Ressources</h4>
+          <p> </p>
         </MKTypography>
       </Card>
       <MKBox pt={6} px={1} mt={6}>

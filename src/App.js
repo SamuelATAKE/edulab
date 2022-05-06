@@ -79,7 +79,7 @@ export default function App() {
         <Route path="/gestionannonces/:id" element={<GestionAnnonces />} />
         <Route path="/modifiercours/:id" element={<EditCoursForm />} />
         <Route path="/modifierannonces/:id" element={<EditAnnoncesForm />} />
-        <Route path="/gestionprojet" element={<GestionContenuProjet />} />
+        <Route path="/gestionprojet/:id" element={<GestionContenuProjet />} />
         <Route path="/contenuprojet" element={<ContenuProjet />} />
         <Route path="/notifications" element={<Notifications />} />
         <Route path="/a-propos-de-nous" element={<AboutUsPage />} />

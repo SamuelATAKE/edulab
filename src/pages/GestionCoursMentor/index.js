@@ -95,7 +95,7 @@ function ContenuCours() {
     console.log(cours.supportPrincipal);
   return (
     <>
-      <DefaultNavbar routes={routes} sticky />
+      <DefaultNavbar routes={routes} transparent dark />
       <MKBox
         height="14em"
         width="100%"

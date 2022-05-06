@@ -42,6 +42,11 @@ function Dashboard() {
       axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((res) => {
         setCoursCounter(res.data.length);
       });
+      axios.get(`http://localhost:8080/api/projet/`).then((res) => {
+        setProjetCounter(
+          res.data.filter((x) => x.createur !== null && x.createur.id === user.id).length
+        );
+      });
     }
   }, []);
   // eslint-disable-next-line
@@ -54,7 +59,7 @@ function Dashboard() {
         <DefaultNavbar routes={isapprenant ? routeApprenant : routeMentor} transparent />
       )}
       <MKBox
-        minHeight="75vh"
+        height="20em"
         width="100%"
         display="flex"
         alignItems="center"
@@ -68,7 +73,7 @@ function Dashboard() {
         <Container>
           <Grid container item xs={12} md={7} lg={6} flexDirection="column" justifyContent="center">
             <MKTypography
-              variant="h1"
+              variant="h2"
               color="secondary"
               mb={3}
               sx={({ breakpoints, typography: { size } }) => ({
@@ -104,7 +109,7 @@ function Dashboard() {
             >
               <MKBox sx={{ alignContent: "center", alignSelf: "center", justifyContent: "center" }}>
                 <DefaultCounterCard
-                  count={0}
+                  count={projetCounter}
                   title="Projets"
                   description={
                     isapprenant
@@ -112,7 +117,12 @@ function Dashboard() {
                       : "Créez des projets, partagez vos compétences"
                   }
                 />
-                <MKButton variant="outlined" color="secondary" sx={{ border: "none" }}>
+                <MKButton
+                  variant="outlined"
+                  color="secondary"
+                  sx={{ border: "none" }}
+                  href={isapprenant ? "/projets-details" : "/projetsdetails"}
+                >
                   {" "}
                   {isapprenant ? "Participer à un projet" : "Créer un projet"}
                 </MKButton>

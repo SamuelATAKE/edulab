@@ -57,7 +57,7 @@ function ProjetsDetailsMentor() {
         axios.get(`http://localhost:8080/api/projet/`).then((secres1) => {
       // eslint-disable-next-line
             console.log(secres1.data);
-      setprojet(secres1.data.filter((x) => x.createur.id === user.id));
+      setprojet(secres1.data.filter((x) => x.createur !== null && x.createur.id === user.id));
       if (secres1.data.length === 0) {
         isEmpty(true);
       } else {
@@ -69,19 +69,19 @@ function ProjetsDetailsMentor() {
   const handleInputChange = (event) => {
     const { value } = event.target;
     if (value !== "" && value.length > 2) {
-      axios.get(`http://localhost:8080/api/utilisateur/addedprojete/${user.id}`).then((bd) => {
-        if (
-          bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []
-        ) {
+      axios.get(`http://localhost:8080/api/projet/`).then((bd) => {
+        if (bd.data.filter((cour) => cour.nom.toLowerCase().includes(value.toLowerCase())) !== []) {
           setprojet(
-            bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase()))
+            bd.data
+              .filter((cour) => cour.nom.toLowerCase().includes(value.toLowerCase()))
+              .filter((x) => x.createur !== null && x.createur.id === user.id)
           );
           isChanged(changed + 1);
         }
       });
     } else {
-      axios.get(`http://localhost:8080/api/utilisateur/addedprojete/${user.id}`).then((bd) => {
-        setprojet(bd.data);
+      axios.get(`http://localhost:8080/api/projet/`).then((bd) => {
+        setprojet(bd.data.filter((x) => x.createur !== null && x.createur.id === user.id));
         isChanged(changed + 1);
       });
     }
@@ -115,7 +115,8 @@ function ProjetsDetailsMentor() {
         <Card
           sx={{
             p: 2,
-            mx: { xs: 2, lg: 3 },
+            ml: 8,
+            mr: 8,
             mt: -8,
             mb: 4,
             backgroundColor: ({ palette: { white }, functions: { rgba } }) => rgba(white.main, 0.8),
@@ -134,8 +135,8 @@ function ProjetsDetailsMentor() {
               <Grid container item justifyContent="center" xs={12} lg={4} mx="auto">
                 <AppBar position="static">
                   <Tabs value={activeTab} onChange={handleTabType}>
-                    <Tab label="Publiés" />
-                    <Tab label="En projet de redaction" />
+                    <Tab label="En cours" />
+                    <Tab label="Finis" />
                   </Tabs>
                 </AppBar>
               </Grid>
@@ -220,12 +221,13 @@ function ProjetsDetailsMentor() {
                               <MKTypography variant="h6">
                                 <p
                                   style={{
-                                    fontSize: "18px",
+                                    fontSize: "25px",
                                     fontFamily: "sans-serif",
                                     fontWeight: "bold",
+                                    margin: "3",
                                   }}
                                 >
-                                  {post.titre}
+                                  {post.nom}
                                 </p>
                               </MKTypography>{" "}
                             </span>

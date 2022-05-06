@@ -58,7 +58,8 @@ const projetState = {
   createurf: "",
 };
 const user = JSON.parse(localStorage.getItem("user"));
-function ProjetForm() {
+function EditProjetForm() {
+  const param = useParams();
   const navigate = useNavigate();
   const [state, setState] = useState(initialState);
   const {
@@ -73,6 +74,7 @@ function ProjetForm() {
   } = state;
   const [projet, setprojet] = useState(projetState);
   const {
+    id,
     nom,
     objectif,
     description,
@@ -106,6 +108,7 @@ function ProjetForm() {
   const onSubmit = (e) => {
     e.preventDefault();
     setprojet({ ...projet, [nom]: state.titre });
+    setprojet({ ...projet, [id]: param.id });
     setprojet({ ...projet, [description]: state.descriptionf });
     setprojet({ ...projet, [objectif]: state.objectiff });
     setprojet({ ...projet, [technologies]: state.technologiesf });
@@ -115,6 +118,7 @@ function ProjetForm() {
     setprojet({ ...projet, [dateDebutProjet]: null });
     setprojet({ ...projet, [nombreMaxApprenant]: state.nombreMaxApprenantf });
     projet.nom = state.nomf;
+    projet.id = param.id;
     projet.description = state.descriptionf;
     projet.objectif = state.objectiff;
     projet.technologies = state.technologiesf;
@@ -134,7 +138,7 @@ function ProjetForm() {
     const formData = new FormData();
     formData.append("file", selectedFile, selectedFile.name);
     axios
-      .post(`http://localhost:8080/api/projet/`, projet, {
+      .put(`http://localhost:8080/api/projet/`, projet, {
         headers: {
           "content-type": "application/json",
         },
@@ -274,7 +278,7 @@ function ProjetForm() {
               />
               <TextField
                 required
-                id="technologies"
+                id="technolohies"
                 label="Technologies"
                 name="technologiesf"
                 value={technologiesf}
@@ -368,4 +372,4 @@ function ProjetForm() {
   );
 }
 
-export default ProjetForm;
+export default EditProjetForm;

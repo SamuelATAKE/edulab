@@ -34,7 +34,7 @@ import MKBox from "../../components/MKBox";
 import MKTypography from "../../components/MKTypography";
 import MKButton from "../../components/MKButton";
 
-export default function FloatingActionButtons() {
+export default function FloatingActionButtons(props) {
   const [show, setShow] = useState(false);
   const toggleModal = () => setShow(!show);
   const [open, setOpen] = React.useState(false);
@@ -43,7 +43,6 @@ export default function FloatingActionButtons() {
   const [showparticipants, setShowParticipants] = useState(false);
   const toggleModalparticipants = () => setShowParticipants(!showparticipants);
   const [openEdit, setOpenEdit] = React.useState(false);
-  const handleOpenEdit = () => setOpenEdit(true);
   const handleCloseEdit = () => setOpenEdit(false);
 
   const participants = [
@@ -101,11 +100,7 @@ export default function FloatingActionButtons() {
         >
           <p>Participants</p>
         </Button>
-        <Button
-          variant="extended"
-          onClick={handleOpenEdit}
-          startIcon={<EditIcon fontSize="medium" />}
-        >
+        <Button variant="extended" href="" startIcon={<EditIcon fontSize="medium" />}>
           <p>Reglages du projet</p>
         </Button>
         <Button variant="extended" href="/projets/1" startIcon={<DeleteIcon fontSize="medium" />}>
