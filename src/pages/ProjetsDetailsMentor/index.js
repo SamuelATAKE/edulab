@@ -64,7 +64,7 @@ function ProjetsDetailsMentor() {
         isEmpty(false);
       }
     });
-  }, [user]);
+  }, []);
   const [search, setSearch] = useState("");
   const handleInputChange = (event) => {
     const { value } = event.target;

@@ -17,8 +17,8 @@ import footerRoutes from "footer.routes";
 // import AppBar from "@mui/material/AppBar";
 // import Tabs from "@mui/material/Tabs";
 // import Tab from "@mui/material/Tab";
-import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
+import { useState, useEffect } from "react";
 import LibraryBooksIcon from "@mui/icons-material/LibraryBooks";
 import { Slider, TextField, Box, InputLabel } from "@mui/material";
 import Typography from "@mui/material/Typography";
@@ -35,7 +35,7 @@ import MKTypography from "../../components/MKTypography";
 import routes from "../MenuPerUset/Mentor/menu";
 import MKButton from "../../components/MKButton";
 
-const initialState = {
+let initialState = {
   nomf: "",
   descriptionf: "",
   objectiff: "",
@@ -46,21 +46,23 @@ const initialState = {
   dateDebutProjetf: "",
   createurf: "",
 };
-const projetState = {
-  nom: "",
-  description: "",
-  objectif: "",
-  technologies: "",
-  prerequis: "",
-  dureeProjet: "",
-  nombreMaxApprenant: 5,
-  dateDebutProjet: "",
-  createurf: "",
-};
+
 const user = JSON.parse(localStorage.getItem("user"));
 function EditProjetForm() {
   const param = useParams();
   const navigate = useNavigate();
+  const projetState = {
+    id: `${param.id}`,
+    nom: "",
+    description: "",
+    objectif: "",
+    technologies: "",
+    prerequis: "",
+    dureeProjet: "",
+    nombreMaxApprenant: 5,
+    dateDebutProjet: "",
+    createur: "",
+  };
   const [state, setState] = useState(initialState);
   const {
     nomf,
@@ -86,7 +88,24 @@ function EditProjetForm() {
     createur,
   } = projet;
   const [selectedFile, setSelectedFile] = useState();
-
+  useEffect(() => {
+    axios.get(`http://localhost:8080/api/projet/${param.id}`).then((res) => {
+      // eslint-disable-next-line
+      console.log(res.data);
+      initialState = {
+        nomf: res.data.nom,
+        descriptionf: res.data.description,
+        objectiff: res.data.objectif,
+        technologiesf: res.data.technologies,
+        prerequisf: res.data.prerequis,
+        dureef: res.data.dureeProjet,
+        nombreMaxApprenantf: res.data.nombreMaxApprenant,
+        dateDebutProjetf: "",
+        createurf: res.data.createur,
+      };
+      setState(initialState);
+    });
+  }, []);
   // const [isFilePicked, setIsFilePicked] = useState(false);
 
   const changeHandler = (event) => {
@@ -166,7 +185,7 @@ function EditProjetForm() {
       // eslint-disable-next-line
           console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
-      navigate("/projetsdetails");
+      navigate(`/gestionprojet/${param.id}`);
     });
   };
 
@@ -282,6 +301,19 @@ function EditProjetForm() {
                 label="Technologies"
                 name="technologiesf"
                 value={technologiesf}
+                onChange={handleInputChange}
+                sx={{
+                  m: 1,
+                  width: "75%",
+                  alignSelf: "center",
+                }}
+              />
+              <TextField
+                required
+                id="objectif"
+                label="Objectifs"
+                name="objectiff"
+                value={objectiff}
                 onChange={handleInputChange}
                 sx={{
                   m: 1,

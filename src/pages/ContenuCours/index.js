@@ -64,7 +64,7 @@ function ContenuCours() {
     axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
       setCours(res.data);
     });
-  });
+  }, []);
   return (
     <>
       <DefaultNavbar routes={routes} transparent />

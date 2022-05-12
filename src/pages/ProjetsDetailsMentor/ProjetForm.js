@@ -287,6 +287,19 @@ function ProjetForm() {
               />
               <TextField
                 required
+                id="objectif"
+                label="Objectifs"
+                name="objectiff"
+                value={objectiff}
+                onChange={handleInputChange}
+                sx={{
+                  m: 1,
+                  width: "75%",
+                  alignSelf: "center",
+                }}
+              />
+              <TextField
+                required
                 id="duree"
                 label="Durée"
                 name="dureef"

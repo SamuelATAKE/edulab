@@ -38,6 +38,9 @@ function Dashboard() {
       axios.get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`).then((res) => {
         setCoursCounter(res.data.length);
       });
+      axios.get(`http://localhost:8080/api/utilisateur/joinedproject/${user.id}`).then((res) => {
+        setProjetCounter(res.data.length);
+      });
     } else {
       axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((res) => {
         setCoursCounter(res.data.length);

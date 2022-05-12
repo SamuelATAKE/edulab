@@ -1,3 +1,6 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/destructuring-assignment */
+/* eslint-disable react/prop-types */
 import * as React from "react";
 import Box from "@mui/material/Box";
 import MailIcon from "@mui/icons-material/Mail";
@@ -11,7 +14,7 @@ import Slide from "@mui/material/Slide";
 import CloseIcon from "@mui/icons-material/Close";
 import Divider from "@mui/material/Divider";
 import Modal from "@mui/material/Modal";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import {
   List,
   ListItemButton,
@@ -30,10 +33,13 @@ import {
 import Card from "@mui/material/Card";
 import Typography from "@mui/material/Typography";
 import SendIcon from "@mui/icons-material/Send";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import MKBox from "../../components/MKBox";
 import MKTypography from "../../components/MKTypography";
 import MKButton from "../../components/MKButton";
 
+const user = JSON.parse(localStorage.getItem("user"));
 export default function FloatingActionButtons(props) {
   const [show, setShow] = useState(false);
   const toggleModal = () => setShow(!show);
@@ -44,33 +50,15 @@ export default function FloatingActionButtons(props) {
   const toggleModalparticipants = () => setShowParticipants(!showparticipants);
   const [openEdit, setOpenEdit] = React.useState(false);
   const handleCloseEdit = () => setOpenEdit(false);
+  const navigate = useNavigate();
 
-  const participants = [
-    {
-      id: 1,
-      name: "Mounir",
-      email: "atiiii@ludov.com",
-      phone: "4",
-    },
-    {
-      id: 2,
-      name: "vair",
-      email: "atiiii@ludov.com",
-      phone: "6",
-    },
-    {
-      id: 3,
-      name: "rytfuyghuji",
-      email: "ertdfgyhuj@yyi.com",
-      phone: "7",
-    },
-    {
-      id: 4,
-      name: "Mi9o8764ref",
-      email: "ertdfgyhuj@yyi.com",
-      phone: "8",
-    },
-  ];
+  const [participants, setParticipants] = useState([]);
+  const handelePage = () => {
+    navigate("/projetsdetails");
+  };
+  // eslint-disable-next-line
+  console.log(participants);
+
   return (
     <>
       {" "}
@@ -95,15 +83,38 @@ export default function FloatingActionButtons(props) {
         </Button>
         <Button
           variant="extended"
-          onClick={toggleModalparticipants}
+          onClick={() => {
+            axios
+              .get(`http://localhost:8080/api/projet/participants/${props.projet.id}`)
+              .then((res) => {
+                setParticipants(res.data);
+                toggleModalparticipants();
+              });
+          }}
           startIcon={<PeopleIcon fontSize="medium" />}
         >
           <p>Participants</p>
         </Button>
-        <Button variant="extended" href="" startIcon={<EditIcon fontSize="medium" />}>
+        <Button
+          variant="extended"
+          href={`/modifierprojet/${props.projet.id}`}
+          startIcon={<EditIcon fontSize="medium" />}
+        >
           <p>Reglages du projet</p>
         </Button>
-        <Button variant="extended" href="/projets/1" startIcon={<DeleteIcon fontSize="medium" />}>
+        <Button
+          variant="extended"
+          onClick={() => {
+            axios
+              .delete(`http://localhost:8080/api/utilisateur/joinedproject/${props.projet.id}`)
+              .then((sres) => {
+                axios.delete(`http://localhost:8080/api/projet/${props.projet.id}`).then((res) => {
+                  handelePage();
+                });
+              });
+          }}
+          startIcon={<DeleteIcon fontSize="medium" />}
+        >
           <p>Supprimer</p>
         </Button>
       </Box>
@@ -291,9 +302,9 @@ export default function FloatingActionButtons(props) {
                 <TableBody>
                   {participants.map((participant) => (
                     <TableRow key={participant.id}>
-                      <TableCell>{participant.name}</TableCell>
+                      <TableCell>{participant.nom}</TableCell>
                       <TableCell>{participant.email}</TableCell>
-                      <TableCell> Level {participant.phone}</TableCell>
+                      <TableCell> {participant.username}</TableCell>
                       <TableCell>
                         <Button color="secondary"> Retirer</Button>{" "}
                       </TableCell>

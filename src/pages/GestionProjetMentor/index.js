@@ -89,7 +89,7 @@ function GestionContenuProjet() {
           boxShadow: ({ boxShadows: { xxl } }) => xxl,
         }}
       >
-        <FloatingActionButtons projet={projet} align="center" />
+        <FloatingActionButtons id={projet.id} projet={projet} align="center" />
         <Typography
           variant="h4"
           component="h4"
