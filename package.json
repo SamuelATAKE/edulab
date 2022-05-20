@@ -20,7 +20,7 @@
   "dependencies": {
     "@date-io/date-fns": "^2.13.1",
     "@emotion/cache": "11.4.0",
-    "@emotion/react": "11.4.1",
+    "@emotion/rea ct": "11.4.1",
     "@emotion/styled": "11.3.0",
     "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "5.2.0",
@@ -53,9 +53,9 @@
     "web-vitals": "1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "react-scripts start --legacy-peer-deps",
+    "build": "react-scripts build --legacy-peer-deps",
+    "test": "react-scripts test --legacy-peer-deps",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
