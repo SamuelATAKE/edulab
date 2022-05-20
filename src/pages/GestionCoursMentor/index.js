@@ -66,10 +66,12 @@ function ContenuCours() {
   const [cours, setCours] = useState({});
   const handleDelete = () => {
     axios
-      .delete(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}/${param.id}`)
+      .delete(
+        `https://edulab-backend.herokuapp.com/api/utilisateur/addedcourse/${user.id}/${param.id}`
+      )
       .then((res) => {
         setCours(res.data);
-        axios.delete(`http://localhost:8080/api/cours/${param.id}`).then((sres) => {
+        axios.delete(`https://edulab-backend.herokuapp.com/api/cours/${param.id}`).then((sres) => {
           setCours(sres.data);
         });
       });
@@ -77,22 +79,22 @@ function ContenuCours() {
     navigate("/coursdetails");
   };
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/cours/${id}`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/cours/${id}`).then((res) => {
       setCours(res.data);
       // eslint-disable-next-line
-        console.log("contenu de la reponse");
+      console.log("contenu de la reponse");
       // eslint-disable-next-line
-        console.log(res.data);
+      console.log(res.data);
     });
   }, []);
   // eslint-disable-next-line
-    console.log("Contenu du cours hors useffect");
+  console.log("Contenu du cours hors useffect");
   // eslint-disable-next-line
-    console.log(cours);
+  console.log(cours);
   // eslint-disable-next-line
-    console.log("Indexation du supportPrincipal hors useffect");
+  console.log("Indexation du supportPrincipal hors useffect");
   // eslint-disable-next-line
-    console.log(cours.supportPrincipal);
+  console.log(cours.supportPrincipal);
   return (
     <>
       <DefaultNavbar routes={routes} transparent dark />

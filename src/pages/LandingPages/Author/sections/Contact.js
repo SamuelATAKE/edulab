@@ -142,8 +142,8 @@ function Contact() {
     console.log(state);
 
     axios
-      // .put(`http://localhost:8080/api/utilisateur/${user.id}`, utilisateur, {
-      .put(`http://localhost:8080/api/utilisateur/update/`, utilisateur, {
+      // .put(`https://edulab-backend.herokuapp.com/api/utilisateur/${user.id}`, utilisateur, {
+      .put(`https://edulab-backend.herokuapp.com/api/utilisateur/update/`, utilisateur, {
         headers: {
           "content-type": "application/json",
         },

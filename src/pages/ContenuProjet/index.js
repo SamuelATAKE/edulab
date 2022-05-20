@@ -60,7 +60,7 @@ function ContenuProjet() {
   const param = useParams();
   const [projet, setProjet] = useState({});
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/projet/${param.id}`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/projet/${param.id}`).then((res) => {
       setProjet(res.data);
     });
   }, []);

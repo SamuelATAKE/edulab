@@ -85,7 +85,9 @@ export default function FloatingActionButtons(props) {
           variant="extended"
           onClick={() => {
             axios
-              .get(`http://localhost:8080/api/projet/participants/${props.projet.id}`)
+              .get(
+                `https://edulab-backend.herokuapp.com/api/projet/participants/${props.projet.id}`
+              )
               .then((res) => {
                 setParticipants(res.data);
                 toggleModalparticipants();
@@ -106,11 +108,15 @@ export default function FloatingActionButtons(props) {
           variant="extended"
           onClick={() => {
             axios
-              .delete(`http://localhost:8080/api/utilisateur/joinedproject/${props.projet.id}`)
+              .delete(
+                `https://edulab-backend.herokuapp.com/api/utilisateur/joinedproject/${props.projet.id}`
+              )
               .then((sres) => {
-                axios.delete(`http://localhost:8080/api/projet/${props.projet.id}`).then((res) => {
-                  handelePage();
-                });
+                axios
+                  .delete(`https://edulab-backend.herokuapp.com/api/projet/${props.projet.id}`)
+                  .then((res) => {
+                    handelePage();
+                  });
               });
           }}
           startIcon={<DeleteIcon fontSize="medium" />}

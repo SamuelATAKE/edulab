@@ -54,9 +54,9 @@ function ProjetsDetailsMentor() {
   useEffect(() => {
     document.title = "";
     // eslint-disable-next-line
-        axios.get(`http://localhost:8080/api/projet/`).then((secres1) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/projet/`).then((secres1) => {
       // eslint-disable-next-line
-            console.log(secres1.data);
+      console.log(secres1.data);
       setprojet(secres1.data.filter((x) => x.createur !== null && x.createur.id === user.id));
       if (secres1.data.length === 0) {
         isEmpty(true);
@@ -69,7 +69,7 @@ function ProjetsDetailsMentor() {
   const handleInputChange = (event) => {
     const { value } = event.target;
     if (value !== "" && value.length > 2) {
-      axios.get(`http://localhost:8080/api/projet/`).then((bd) => {
+      axios.get(`https://edulab-backend.herokuapp.com/api/projet/`).then((bd) => {
         if (bd.data.filter((cour) => cour.nom.toLowerCase().includes(value.toLowerCase())) !== []) {
           setprojet(
             bd.data
@@ -80,7 +80,7 @@ function ProjetsDetailsMentor() {
         }
       });
     } else {
-      axios.get(`http://localhost:8080/api/projet/`).then((bd) => {
+      axios.get(`https://edulab-backend.herokuapp.com/api/projet/`).then((bd) => {
         setprojet(bd.data.filter((x) => x.createur !== null && x.createur.id === user.id));
         isChanged(changed + 1);
       });
@@ -88,7 +88,7 @@ function ProjetsDetailsMentor() {
     setSearch(value);
 
     // eslint-disable-next-line
-        console.log(projet);
+    console.log(projet);
   };
   const handleOpen = () => {
     navigate("/projetform");

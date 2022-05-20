@@ -32,7 +32,7 @@ function Cours() {
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/cours/")
+      .get("https://edulab-backend.herokuapp.com/api/cours/")
       .then((res) => {
         setCours(res.data);
       })

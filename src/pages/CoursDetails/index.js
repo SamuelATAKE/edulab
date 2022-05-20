@@ -46,27 +46,31 @@ function CoursDetails() {
   };
   const handleJoin = (id) => {
     let item;
-    axios.get(`http://localhost:8080/api/cours/${id}`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/cours/${id}`).then((res) => {
       item = res.data;
       axios
-        .put(`http://localhost:8080/api/utilisateur/joincourse/${user.id}`, res.data, {
-          headers: {
-            "content-type": "application/json",
-          },
-        })
+        .put(
+          `https://edulab-backend.herokuapp.com/api/utilisateur/joincourse/${user.id}`,
+          res.data,
+          {
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        )
         .then((secres) => {
           // eslint-disable-next-line
-                console.log(secres.data);
+          console.log(secres.data);
           // eslint-disable-next-line
-                console.log(item);
+          console.log(item);
         });
     });
 
-    axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-          console.log(secres1.data);
+      console.log(secres1.data);
       // eslint-disable-next-line
-        console.log(item);
+      console.log(item);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       setUser(JSON.parse(localStorage.getItem("user")));
     });
@@ -82,18 +86,18 @@ function CoursDetails() {
   useEffect(() => {
     document.title = "Cours";
     axios
-      .get("http://localhost:8080/api/cours/")
+      .get("https://edulab-backend.herokuapp.com/api/cours/")
       .then((res) => {
         axios
-          .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+          .get(`https://edulab-backend.herokuapp.com/api/utilisateur/joinedcourse/${user.id}`)
           .then((secres1) => {
             // eslint-disable-next-line
-              console.log(secres1.data);
+            console.log(secres1.data);
             const s = new Set(res.data.map(({ id }) => id));
             setMesCours(secres1.data.filter(({ id }) => s.has(id)));
             // setMesCours(mescours.filter((x) => x.id));
             // eslint-disable-next-line
-              console.log(mescours);
+            console.log(mescours);
             if (activeTab) {
               if (res.data.length > 0) {
                 isEmpty(false);
@@ -110,7 +114,7 @@ function CoursDetails() {
           });
       })
       // eslint-disable-next-line
-        .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
     if (Object.keys(cours).length === 0) {
       isEmpty(false);
     }
@@ -119,9 +123,9 @@ function CoursDetails() {
   const handleInputChange = (event) => {
     const { value } = event.target;
     if (value !== "" && value.length > 2) {
-      axios.get("http://localhost:8080/api/cours/").then((res) => {
+      axios.get("https://edulab-backend.herokuapp.com/api/cours/").then((res) => {
         axios
-          .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+          .get(`https://edulab-backend.herokuapp.com/api/utilisateur/joinedcourse/${user.id}`)
           .then((secres1) => {
             if (activeTab) {
               isEmpty(false);
@@ -158,18 +162,18 @@ function CoursDetails() {
       });
     } else {
       axios
-        .get("http://localhost:8080/api/cours/")
+        .get("https://edulab-backend.herokuapp.com/api/cours/")
         .then((res) => {
           axios
-            .get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`)
+            .get(`https://edulab-backend.herokuapp.com/api/utilisateur/joinedcourse/${user.id}`)
             .then((secres1) => {
               // eslint-disable-next-line
-                        console.log(secres1.data);
+              console.log(secres1.data);
               const s = new Set(res.data.map(({ id }) => id));
               setMesCours(secres1.data.filter(({ id }) => s.has(id)));
               // setMesCours(mescours.filter((x) => x.id));
               // eslint-disable-next-line
-                        console.log(mescours);
+              console.log(mescours);
               if (activeTab) {
                 if (res.data.length > 0) {
                   isEmpty(false);
@@ -186,7 +190,7 @@ function CoursDetails() {
             });
         })
         // eslint-disable-next-line
-            .catch((err) => console.log(err));
+        .catch((err) => console.log(err));
     }
     setSearch(value);
   };

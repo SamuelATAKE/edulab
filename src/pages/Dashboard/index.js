@@ -35,17 +35,23 @@ function Dashboard() {
   useEffect(() => {
     document.title = "Dashboard";
     if (isapprenant) {
-      axios.get(`http://localhost:8080/api/utilisateur/joinedcourse/${user.id}`).then((res) => {
-        setCoursCounter(res.data.length);
-      });
-      axios.get(`http://localhost:8080/api/utilisateur/joinedproject/${user.id}`).then((res) => {
-        setProjetCounter(res.data.length);
-      });
+      axios
+        .get(`https://edulab-backend.herokuapp.com/api/utilisateur/joinedcourse/${user.id}`)
+        .then((res) => {
+          setCoursCounter(res.data.length);
+        });
+      axios
+        .get(`https://edulab-backend.herokuapp.com/api/utilisateur/joinedproject/${user.id}`)
+        .then((res) => {
+          setProjetCounter(res.data.length);
+        });
     } else {
-      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((res) => {
-        setCoursCounter(res.data.length);
-      });
-      axios.get(`http://localhost:8080/api/projet/`).then((res) => {
+      axios
+        .get(`https://edulab-backend.herokuapp.com/api/utilisateur/addedcourse/${user.id}`)
+        .then((res) => {
+          setCoursCounter(res.data.length);
+        });
+      axios.get(`https://edulab-backend.herokuapp.com/api/projet/`).then((res) => {
         setProjetCounter(
           res.data.filter((x) => x.createur !== null && x.createur.id === user.id).length
         );
@@ -53,7 +59,7 @@ function Dashboard() {
     }
   }, []);
   // eslint-disable-next-line
-   console.log(user.role);
+  console.log(user.role);
   return (
     <>
       {ispartenaire ? (

@@ -29,12 +29,12 @@ function Projetstutores() {
   const [projets, setProjets] = useState([]);
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/cours/")
+      .get("https://edulab-backend.herokuapp.com/api/cours/")
       .then((res) => {
         setProjets(res.data);
       })
       // eslint-disable-next-line
-            .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
   return (
     <>

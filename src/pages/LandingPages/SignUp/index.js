@@ -109,7 +109,7 @@ function SignUpBasic() {
     console.log(state);
 
     axios
-      .post(`http://localhost:8080/api/utilisateur`, utilisateur, {
+      .post(`https://edulab-backend.herokuapp.com/api/utilisateur`, utilisateur, {
         headers: {
           "content-type": "application/json",
         },

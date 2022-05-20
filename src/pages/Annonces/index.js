@@ -31,12 +31,12 @@ function Annonces() {
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   useEffect(() => {
     axios
-      .get("http://localhost:8080/api/annonces/")
+      .get("https://edulab-backend.herokuapp.com/api/annonces/")
       .then((res) => {
         setAnnonces(res.data);
       })
       // eslint-disable-next-line
-            .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
 
     if (Object.keys(annonces).length === 0) {
       isEmpty(false);

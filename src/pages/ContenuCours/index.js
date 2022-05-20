@@ -61,7 +61,7 @@ function ContenuCours() {
   // };
   const [cours, setCours] = useState({});
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/cours/${param.id}`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/cours/${param.id}`).then((res) => {
       setCours(res.data);
     });
   }, []);

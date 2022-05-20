@@ -61,7 +61,7 @@ function EditAnnoncesForm() {
   };
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/annonces/${param.id}`)
+      .get(`https://edulab-backend.herokuapp.com/api/annonces/${param.id}`)
       .then((res) => {
         initialState = {
           titref: res.data.titre,
@@ -70,12 +70,12 @@ function EditAnnoncesForm() {
         };
         setState(initialState);
         // eslint-disable-next-line
-                console.log(res.data)
+        console.log(res.data);
         // eslint-disable-next-line
-                console.log(initialState.titref)
+        console.log(initialState.titref);
       })
       // eslint-disable-next-line
-            .catch((err) => console.log(err));
+      .catch((err) => console.log(err));
   }, []);
 
   const handleInputChange = (e) => {
@@ -92,44 +92,44 @@ function EditAnnoncesForm() {
     cours.cible = state.ciblef;
     cours.createur = user;
     // eslint-disable-next-line
-        console.log(state);
+    console.log(state);
     // eslint-disable-next-line
-        console.log(cours);
+    console.log(cours);
     // eslint-disable-next-line
-      console.log(user);
+    console.log(user);
     // eslint-disable-next-line
-        console.log("Submitting");
+    console.log("Submitting");
     // eslint-disable-next-line
-      const formData = new FormData();
+    const formData = new FormData();
     // eslint-disable-next-line
-      formData.append("file", selectedFile, selectedFile.name);
+    formData.append("file", selectedFile, selectedFile.name);
     axios
-      .put(`http://localhost:8080/api/annonces/`, cours, {
+      .put(`https://edulab-backend.herokuapp.com/api/annonces/`, cours, {
         headers: {
           "content-type": "application/json",
         },
       })
       .then((res) => {
         // eslint-disable-next-line
-                console.log(res);
+        console.log(res);
         // eslint-disable-next-line
-                console.log(res.data);
+        console.log(res.data);
         axios
-          .post(`http://localhost:8080/api/annonces/${res.data.id}`, formData, {
+          .post(`https://edulab-backend.herokuapp.com/api/annonces/${res.data.id}`, formData, {
             headers: {
               "content-type": "multipart/form-data",
             },
           })
           .then((sres) => {
             // eslint-disable-next-line
-                  console.log(sres);
+            console.log(sres);
             // eslint-disable-next-line
-                  console.log(sres.data);
+            console.log(sres.data);
           });
       });
-    axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-          console.log(secres1.data);
+      console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       navigate(`/gestionannonces/${param.id}`);
     });

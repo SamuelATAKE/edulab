@@ -75,16 +75,16 @@ export default function FloatingActionButtons() {
     // eslint-disable-next-line
     console.log("Submitting");
     axios
-      .post(`http://localhost:8080/api/cours/`, cours, {
+      .post(`https://edulab-backend.herokuapp.com/api/cours/`, cours, {
         headers: {
           "content-type": "application/json",
         },
       })
       .then((res) => {
         // eslint-disable-next-line
-          console.log(res);
+        console.log(res);
         // eslint-disable-next-line
-          console.log(res.data);
+        console.log(res.data);
       });
   };
 

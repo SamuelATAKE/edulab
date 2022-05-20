@@ -50,42 +50,48 @@ function CoursDetailsMentor() {
   useEffect(() => {
     document.title = "Cours";
     // eslint-disable-next-line
-        axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((secres1) => {
-      // eslint-disable-next-line
-            console.log(secres1.data);
-      setCours(secres1.data);
-      if (secres1.data.length === 0) {
-        isEmpty(true);
-      } else {
-        isEmpty(false);
-      }
-    });
+    axios
+      .get(`https://edulab-backend.herokuapp.com/api/utilisateur/addedcourse/${user.id}`)
+      .then((secres1) => {
+        // eslint-disable-next-line
+        console.log(secres1.data);
+        setCours(secres1.data);
+        if (secres1.data.length === 0) {
+          isEmpty(true);
+        } else {
+          isEmpty(false);
+        }
+      });
   }, [user]);
 
   const [search, setSearch] = useState("");
   const handleInputChange = (event) => {
     const { value } = event.target;
     if (value !== "" && value.length > 2) {
-      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((bd) => {
-        if (
-          bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []
-        ) {
-          setCours(
-            bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase()))
-          );
-          isChanged(changed + 1);
-        }
-      });
+      axios
+        .get(`https://edulab-backend.herokuapp.com/api/utilisateur/addedcourse/${user.id}`)
+        .then((bd) => {
+          if (
+            bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []
+          ) {
+            setCours(
+              bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase()))
+            );
+            isChanged(changed + 1);
+          }
+        });
     } else {
-      axios.get(`http://localhost:8080/api/utilisateur/addedcourse/${user.id}`).then((bd) => {
-        setCours(bd.data);
-        isChanged(changed + 1);
-      });
+      axios
+        .get(`https://edulab-backend.herokuapp.com/api/utilisateur/addedcourse/${user.id}`)
+        .then((bd) => {
+          setCours(bd.data);
+          isChanged(changed + 1);
+        });
     }
     setSearch(value);
 
     // eslint-disable-next-line
-        console.log(cours);
+    console.log(cours);
   };
 
   return (

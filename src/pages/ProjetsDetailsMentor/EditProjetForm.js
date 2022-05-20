@@ -89,7 +89,7 @@ function EditProjetForm() {
   } = projet;
   const [selectedFile, setSelectedFile] = useState();
   useEffect(() => {
-    axios.get(`http://localhost:8080/api/projet/${param.id}`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/projet/${param.id}`).then((res) => {
       // eslint-disable-next-line
       console.log(res.data);
       initialState = {
@@ -121,7 +121,7 @@ function EditProjetForm() {
   const handleInputChange = (e) => {
     const { name, value } = e.target;
     // eslint-disable-next-line
-        console.log(e);
+    console.log(e);
     setState({ ...state, [name]: value });
   };
   const onSubmit = (e) => {
@@ -147,43 +147,43 @@ function EditProjetForm() {
     projet.nom = state.nomf;
     projet.createur = user;
     // eslint-disable-next-line
-        console.log(state);
+    console.log(state);
     // eslint-disable-next-line
-        console.log(projet);
+    console.log(projet);
     // eslint-disable-next-line
-      console.log(user);
+    console.log(user);
     // eslint-disable-next-line
-        console.log("Submitting");
+    console.log("Submitting");
     const formData = new FormData();
     formData.append("file", selectedFile, selectedFile.name);
     axios
-      .put(`http://localhost:8080/api/projet/`, projet, {
+      .put(`https://edulab-backend.herokuapp.com/api/projet/`, projet, {
         headers: {
           "content-type": "application/json",
         },
       })
       .then((res) => {
         // eslint-disable-next-line
-                console.log(res);
+        console.log(res);
         // eslint-disable-next-line
-                console.log(res.data);
+        console.log(res.data);
         axios
-          .post(`http://localhost:8080/api/projet/${res.data.id}`, formData, {
+          .post(`https://edulab-backend.herokuapp.com/api/projet/${res.data.id}`, formData, {
             headers: {
               "content-type": "multipart/form-data",
             },
           })
           .then((sres) => {
             // eslint-disable-next-line
-                  console.log(sres);
+            console.log(sres);
             // eslint-disable-next-line
-                  console.log(sres.data);
+            console.log(sres.data);
           });
       });
 
-    axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-          console.log(secres1.data);
+      console.log(secres1.data);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       navigate(`/gestionprojet/${param.id}`);
     });

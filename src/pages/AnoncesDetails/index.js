@@ -32,27 +32,31 @@ function AnnoncesDetails() {
   // eslint-disable-next-line no-unused-vars
   const handleJoin = (id) => {
     let item;
-    axios.get(`http://localhost:8080/api/cours/${id}`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/cours/${id}`).then((res) => {
       item = res.data;
       axios
-        .put(`http://localhost:8080/api/utilisateur/joincourse/${user.id}`, res.data, {
-          headers: {
-            "content-type": "application/json",
-          },
-        })
+        .put(
+          `https://edulab-backend.herokuapp.com/api/utilisateur/joincourse/${user.id}`,
+          res.data,
+          {
+            headers: {
+              "content-type": "application/json",
+            },
+          }
+        )
         .then((secres) => {
           // eslint-disable-next-line
-                    console.log(secres.data);
+          console.log(secres.data);
           // eslint-disable-next-line
-                    console.log(item);
+          console.log(item);
         });
     });
 
-    axios.get(`http://localhost:8080/api/utilisateur/${user.id}`).then((secres1) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/utilisateur/${user.id}`).then((secres1) => {
       // eslint-disable-next-line
-            console.log(secres1.data);
+      console.log(secres1.data);
       // eslint-disable-next-line
-            console.log(item);
+      console.log(item);
       localStorage.setItem("user", JSON.stringify(secres1.data));
       setUser(JSON.parse(localStorage.getItem("user")));
     });
@@ -62,7 +66,7 @@ function AnnoncesDetails() {
   const DATE_OPTIONS = { weekday: "short", month: "long", day: "numeric", year: "numeric" };
   const [annonces, setAnnonces] = useState([]);
   useEffect(() => {
-    axios.get("http://localhost:8080/api/annonces/").then((res) => {
+    axios.get("https://edulab-backend.herokuapp.com/api/annonces/").then((res) => {
       setAnnonces(res.data);
       if (res.data.length === 0) {
         isEmpty(true);
@@ -77,7 +81,7 @@ function AnnoncesDetails() {
   const handleInputChange = (event) => {
     const { value } = event.target;
     if (value !== "" && value.length > 2) {
-      axios.get(`http://localhost:8080/api/annonces/`).then((bd) => {
+      axios.get(`https://edulab-backend.herokuapp.com/api/annonces/`).then((bd) => {
         if (
           bd.data.filter((cour) => cour.titre.toLowerCase().includes(value.toLowerCase())) !== []
         ) {
@@ -87,14 +91,14 @@ function AnnoncesDetails() {
         }
       });
     } else {
-      axios.get(`http://localhost:8080/api/annonces/`).then((bd) => {
+      axios.get(`https://edulab-backend.herokuapp.com/api/annonces/`).then((bd) => {
         setAnnonces(bd.data);
       });
     }
     setSearch(value);
 
     // eslint-disable-next-line
-        console.log(annonces);
+    console.log(annonces);
   };
   return (
     <>

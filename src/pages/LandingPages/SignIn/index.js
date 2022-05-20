@@ -58,7 +58,7 @@ function SignInBasic() {
     console.log("Submitting");
     // eslint-disable-next-line
     console.log(state);
-    axios.get(`http://localhost:8080/api/utilisateur`).then((res) => {
+    axios.get(`https://edulab-backend.herokuapp.com/api/utilisateur`).then((res) => {
       res.data.forEach((element) => {
         // eslint-disable-next-line
         console.log("element");
