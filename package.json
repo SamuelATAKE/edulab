@@ -53,9 +53,9 @@
     "web-vitals": "1.0.1"
   },
   "scripts": {
-    "start": "react-scripts start --legacy-peer-deps",
-    "build": "react-scripts build --legacy-peer-deps",
-    "test": "react-scripts test --legacy-peer-deps",
+    "start": "react-scripts start --force",
+    "build": "react-scripts build --force",
+    "test": "react-scripts test --force",
     "eject": "react-scripts eject",
     "install:clean": "rm -rf node_modules/ && rm -rf package-lock.json && npm install && npm start"
   },
